@@ -1,9 +1,10 @@
 {
-    "name": "application-name"
+    "name": "jsfoo"
+    "description": "Site for JSFoo India 2011. Done in Express + EJS + Stylus",
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
-      "express": "2.3.11"
+      "express": ">= 2.1.0"
     , "stylus": ">= 0.0.1"
     , "ejs": ">= 0.0.1"
   }
