@@ -31,7 +31,7 @@ app.configure('production', function(){
 
 app.get('/', function(req, resp){
   resp.render('index', {
-    title: 'JSFoo India - 2011'
+    title: 'jsFoo 2011'
   });
 });
 
