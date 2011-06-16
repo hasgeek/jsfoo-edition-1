@@ -29,10 +29,15 @@ app.configure('production', function(){
 
 // Routes
 
-app.get('/', function(req, res){
-  res.render('index', {
+app.get('/', function(req, resp){
+  resp.render('index', {
     title: 'JSFoo India - 2011'
   });
+});
+
+// Catch all route
+app.use(function(eq, resp){
+  resp.redirect("/");
 });
 
 app.listen(10551);
