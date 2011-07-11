@@ -24,7 +24,7 @@
     $("section i").remove();
   },6E4);
   function rescale(){
-    $("#log,#names").height($(window).height()-140);
+    $("#log,#names").height($(window).height()-180);
   }
   rescale();
   $(window).resize(rescale);
