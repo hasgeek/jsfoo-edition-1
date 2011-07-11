@@ -16,16 +16,18 @@ ol
   list-style-type  none
   line-height  24px
   margin  0
+  margin-right 10px
   padding  10px
   border  1px solid #EDC
   border-radius  3px
   background-color #FEFEF4
+  overflow auto
   
 #log
-  margin-left 180px
   padding 10px
   border  1px solid #FEE
   border-radius 3px
+  overflow auto
 
 p
   margin -1px 0 0 0
@@ -73,19 +75,18 @@ p span
 p:nth-child(2n+1)
   background-color #F6F7F4
   
-  
 ::-webkit-scrollbar
-  width 6px
+  width 4px
 
 ::-webkit-scrollbar-track-piece
-  border-radius 3px
+  border-radius 4px
 
 ::-webkit-scrollbar-thumb
-  background #555
-  width 5px
-  border-radius 10px
+  background #EEE
+  width 4px
+  border-radius 4px
   opacity 0.2
 
-ol:hover::-webkit-scrollbar-thumb
-  background-color #ccc
+ol:hover::-webkit-scrollbar-thumb, div:hover::-webkit-scrollbar-thumb
+  background-color #888
   opacity 1.0

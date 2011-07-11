@@ -32,6 +32,7 @@
   var socket  = io.connect();
   var nameList = $("#names");
   var messageLog = $("#log");
+  var last = 0;
 
   socket.on('connect', function() {
     console.log('Connected');
@@ -51,7 +52,9 @@
   socket.on("message", function(m){
     if(!(m instanceof Array)) m = [m];
     for(var i=0, l=m.length; i<l; i++){
+      if(m[i].time <= last) continue;
       messageLog.prepend(render(partial,m[i]));
+      last = m[i].time;
     }
   })
 })();
