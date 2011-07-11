@@ -1,6 +1,7 @@
 (function() {
   var console = console || {log:function(){}};
   var partial = "<p><time data='{time}'>{pretty(time)}</time><u>{from}</u><span>{linkify(text)}</span></p>";
+  var entities = {"<":"&lt;",">":"&gt;",'&':'&amp;','"':'&quot;',"'": '&#32;'};
 
   function render(b,c){
     return b.replace(/{[\w\.\(\)]+}/g,function(a){a=a.replace(/[\{\}]/g,"");try{with(c)return eval(a)}catch(b){return""}})
