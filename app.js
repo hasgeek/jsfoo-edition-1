@@ -75,7 +75,7 @@ io.sockets.on('connection', function(client){
 // Before initializing IRC client, pull the json from couchDB
 console.info("fetching back log");
 connection.get(docId, function(err, doc){
-console.log(Object.keys(doc));
+console.log(doc.messages.length);
   if(err){
     console.error(err);
     return;
