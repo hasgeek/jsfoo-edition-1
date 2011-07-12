@@ -8,6 +8,7 @@ var connection = CouchClient("http://jsfoobot:foobotpass@netroy.iriscouch.com/ir
 var docId = "backlog";
 
 worker.onmessage = function (message) {
+  console.debug(message);
   if(message.save){
     // push the json to couchDB
     connection.save({
@@ -24,7 +25,10 @@ worker.onmessage = function (message) {
   }else if(message.fetch){
     // pull the json from couchDB
     connection.get(docId, function(err, doc){
-      if(err) return;
+      if(err){
+        console.error(err);
+        return;
+      }
       worker.postMessage({"fetched":doc.messages});
     });
   }

@@ -85,6 +85,7 @@ worker.addListener("message", function (message) {
 });
 
 // Before initializing IRC client, trigger the worker to fetch backlog
+console.info("fetching back log");
 worker.postMessage({"fetch":true});
 
 // And set a timer to take backups every 60 seconds
