@@ -7,9 +7,8 @@ var express = require('express'),
         irc = require("irc"),
       debug = false,
         app = module.exports = express.createServer(),
-CouchClient = require('couch-client'),
- connection = CouchClient("http://jsfoobot:foobotpass@netroy.iriscouch.com/irc_jsfoo"),
-      docId = "backlog";
+     Worker = require("worker").Worker,
+     worker = new Worker("worker.js");
 
 // Configuration
 app.configure(function(){
@@ -72,36 +71,29 @@ io.sockets.on('connection', function(client){
   io.sockets.emit('message', messages);
 });
 
-// Before initializing IRC client, pull the json from couchDB
-console.info("fetching back log");
-connection.get(docId, function(err, doc){
-  if(err){
-    console.error(err);
-    return;
-  }else if(doc.messages && doc.messages.length && doc.messages.length > 0){
-    messages = doc.messages;
+// Attach a listener to the worker for response
+worker.addListener("message", function (message) {
+  if(message.saved){
+    lastTimeStamp = last.time;
+    console.info("Saved the backlog at " + new Date(lastTimeStamp));
+  }else if(message.fetched && message.fetched.length){
+    messages = message.fetched;
     console.log("Fetched the backlog. Message count : " + messages.length);
+  }else{
+    console.log(message);
   }
 });
 
+// Before initializing IRC client, trigger the worker to fetch backlog
+console.info("fetching back log");
+worker.postMessage({"fetch":true});
 // And set a timer to take backups every 60 seconds
 var lastTimeStamp = 0, last;
 setInterval(function(){
   if(messages.length === 0) return;
   last = messages[messages.length - 1];
   if(last.time <= lastTimeStamp) return;
-  connection.save({
-    "_id": docId,
-    "messages": message.save
-  }, function(err, doc){
-    if(err){
-      console.error("Saving failed");
-      console.error(err);
-      return;
-    }
-    lastTimeStamp = last.time;
-    console.info("Saved the backlog at " + new Date(lastTimeStamp));
-  })
+  worker.postMessage({"save":messages});
 },60*1000);
 
 // Init the IRC client & connect to #hasgeek
