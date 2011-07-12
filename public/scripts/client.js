@@ -13,6 +13,7 @@
     return a;
   };
   function pretty(a,b,c){
+    a=parseInt(a);
     a=(new Date-new Date(a))/1E3;
     b=[60,60,24];
     for(c=0;a>b[c];a/=b[c++]);
