@@ -79,7 +79,7 @@ console.log(doc.messages.length);
   if(err){
     console.error(err);
     return;
-  }else if(doc.messages && doc.messages instanceof Array && doc.messages.length > 0){
+  }else if(doc.messages && doc.messages.length && doc.messages.length > 0){
     messages = doc.messages;
     console.log("Fetched the backlog. Message count : " + messages.length);
   }
