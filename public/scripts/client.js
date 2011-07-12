@@ -1,15 +1,16 @@
 (function() {
-  var console = console || {log:function(){}};
+  //var console = console || {log:function(){}};
   var partial = "<p><time data='{time}'>{pretty(time)}</time><u>{from}</u><span>{linkify(text)}</span></p>";
-  var entities = {"<":"&lt;",">":"&gt;",'&':'&amp;','"':'&quot;',"'": '&#32;'};
+  var entities = {"<":"&lt;",">":"&gt;",'&':'&amp;','"':'&quot;',"'": '&#146;'};
 
   function render(b,c){
     return b.replace(/{[\w\.\(\)]+}/g,function(a){a=a.replace(/[\{\}]/g,"");try{with(c)return eval(a)}catch(b){return""}})
   };
   function linkify(a){
-    a=a.replace(/[&"'><]/g,function(a){return entities[a]});
+    a=a.replace(/[&"'><]/g,function(b){return entities[b];});
     a=a.replace(/((https?):\/\/([-\w\.]+)+(:\d+)?(\/([\w\/_\.\-#\+]*(\?\S+)?)?)?)/gm,'<a href="$1" target="_blank">$1</a>');
-    return a=a.replace(/^\@?([\w]*):/,function(a){return a==="http"?a:a.bold()})
+    a=a.replace(/^\@?([\w]*):/,function(a){return a==="http"?a:a.bold()});
+    return a;
   };
   function pretty(a,b,c){
     a=(new Date-new Date(a))/1E3;
@@ -42,8 +43,22 @@
   socket.on('names', function(names){
     nameList.empty();
     for(nick in names){
-      nameList.append("<li><u>"+nick+"</u></li>");
+      nameList.prepend("<li><u id='li_"+nick+"'>"+nick+"</u></li>");
     }
+  });
+
+  socket.on('join', function(nick){
+    nameList.prepend("<li><u id='li_"+nick+"'>"+nick+"</u></li>");
+  });
+
+  socket.on('part', function(nick){
+    nameList.find("#li_"+nick).remove();
+  });
+
+  socket.on('nick', function(old, nick){
+    nameList.find("#li_"+old).each(function(){
+      $(this).attr("id", "#li_"+nick).html(nick);
+    });
   });
 
   socket.on('topic', function(topic){
@@ -54,8 +69,9 @@
     if(!(m instanceof Array)) m = [m];
     for(var i=0, l=m.length; i<l; i++){
       if(m[i].time <= last) continue;
-      messageLog.prepend(render(partial,m[i]));
+      messageLog.append(render(partial,m[i]));
       last = m[i].time;
     }
+    messageLog[0].scrollTop = messageLog[0].scrollHeight;
   })
 })();
