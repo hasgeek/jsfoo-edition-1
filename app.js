@@ -92,7 +92,7 @@ setInterval(function(){
   if(last.time <= lastTimeStamp) return;
   connection.save({
     "_id": docId,
-    "messages": message.save
+    "messages": messages
   }, function(err, doc){
     if(err){
       console.error("Saving failed");
