@@ -58,7 +58,8 @@ app.use(function(eq, resp){
 
 // prevent server from starting as module - can be used with something like multinode
 if (!module.parent) {
-  app.listen(10551);
+  //app.listen(10551);
+  app.listen(process.env['app_port'])
   console.info("Started on port %d", app.address().port);
 }
 
