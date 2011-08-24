@@ -12,7 +12,7 @@
     }
 
     body {
-      font-family: georgia;
+      font-family: georgia, sans-serif;
       font-size: 12pt;
       background: white;
       color: #222;
@@ -35,6 +35,8 @@
       position:relative;
       -webkit-transform: translate3d(0,0,0);
       -webkit-transition: -webkit-transform 1s ease-in-out;
+      -moz-transform: translate(0,0);
+      -moz-transition: -moz-transform 1s ease-in-out;
     }
 
     section.panel {
@@ -48,11 +50,12 @@
       text-align: center;
       font-size: 138px;
       color: #222;
-      text-shadow: 0px 1px 0px #EEE, 0px 0px 4px #888;
+      text-shadow: 0px 1px 0px #EEE, 0px 0px 4px #555;
       padding-top: 160px;
       font-weight: bold;
       opacity: 0.2;
       -webkit-transition: opacity 1.2s ease-in-out;
+      -moz-transition: opacity 1.2s ease-in-out;
     }
 
 
@@ -69,23 +72,23 @@
   #eighth{  margin-left:0;    margin-top:{h};}
   #ninth{   margin-left:{w};  margin-top:{h};}
   
-  .p00 #outer{ -webkit-transform: translate3d({W},{h},0);}
+  .p00 #outer{ -webkit-transform: translate3d({W},{h},0);  -moz-transform: translate({W},{h});}
   .p00 #first { opacity: 1.0;}
-  .p01 #outer{ -webkit-transform: translate3d(0,{h},0);}
+  .p01 #outer{ -webkit-transform: translate3d(0,{h},0);    -moz-transform: translate(0,{h});}
   .p01 #second { opacity: 1.0;}
-  .p02 #outer{ -webkit-transform: translate3d(-{W},{h},0);}
+  .p02 #outer{ -webkit-transform: translate3d(-{W},{h},0); -moz-transform: translate(-{W},{h});}
   .p02 #third { opacity: 1.0;}
-  .p10 #outer{ -webkit-transform: translate3d({W},0,0);}
+  .p10 #outer{ -webkit-transform: translate3d({W},0,0);    -moz-transform: translate({W},0);}
   .p10 #fourth { opacity: 1.0;}
   .p11 #outer{ }
   .p11 #fifth { opacity: 1.0;}
-  .p12 #outer{ -webkit-transform: translate3d(-{W},0,0);}
+  .p12 #outer{ -webkit-transform: translate3d(-{W},0,0);   -moz-transform: translate(-{W},0);}
   .p12 #sixth { opacity: 1.0;}
-  .p20 #outer{ -webkit-transform: translate3d({W},-{h},0);}
+  .p20 #outer{ -webkit-transform: translate3d({W},-{h},0); -moz-transform: translate({W},-{h});}
   .p20 #seventh { opacity: 1.0;}
-  .p21 #outer{ -webkit-transform: translate3d(0,-{h},0);}
+  .p21 #outer{ -webkit-transform: translate3d(0,-{h},0);   -moz-transform: translate(0,-{h});}
   .p21 #eighth { opacity: 1.0;}
-  .p22 #outer{ -webkit-transform: translate3d(-{W},-{h},0);}
+  .p22 #outer{ -webkit-transform: translate3d(-{W},-{h},0);-moz-transform: translate(-{W},-{h});}
   .p22 #ninth { opacity: 1.0;}
   </style>
 </head>
@@ -104,7 +107,7 @@
   <script type="text/javascript">
   (function(window, document, undefined){
     var x=1, y=1, body = document.body;
-    body.addEventListener("keydown", function(e){
+    document.addEventListener("keydown", function(e){
       var key = e.charCode || e.keyCode;
       switch(key){
         case 37: // Left
@@ -137,7 +140,7 @@
           }
           break;
         default:
-          //console.log(key);
+          console.log(key);
           break;
       }
     }, false);
@@ -146,7 +149,7 @@
     var template = document.getElementById("template");
     var rendered = document.getElementById("rendered");
     function adjust(){
-      var w = document.width+100, h = document.height+100;
+      var w = body.clientWidth+100, h = body.clientHeight+100;
       while(rendered.firstChild){
         rendered.removeChild(rendered.firstChild);
       }
