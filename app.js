@@ -65,8 +65,6 @@ if (!module.parent) {
   console.info("Started on port %d", app.address().port);
 }
 
-return;
-
 // Bind Socket.IO server to the http server
 var io = io.listen(app);
 io.set('log level', debug?2:1);

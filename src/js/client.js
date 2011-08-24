@@ -7,9 +7,9 @@
     return b.replace(/\{[\w\.\(\)]+\}/g,function(a){
       a=a.replace(/[\{\}]/g,"");
       try{
-        /*with(c){
+        with(c){
           return eval(a);
-        }*/
+        }
       }catch(b){
         return"";
       }
