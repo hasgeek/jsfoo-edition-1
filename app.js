@@ -17,7 +17,10 @@ app.configure(function(){
   app.set('view engine', 'ejs');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(require('stylus').middleware({ src: __dirname + '/public' }));
+  app.use(require('stylus').middleware({
+    src: __dirname + '/src/stylus',
+    dest: __dirname + '/static/css'
+  }));
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
 });
@@ -58,10 +61,11 @@ app.use(function(eq, resp){
 
 // prevent server from starting as module - can be used with something like multinode
 if (!module.parent) {
-  //app.listen(10551);
-  app.listen(process.env['app_port'])
+  app.listen(process.env['app_port'] || 10551)
   console.info("Started on port %d", app.address().port);
 }
+
+return;
 
 // Bind Socket.IO server to the http server
 var io = io.listen(app);

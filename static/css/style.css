@@ -78,7 +78,8 @@ p:nth-child(2n+1) {
   background-color: #f6f7f4;
 }
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-thumb {
   background: #eee;
@@ -86,10 +87,16 @@ p:nth-child(2n+1) {
   opacity: 0.2;
   border: 2px solid #fff;
   cursor: pointer;
+  box-shadow: none;
 }
 ol:hover::-webkit-scrollbar-thumb,
 div:hover::-webkit-scrollbar-thumb {
-  background-color: #bbb;
   opacity: 1;
-  border-color: transparent;
+  border: 1px solid rgba(140,140,140,0.50);
+  background-color: rgba(155,155,155,0.50);
+}
+ol::-webkit-scrollbar-thumb:active,
+div::-webkit-scrollbar-thumb:active {
+  border: 1px solid #8c8c8c;
+  background-color: #9b9b9b;
 }
