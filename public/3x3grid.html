@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+  <title>jsFoo-3x3</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: georgia;
+      font-size: 12pt;
+      background: white;
+      color: #222;
+      background-image: -webkit-gradient(
+        radial, 
+        50% 0%, 0, 
+        50% 0%, 900, 
+        from(#555), 
+        to(#222)
+      );
+
+      background-image: -moz-radial-gradient(
+        center, 
+        #555, 
+        #222
+      );
+    }
+
+    #outer {
+      position:relative;
+      -webkit-transform: translate3d(0,0,0);
+      -webkit-transition: -webkit-transform 1s ease-in-out;
+    }
+
+    section.panel {
+      display: block;
+      position: absolute;
+      margin: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      text-align: center;
+      font-size: 138px;
+      color: #222;
+      text-shadow: 0px 1px 0px #EEE, 0px 0px 4px #888;
+      padding-top: 160px;
+      font-weight: bold;
+      opacity: 0.2;
+      -webkit-transition: opacity 1.2s ease-in-out;
+    }
+
+
+  </style>
+  <style type="text/css" id="rendered"></style>
+  <style type="template" id="template">
+  #first{   margin-left:-{w}; margin-top:-{h};}
+  #second{  margin-left:0;    margin-top:-{h};}
+  #third{   margin-left:{w};  margin-top:-{h};}
+  #fourth{  margin-left:-{w}; margin-top:0;}
+  #fifth{   margin-left:0;    margin-top:0;}
+  #sixth{   margin-left:{w};  margin-top:0;}
+  #seventh{ margin-left:-{w}; margin-top:{h};}
+  #eighth{  margin-left:0;    margin-top:{h};}
+  #ninth{   margin-left:{w};  margin-top:{h};}
+  
+  .p00 #outer{ -webkit-transform: translate3d({W},{h},0);}
+  .p00 #first { opacity: 1.0;}
+  .p01 #outer{ -webkit-transform: translate3d(0,{h},0);}
+  .p01 #second { opacity: 1.0;}
+  .p02 #outer{ -webkit-transform: translate3d(-{W},{h},0);}
+  .p02 #third { opacity: 1.0;}
+  .p10 #outer{ -webkit-transform: translate3d({W},0,0);}
+  .p10 #fourth { opacity: 1.0;}
+  .p11 #outer{ }
+  .p11 #fifth { opacity: 1.0;}
+  .p12 #outer{ -webkit-transform: translate3d(-{W},0,0);}
+  .p12 #sixth { opacity: 1.0;}
+  .p20 #outer{ -webkit-transform: translate3d({W},-{h},0);}
+  .p20 #seventh { opacity: 1.0;}
+  .p21 #outer{ -webkit-transform: translate3d(0,-{h},0);}
+  .p21 #eighth { opacity: 1.0;}
+  .p22 #outer{ -webkit-transform: translate3d(-{W},-{h},0);}
+  .p22 #ninth { opacity: 1.0;}
+  </style>
+</head>
+<body>
+  <div id="outer">
+    <section class="panel" id="first">1</section>
+    <section class="panel" id="second">2</section>
+    <section class="panel" id="third">3</section>
+    <section class="panel" id="fourth">4</section>
+    <section class="panel" id="fifth">5</section>
+    <section class="panel" id="sixth">6</section>
+    <section class="panel" id="seventh">7</section>
+    <section class="panel" id="eighth">8</section>
+    <section class="panel" id="ninth">9</section>
+  </div>
+  <script type="text/javascript">
+  (function(window, document, undefined){
+    var x=1, y=1, body = document.body;
+    body.addEventListener("keydown", function(e){
+      var key = e.charCode || e.keyCode;
+      switch(key){
+        case 37: // Left
+        case 39: // Right
+          key = key - 38;
+          x += key;
+          if(x < 0){
+            x = 0;
+            return;
+          }else if(x > 2){
+            x = 2;
+            return;
+          }else {
+            body.className = "p"+y+x;
+          }
+          break;
+
+        case 38: // Up
+        case 40: // Down
+          key = key - 39;
+          y += key;
+          if(y < 0){
+            y = 0;
+            return;
+          }else if(y > 2){
+            y = 2;
+            return;
+          }else {
+            body.className = "p"+y+x;
+          }
+          break;
+        default:
+          //console.log(key);
+          break;
+      }
+    }, false);
+    body.className = "p"+y+x;
+    
+    var template = document.getElementById("template");
+    var rendered = document.getElementById("rendered");
+    function adjust(){
+      var w = document.width+100, h = document.height+100;
+      while(rendered.firstChild){
+        rendered.removeChild(rendered.firstChild);
+      }
+      rendered.appendChild(document.createTextNode(template.innerHTML.replace(/{w}/g,w+"px").replace(/{W}/g,~~(w/2)+"px").replace(/{h}/g,h+"px")));
+    }
+    adjust();
+    
+    body.addEventListener("click", function(e){
+      var x = ~~(Math.random()*3);
+      var y = ~~(Math.random()*3);
+      body.className = "p"+y+x;      
+    });
+  })(window, document);
+  </script>
+</body>
+</html>
