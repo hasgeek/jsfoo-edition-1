@@ -1,5 +1,29 @@
 (function(window, document, undefined){
-  var x=1, y=1, body = document.body;
+  var x=1, y=1, body = document.body, outer = document.getElementById("outer");
+  
+  var map = {
+    "about-event": "p00",
+    "about-us": "p01",
+    "proposals": "p02",
+    "venue": "p10",
+    "home": "p11",
+    "videos": "p12",
+    "sponsors": "p20",
+    "credits": "p21",
+    "register": "p22"
+  }, requested = location.pathname.substr(1);
+  
+  if(typeof map[requested] !== 'undefined'){
+    body.className = map[requested]
+  } else {
+    body.className = "p"+y+x;
+  }
+  
+  body.setAttribute("style","display:block");
+  setTimeout(function(){
+    outer.className = "animated";
+  },800);
+  
   document.addEventListener("keydown", function(e){
     var key = e.charCode || e.keyCode;
     switch(key){
@@ -32,13 +56,9 @@
           body.className = "p"+y+x;
         }
         break;
-      default:
-        console.log(key);
-        break;
     }
   }, false);
 
-  body.className = "p"+y+x;
   
   var template = document.getElementById("template");
   var rendered = document.getElementById("rendered");
@@ -62,4 +82,5 @@
     var y = ~~(Math.random()*3);
     body.className = "p"+y+x;      
   });
+  
 })(window, document);
