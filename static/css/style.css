@@ -13,7 +13,7 @@ header a.logo img{z-index:32;border:0 none;padding:0 25px}
 #outer{z-index:8;position:relative;-webkit-transform:translate3d(0,0,0);-moz-transform:translate(0,0);-o-transform:translate(0,0);transform:translate(0,0);}
 #outer.animated{-webkit-transition:-webkit-transform .6s ease-in-out;-moz-transition:-moz-transform .6s ease-in-out;-o-transition:-o-transform .6s ease-in-out;transition:transform .6s ease-in-out;}
 #outer.animated section.panel{-webkit-transition:opacity .5s ease-in-out;-moz-transition:opacity .5s ease-in-out;-o-transition:opacity .5s ease-in-out;transition:opacity .5s ease-in-out}
-section.panel{position:absolute;z-index:4;margin:0;top:0;left:0;right:0;text-align:center;font-size:60px;color:#222;text-shadow:0 1px 0 #eee,0 0 4px #555;padding-top:160px;font-weight:bold;opacity:.4;}
+section.panel{position:absolute;z-index:4;margin:0;top:0;left:0;right:0;text-align:center;font-size:60px;color:#222;text-shadow:0 1px 0 #eee,0 0 4px #555;padding-top:160px;font-weight:bold;opacity:.1;}
 section.panel article{background-color:rgba(60,10,0,0.20);border:1px solid rgba(0,0,0,0.10);border-radius:8px;width:960px;height:500px;margin:0 auto}
 #topic{height:20px;overflow:hidden}
 ol{width:150px;float:left;list-style-type:none;line-height:24px;margin:0;margin-right:10px;padding:10px;border:1px solid #edc;border-radius:3px;background-color:#fefef4;overflow:auto}
