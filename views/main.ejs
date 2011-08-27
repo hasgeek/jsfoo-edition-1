@@ -1,0 +1,142 @@
+<style type="text/css">body{display:none;}</style>
+<style type="text/css" id="rendered"></style>
+<style type="template" id="template">
+section.panel {width: {w};height: {h};}
+#first{   margin-left:-{w}; margin-top:-{h};}
+#second{  margin-left:0;    margin-top:-{h};}
+#third{   margin-left:{w};  margin-top:-{h};}
+#fourth{  margin-left:-{w}; margin-top:0;}
+#fifth{   margin-left:0;    margin-top:0;}
+#sixth{   margin-left:{w};  margin-top:0;}
+#seventh{ margin-left:-{w}; margin-top:{h};}
+#eighth{  margin-left:0;    margin-top:{h};}
+#ninth{   margin-left:{w};  margin-top:{h};}
+
+.p00 #outer {
+  -webkit-transform: translate3d({w},{h},0);
+  -moz-transform: translate({w},{h});
+  -o-transform: translate({w},{h});
+  transform: translate({w},{h});
+}
+.p00 #first { opacity: 1.0;}
+.p01 #outer {
+  -webkit-transform: translate3d(0,{h},0);
+  -moz-transform: translate(0,{h});
+  -o-transform: translate(0,{h});
+  transform: translate(0,{h});
+}
+.p01 #second { opacity: 1.0;}
+.p02 #outer {
+  -webkit-transform: translate3d(-{w},{h},0);
+  -moz-transform: translate(-{w},{h});
+  -o-transform: translate(-{w},{h});
+  transform: translate(-{w},{h});
+}
+.p02 #third { opacity: 1.0;}
+.p10 #outer {
+  -webkit-transform: translate3d({w},0,0);
+  -moz-transform: translate({w},0);
+  -o-transform: translate({w},0);
+  transform: translate({w},0);
+}
+.p10 #fourth { opacity: 1.0;}
+.p11 #outer{ }
+.p11 #fifth { opacity: 1.0;}
+.p12 #outer {
+  -webkit-transform: translate3d(-{w},0,0);
+  -moz-transform: translate(-{w},0);
+  -o-transform: translate(-{w},0);
+  transform: translate(-{w},0);
+}
+.p12 #sixth { opacity: 1.0;}
+.p20 #outer {
+  -webkit-transform: translate3d({w},-{h},0);
+  -moz-transform: translate({w},-{h});
+  -o-transform: translate({w},-{h});
+  transform: translate({w},-{h});
+}
+.p20 #seventh { opacity: 1.0;}
+.p21 #outer {
+  -webkit-transform: translate3d(0,-{h},0);
+  -moz-transform: translate(0,-{h});
+  -o-transform: translate(0,-{h});
+  transform: translate(0,-{h});
+}
+.p21 #eighth { opacity: 1.0;}
+.p22 #outer {
+  -webkit-transform: translate3d(-{w},-{h},0);
+  -moz-transform: translate(-{w},-{h});
+  -o-transform: translate(-{w},-{h});
+  transform: translate(-{w},-{h});
+}
+.p22 #ninth { opacity: 1.0;}
+</style>
+
+<div id="outer">
+  <section class="panel" id="first">
+    <article id="about-event">
+      About jsFoo
+    </article>
+  </section>
+  <section class="panel" id="second">
+    <article id="about-us">
+      About Us
+    </article>
+  </section>
+  <section class="panel" id="third">
+    <article id="proposals">
+      Proposals
+    </article>
+  </section>
+  <section class="panel" id="fourth">
+    <article id="venue">
+      Venue
+    </article>
+  </section>
+  <section class="panel" id="fifth">
+    <article id="home">
+      Home
+    </article>
+  </section>
+  <section class="panel" id="sixth">
+    <article id="videos">
+      Videos
+    </article>
+  </section>
+  <section class="panel" id="seventh">
+    <article id="sponsors">
+      Sponsors
+    </article>
+  </section>
+  <section class="panel" id="eighth">
+    <article id="credits">
+      Credits
+    </article>
+  </section>
+  <section class="panel" id="ninth">
+    <article id="register">
+      Register
+    </article>
+  </section>
+</div>
+
+<header>
+  <nav>
+    <a href="/about-event">About Event</a>
+    <a href="/about-us">About Us</a>
+    <a href="/proposals">Proposals</a>
+    <a href="/venue">Venue</a>
+  </nav>
+  <a href="/home" class="logo">
+    <img src="/img/header-logo.png" />
+  </a>
+  <nav>
+    <a href="/videos">Videos</a>
+    <a href="/sponsors">Sponsors</a>
+    <a href="/credits">Credits</a>
+    <a href="/register">Register</a>
+  </nav>
+</header>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
