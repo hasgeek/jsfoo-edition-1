@@ -5,6 +5,9 @@
 var express = require('express'),
          io = require("socket.io"),
         irc = require("irc"),
+     stylus = require("stylus"),
+        nib = require("nib"),
+       gzip = require('connect-gzip'),
       debug = false,
         app = module.exports = express.createServer(),
 CouchClient = require('couch-client'),
@@ -15,14 +18,19 @@ CouchClient = require('couch-client'),
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
+  app.enable('view cache');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(require('stylus').middleware({
-    src: __dirname + '/src/stylus',
-    dest: __dirname + '/static/css'
+    src: __dirname + '/src',
+    dest: __dirname + '/static',
+    compile: function (str, path, fn) {
+      return stylus(str).set('filename', path).set('compress', true).use(nib());
+    }
   }));
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + '/static'));
+  app.use(gzip.staticGzip(__dirname + '/public', { maxAge: 86400*1000 }));
 });
 app.configure('development', function(){
   debug = true;
@@ -33,12 +41,7 @@ app.configure('production', function(){
 });
 
 var server  = "irc.freenode.net",
-      nick  = debug?"blahblahblah":"jsFooBot",
-   channel  = debug?"#jsfootest":"#hasgeek",
-     names  = {},
-     topic  = "",
-  messages  = [],
-   MAX_LOG  = 250;
+   channel  = debug?"#jsfootest":"#hasgeek";
 
 // Routes
 app.get('/', function(req, resp){
@@ -53,6 +56,11 @@ app.get('/irc', function(req, resp){
     'server': server
   });
 });
+app.get("/2011", function(req, resp){
+  resp.render('main', {
+    title: 'jsFoo 2011 India'
+  });
+});
 
 // Catch all route
 app.use(function(eq, resp){
@@ -64,6 +72,15 @@ if (!module.parent) {
   app.listen(process.env['app_port'] || 10551)
   console.info("Started on port %d", app.address().port);
 }
+
+return;
+
+
+var nick  = debug?"blahblahblah":"jsFooBot",
+   names  = {},
+   topic  = "",
+messages  = [],
+ MAX_LOG  = 250;
 
 // Bind Socket.IO server to the http server
 var io = io.listen(app);

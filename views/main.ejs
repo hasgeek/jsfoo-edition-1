@@ -1,0 +1,67 @@
+<style type="text/css" id="rendered"></style>
+<style type="template" id="template">
+#first{   margin-left:-{w}; margin-top:-{h};}
+#second{  margin-left:0;    margin-top:-{h};}
+#third{   margin-left:{w};  margin-top:-{h};}
+#fourth{  margin-left:-{w}; margin-top:0;}
+#fifth{   margin-left:0;    margin-top:0;}
+#sixth{   margin-left:{w};  margin-top:0;}
+#seventh{ margin-left:-{w}; margin-top:{h};}
+#eighth{  margin-left:0;    margin-top:{h};}
+#ninth{   margin-left:{w};  margin-top:{h};}
+
+.p00 #outer{ -webkit-transform: translate3d({W},{h},0);  -moz-transform: translate({W},{h});}
+.p00 #first { opacity: 1.0;}
+.p01 #outer{ -webkit-transform: translate3d(0,{h},0);    -moz-transform: translate(0,{h});}
+.p01 #second { opacity: 1.0;}
+.p02 #outer{ -webkit-transform: translate3d(-{W},{h},0); -moz-transform: translate(-{W},{h});}
+.p02 #third { opacity: 1.0;}
+.p10 #outer{ -webkit-transform: translate3d({W},0,0);    -moz-transform: translate({W},0);}
+.p10 #fourth { opacity: 1.0;}
+.p11 #outer{ }
+.p11 #fifth { opacity: 1.0;}
+.p12 #outer{ -webkit-transform: translate3d(-{W},0,0);   -moz-transform: translate(-{W},0);}
+.p12 #sixth { opacity: 1.0;}
+.p20 #outer{ -webkit-transform: translate3d({W},-{h},0); -moz-transform: translate({W},-{h});}
+.p20 #seventh { opacity: 1.0;}
+.p21 #outer{ -webkit-transform: translate3d(0,-{h},0);   -moz-transform: translate(0,-{h});}
+.p21 #eighth { opacity: 1.0;}
+.p22 #outer{ -webkit-transform: translate3d(-{W},-{h},0);-moz-transform: translate(-{W},-{h});}
+.p22 #ninth { opacity: 1.0;}
+</style>
+
+<div id="outer">
+  <section class="panel" id="first">1</section>
+  <section class="panel" id="second">2</section>
+  <section class="panel" id="third">3</section>
+  <section class="panel" id="fourth">4</section>
+  <section class="panel" id="fifth">
+    <article id="home">
+      5
+    </article>
+  </section>
+  <section class="panel" id="sixth">6</section>
+  <section class="panel" id="seventh">7</section>
+  <section class="panel" id="eighth">8</section>
+  <section class="panel" id="ninth">9</section>
+</div>
+
+<header>
+  <nav>
+    <a href="/about-event">About Event</a>
+    <a href="/about-us">About Us</a>
+    <a href="/proposals">Proposals</a>
+    <a href="/venue">Venue</a>
+  </nav>
+  <a href="">
+    <img src="/img/header-logo.png" />
+  </a>
+  <nav>
+    <a href="/videos">Videos</a>
+    <a href="/sponsors">Sponsors</a>
+    <a href="/credits">Credits</a>
+    <a href="/register">Register</a>
+  </nav>
+</header>
+
+<script type="text/javascript" src="/js/main.js"></script>
