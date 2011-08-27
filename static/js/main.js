@@ -43,7 +43,13 @@
   var template = document.getElementById("template");
   var rendered = document.getElementById("rendered");
   function adjust(){
-    var w = body.clientWidth+100, h = body.clientHeight+100;
+    var w = body.clientWidth+10, h = body.clientHeight+10;
+    if(w < 1000){
+      w = 1000;
+    }
+    if(h < 700){
+      h = 700;
+    }
     while(rendered.firstChild){
       rendered.removeChild(rendered.firstChild);
     }
