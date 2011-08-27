@@ -38,12 +38,19 @@ a
     a
       color #df5e0e
 
-// Grid Page
+
+
+
+// Navigation
 
 header
   z-index 16
-  background-color #241400
+  position absolute
+  top 0
+  left 0
+  right 0
   height 110px
+  background-color #241400
   text-align center
   vertical-align middle
   border-bottom 1px solid #100
@@ -58,17 +65,27 @@ header
       text-transform uppercase
       text-decoration none
       font-family 'Open Sans Condensed', sans-serif
-      font-size 18px
-      padding 0 10px 0 0
+      font-size 16px
+      padding 0 8px 0 0
       text-shadow 2px 1px 0 #333
       
       &:not(:last-of-type):after
         content: '|'
-        padding-left 10px
-    
-    img
-      z-index 32
-      border 0 none
+        padding-left 8px
+        
+  a.logo
+    display inline-block
+    height 90px
+
+  img
+    z-index 32
+    border 0 none
+    padding: 0 30px
+
+
+
+
+// Grid Page
 
 #outer
   z-index 8
@@ -86,7 +103,7 @@ section.panel
   left 0
   right 0
   text-align center
-  font-size 140px
+  font-size 60px
   color #222
   text-shadow 0px 1px 0px #EEE, 0px 0px 4px #555
   padding-top 160px
@@ -94,6 +111,14 @@ section.panel
   opacity 0.4
   -webkit-transition opacity 1.2s ease-in-out
   -moz-transition opacity 1.2s ease-in-out
+
+  article
+    background-color rgba(155,155,155,0.1)
+    box-shadow 0 0 40px rgba(0,0,0,0.3)
+    border-radius 6px
+    width 960px
+    height 480px
+    margin 0 auto
 
 
 // IRC stuff
@@ -167,7 +192,11 @@ ol
     min-width 80px
     text-shadow 0 0 2px #fff
 
+
+
+
 // Scrollbars
+
 ::-webkit-scrollbar
   width 6px
   height 6px

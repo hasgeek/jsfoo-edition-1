@@ -47,7 +47,7 @@
     while(rendered.firstChild){
       rendered.removeChild(rendered.firstChild);
     }
-    rendered.appendChild(document.createTextNode(template.innerHTML.replace(/{w}/g,w+"px").replace(/{W}/g,~~(w/2)+"px").replace(/{h}/g,h+"px")));
+    rendered.appendChild(document.createTextNode(template.innerHTML.replace(/{w}/g,w+"px").replace(/{h}/g,h+"px")));
   }
   adjust();
   
