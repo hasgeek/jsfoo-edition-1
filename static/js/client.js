@@ -4,25 +4,37 @@
   var entities = {"<":"&lt;",">":"&gt;",'&':'&amp;','"':'&quot;',"'": '&#146;'};
 
   function render(b,c){
-    return b.replace(/{[\w\.\(\)]+}/g,function(a){a=a.replace(/[\{\}]/g,"");try{with(c)return eval(a)}catch(b){return""}})
-  };
+    return b.replace(/\{[\w\.\(\)]+\}/g,function(a){
+      a=a.replace(/[\{\}]/g,"");
+      try{
+        with(c){
+          return eval(a);
+        }
+      }catch(b){
+        return"";
+      }
+    });
+  }
+
   function linkify(a){
     a=a.replace(/[&"'><]/g,function(b){return entities[b];});
-    a=a.replace(/((https?):\/\/([-\w\.]+)+(:\d+)?(\/([\w\/_\.\-#\+]*(\?\S+)?)?)?)/gm,'<a href="$1" target="_blank">$1</a>');
-    a=a.replace(/^\@?([\w]*):/,function(a){return a==="http"?a:a.bold()});
+    a=a.replace(/((https?):\/\/([\-\w\.]+)+(:\d+)?(\/([\w\/_\.\-#\+]*(\?\S+)?)?)?)/gm,'<a href="$1" target="_blank">$1</a>');
+    a=a.replace(/^\@?([\w]*):/,function(a){return a==="http"?a:a.bold();});
     return a;
-  };
+  }
+
   function pretty(a,b,c){
-    a=parseInt(a);
-    a=(new Date-new Date(a))/1E3;
+    a=parseInt(a,10);
+    a=(new Date()-new Date(a))/1E3;
     b=[60,60,24];
-    for(c=0;a>b[c];a/=b[c++]);
+    for(c=0;a>b[c];a/=b[c++]){}
     a=~~a;
     return c===0&&a<10?"now":a+" "+"sec0min0hour0day".split(0)[c]+(a>1?"s":"")+" ago";
-  };
+  }
+
   setInterval(function(){
     $("time").each(function(){
-      $(this).html(pretty($(this).attr("data")))
+      $(this).html(pretty($(this).attr("data")));
     });
     $("section i").remove();
   },6E4);
@@ -43,8 +55,10 @@
 
   socket.on('names', function(names){
     nameList.empty();
-    for(nick in names){
-      nameList.prepend("<li><u id='li_"+nick+"'>"+nick+"</u></li>");
+    for(var nick in names){
+      if(names.hasOwnProperty(nick)){
+        nameList.prepend("<li><u id='li_"+nick+"'>"+nick+"</u></li>");
+      }
     }
   });
 
@@ -67,12 +81,16 @@
   });
 
   socket.on("message", function(m){
-    if(!(m instanceof Array)) m = [m];
+    if(!(m instanceof Array)){
+      m = [m];
+    }
     for(var i=0, l=m.length; i<l; i++){
-      if(m[i].time <= last) continue;
+      if(m[i].time <= last){
+        continue;
+      }
       messageLog.append(render(partial,m[i]));
       last = m[i].time;
     }
     messageLog[0].scrollTop = messageLog[0].scrollHeight;
-  })
+  });
 })();
