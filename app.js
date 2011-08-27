@@ -73,8 +73,9 @@ if (!module.parent) {
   console.info("Started on port %d", app.address().port);
 }
 
-return;
-
+if(debug){
+  return;
+}
 
 var nick  = debug?"blahblahblah":"jsFooBot",
    names  = {},
