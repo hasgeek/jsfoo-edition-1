@@ -56,7 +56,7 @@ app.get('/irc', function(req, resp){
     'server': server
   });
 });
-app.get("/home", function(req, resp){
+app.get(/\/(about\-(event|us)|proposals|venue|home|videos|sponsors|credits|register)\/?/, function(req, resp){
   resp.render('main', {
     title: 'jsFoo 2011 India'
   });
