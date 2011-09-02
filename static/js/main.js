@@ -14,7 +14,7 @@ $(function($){
   }, requested = location.pathname.substr(1);
   
   if(typeof map[requested] !== 'undefined'){
-    body.attr("class", map[requested]);
+    body.attr("class", requested + " " + map[requested]);
   } else {
     body.attr("class", "p"+y+x);
   }
@@ -38,7 +38,7 @@ $(function($){
     e.preventDefault();
     var url = this.href.substr(this.href.lastIndexOf("/")+1);
     if(typeof map[url] !== 'undefined' && url !== location.pathname.substr(1)){
-      body.attr("class", map[url]);
+      body.attr("class", url + " " + map[url]);
       history.pushState(null, null, "/"+url);
     }
   });
@@ -46,7 +46,7 @@ $(function($){
   $(window).bind("popstate", function(e){
     var url = location.pathname.substr(1);
     if(typeof map[url] !== 'undefined'){
-      body.attr("class", map[url]);
+      body.attr("class", url + " " + map[url]);
     }
   });
 });
