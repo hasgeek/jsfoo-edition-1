@@ -24,7 +24,7 @@ body.register a.register{top:-150px}
 #outer.animated section.panel{-webkit-transition:opacity .5s ease-in-out;-moz-transition:opacity .5s ease-in-out;-o-transition:opacity .5s ease-in-out;transition:opacity .5s ease-in-out}
 section.panel{position:absolute;z-index:4;margin:0;top:0;left:0;right:0;padding-top:140px;opacity:.1;overflow:hidden;min-height:600px;}
 section.panel article{width:900px;overflow:auto;margin:0 auto}
-#home{background-image:url("/img/Temple.jpg");background-repeat:no-repeat;background-position:top center;min-height:760px;text-indent:-50000px;font-size:0}
+#home{background-image:url("/img/temple.jpg");background-repeat:no-repeat;background-position:top center;min-height:760px;text-indent:-50000px;font-size:0}
 #about-event,#about-hasgeek{margin:0 auto;background-repeat:no-repeat;background-position:top center;}
 #about-event h2,#about-hasgeek h2{margin:0 auto;text-align:center;text-transform:uppercase;font-family:"Open Sans Condensed",sans-serif}
 #about-event div,#about-hasgeek div{width:700px;margin:0 auto;-moz-column-count:2;-webkit-column-count:2;-o-column-count:2;column-count:2;-moz-column-gap:2em;-webkit-column-gap:2em;-o-column-gap:2em;column-gap:2em;}
