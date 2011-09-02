@@ -44,13 +44,13 @@ a
 
 header
   z-index 16
-  position absolute
+  position fixed
   top 0
   left 0
   right 0
   height 110px
   min-width 900px
-  background-color #241400
+  background-color #261800
   text-align center
   vertical-align middle
   border-bottom 1px solid #100
@@ -61,11 +61,6 @@ header
     margin-top 80px
     display inline-block
 
-    &:first-of-type
-      text-shadow 2px 1px 0 #666
-    &:last-of-type
-      text-shadow -2px 1px 0 #666
-
     a
       margin-top 40px
       color #fff
@@ -75,9 +70,18 @@ header
       font-size 16px
       padding 0 8px 0 0      
       
+      &:first-of-type
+        text-shadow  2px 0 0 #000
+      &:last-of-type
+        text-shadow -2px 0 0 #000
+
       &:not(:last-of-type):after
         content: '|'
         padding-left 8px
+        opacity 0.2
+      
+      &:after
+        text-shadow 0px none
         
       &:hover
         color orange
@@ -102,15 +106,16 @@ header
     right 0px
     padding 0 35px
     opacity 0.6
+    z-index 10
     
-    -webkit-transition opacity 0.3s ease-in-out
-    -moz-transition opacity 0.3s ease-in-out
-    -o-transition opacity 0.3s ease-in-out
-    transition opacity 0.3s ease-in-out
+    -webkit-transition opacity 0.3s ease-in-out, top 0.3s ease-out
+    -moz-transition opacity 0.3s ease-in-out, top 0.3s ease-out
+    -o-transition opacity 0.3s ease-in-out, top 0.3s ease-out
+    transition opacity 0.3s ease-in-out, top 0.3s ease-out
     
     
     strong
-      z-index 20
+      z-index 10
       text-indent -50000px
       background-image url('/img/sprite.png')
       background-repeat no-repeat
@@ -123,7 +128,9 @@ header
       background-repeat no-repeat
       background-position 0 -160px
       opacity 1.0
-    
+
+body.register a.register
+  top -150px
 
 // Grid Page
 
@@ -189,10 +196,10 @@ footer
       width 36px
       height 38px
       display block
-      -webkit-transition width 0.2s ease-in
-      -moz-transition width 0.2s ease-in
-      -o-transition width 0.2s ease-in
-      transition width 0.2s ease-in
+      -webkit-transition width 0.2s ease-out
+      -moz-transition width 0.2s ease-out
+      -o-transition width 0.2s ease-out
+      transition width 0.2s ease-out
 
     &:hover
       a
