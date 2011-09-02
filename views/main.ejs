@@ -72,6 +72,26 @@ section.panel {width: {w};height: {h};}
 .p22 #ninth { opacity: 1.0;}
 </style>
 
+
+<header>
+  <nav>
+    <a href="/about-event">About Event</a>
+    <a href="/about-hasgeek">About HasGeek</a>
+    <a href="/proposals">Proposals</a>
+  </nav>
+  <a href="/home" class="logo">
+    <img src="/img/logo.png" />
+  </a>
+  <nav>
+    <a href="/venue">Venue</a>
+    <a href="/videos">Videos</a>
+    <a href="/sponsors">Sponsors</a>
+    <a href="/credits">Credits</a>
+  </nav>  
+  <a href="/register" class="register">
+    <strong>Register</strong>
+  </a>
+</header>
 <div id="outer">
   <section class="panel" id="first">
     <article id="about-event">
@@ -93,11 +113,7 @@ section.panel {width: {w};height: {h};}
       Venue
     </article>
   </section>
-  <section class="panel" id="fifth">
-    <article id="home">
-      Home
-    </article>
-  </section>
+  <section class="panel" id="fifth"><%- partial("pages/home") %></section>
   <section class="panel" id="sixth">
     <article id="videos">
       Videos
@@ -120,23 +136,11 @@ section.panel {width: {w};height: {h};}
   </section>
 </div>
 
-<header>
-  <nav>
-    <a href="/about-event">About Event</a>
-    <a href="/about-us">About Us</a>
-    <a href="/proposals">Proposals</a>
-    <a href="/venue">Venue</a>
-  </nav>
-  <a href="/home" class="logo">
-    <img src="/img/header-logo.png" />
-  </a>
-  <nav>
-    <a href="/videos">Videos</a>
-    <a href="/sponsors">Sponsors</a>
-    <a href="/credits">Credits</a>
-    <a href="/register">Register</a>
-  </nav>
-</header>
+<footer>
+  <div id="pptsalon">
+    <a href="http://www.pptsalon.com/" target="_blank">Designed by PPTSalon</a>
+  </div>
+</footer>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>

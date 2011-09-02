@@ -18,7 +18,7 @@
 
   function linkify(a){
     a=a.replace(/[&"'><]/g,function(b){return entities[b];});
-    a=a.replace(/((https?):\/\/([\-\w\.]+)+(:\d+)?(\/([\w\/_\.\-#\+]*(\?\S+)?)?)?)/gm,'<a href="$1" target="_blank">$1</a>');
+    a=a.replace(/((https?):\/\/([\-\w\.]+)+(:\d+)?(\/([\w\/_\.\-#\+:!]*(\?\S+)?)?)?)/gm,'<a href="$1" target="_blank">$1</a>');
     a=a.replace(/^\@?([\w]*):/,function(a){return a==="http"?a:a.bold();});
     return a;
   }

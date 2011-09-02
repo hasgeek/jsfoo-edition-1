@@ -11,13 +11,11 @@ html, body
 body
   font 14px "Lucida Grande", Helvetica, Arial, sans-serif
   color #222
-  //background-image -webkit-gradient(radial, 50% 0%, 0, 50% 0%, 900, from(#555), to(#222))
-  //background-image -moz-radial-gradient(center, #555, #222)
+  min-width 900px
 
 a
   color #df5e0e
   text-decoration none
-
 
 
 
@@ -51,6 +49,7 @@ header
   left 0
   right 0
   height 110px
+  min-width 900px
   background-color #241400
   text-align center
   vertical-align middle
@@ -62,6 +61,11 @@ header
     margin-top 80px
     display inline-block
 
+    &:first-of-type
+      text-shadow 2px 1px 0 #666
+    &:last-of-type
+      text-shadow -2px 1px 0 #666
+
     a
       margin-top 40px
       color #fff
@@ -69,12 +73,17 @@ header
       text-decoration none
       font-family 'Open Sans Condensed', sans-serif
       font-size 16px
-      padding 0 8px 0 0
-      text-shadow 2px 1px 0 #333
+      padding 0 8px 0 0      
       
       &:not(:last-of-type):after
         content: '|'
         padding-left 8px
+        
+      &:hover
+        color orange
+        text-shadow 0 0 10px #fff
+        &:after
+          color #fff
         
   a.logo
     display inline-block
@@ -86,9 +95,35 @@ header
       z-index 32
       border 0 none
       padding: 0 25px
+      
+  a.register
+    position absolute
+    top 110px
+    right 0px
+    padding 0 35px
+    opacity 0.6
+    
+    -webkit-transition opacity 0.3s ease-in-out
+    -moz-transition opacity 0.3s ease-in-out
+    -o-transition opacity 0.3s ease-in-out
+    transition opacity 0.3s ease-in-out
+    
+    
+    strong
+      z-index 20
+      text-indent -50000px
+      background-image url('/img/sprite.png')
+      background-repeat no-repeat
+      display block
+      height 150px
+      width 90px
 
-
-
+    &:hover
+      background-image url('/img/sprite.png')
+      background-repeat no-repeat
+      background-position 0 -160px
+      opacity 1.0
+    
 
 // Grid Page
 
@@ -120,21 +155,49 @@ section.panel
   top 0
   left 0
   right 0
-  text-align center
-  font-size 60px
-  color #222
-  text-shadow 0px 1px 0px #EEE, 0px 0px 4px #555
-  padding-top 160px
-  font-weight bold
+  padding-top 140px
   opacity 0.1
+  overflow auto
+  min-height 600px
 
   article
-    background-color rgba(60,10,0,0.2)
-    border 1px solid rgba(0,0,0,0.1)
-    border-radius 8px
-    width 960px
-    height 500px
-    margin 0 auto
+    min-width 900px
+    overflow auto
+
+#home
+  background-image url('/img/temple.jpg')
+  background-repeat no-repeat
+  background-position top center
+  min-height 760px
+  text-indent -50000px
+  font-size 0px
+
+
+footer
+  #pptsalon
+    z-index 30
+    position fixed
+    bottom 18px
+    right 0px
+
+    a 
+      text-indent -50000px
+      font-size 0px
+      background-image url('/img/sprite.png')
+      background-repeat no-repeat
+      background-position 0 -320px
+      width 36px
+      height 38px
+      display block
+      -webkit-transition width 0.2s ease-in
+      -moz-transition width 0.2s ease-in
+      -o-transition width 0.2s ease-in
+      transition width 0.2s ease-in
+
+    &:hover
+      a
+        width 140px
+        background-position 0 -360px
 
 
 // IRC stuff

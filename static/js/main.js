@@ -3,7 +3,7 @@ $(function($){
   
   var map = {
     "about-event": "p00",
-    "about-us": "p01",
+    "about-hasgeek": "p01",
     "proposals": "p02",
     "venue": "p10",
     "home": "p11",
@@ -25,17 +25,19 @@ $(function($){
   
   var template = $("#template");
   var rendered = $("#rendered");
-  (function adjust(){
+  function adjust(){
     var w = body.width(), h = body.height();
     if(w < 1000){ w = 1000; }
     if(h < 700){ h = 700; }
     rendered.empty().text(template.html().replace(/{w}/g,w+"px").replace(/{h}/g,h+"px"));
-  })();
+  }
+  adjust();
+  $(window).resize(adjust);
   
-  $("header nav a").live("click",function(e){
+  $("header a").live("click",function(e){
     e.preventDefault();
     var url = this.href.substr(this.href.lastIndexOf("/")+1);
-    if(typeof map[url] !== 'undefined'){
+    if(typeof map[url] !== 'undefined' && url !== location.pathname.substr(1)){
       body.attr("class", map[url]);
       history.pushState(null, null, "/"+url);
     }
