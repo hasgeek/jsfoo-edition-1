@@ -19,6 +19,7 @@ a
 
 
 
+
 // Coming soon page
 .notyet  
   text-align center
@@ -132,11 +133,14 @@ header
 body.register a.register
   top -150px
 
+
+
+
 // Grid Page
 
 #outer
   z-index 8
-  position relative;
+  position relative
 
   -webkit-transform translate3d(0,0,0)
   -moz-transform translate(0,0)
@@ -164,21 +168,90 @@ section.panel
   right 0
   padding-top 140px
   opacity 0.1
-  overflow auto
+  overflow hidden
   min-height 600px
 
   article
-    min-width 900px
+    width 900px
     overflow auto
+    margin 0 auto
+
+
+
+
+// Pages
 
 #home
-  background-image url('/img/temple.jpg')
+  background-image url('/img/Temple.jpg')
   background-repeat no-repeat
   background-position top center
   min-height 760px
   text-indent -50000px
   font-size 0px
 
+#about-event,#about-hasgeek
+  margin 0 auto
+  background-repeat no-repeat
+  background-position top center
+  h2
+    margin 0 auto
+    text-align center
+    text-transform uppercase
+    font-family 'Open Sans Condensed', sans-serif
+    
+  div
+    width 700px
+    margin 0 auto
+    -moz-column-count 2
+    -webkit-column-count 2
+    -o-column-count 2
+    column-count 2
+    -moz-column-gap 2em
+    -webkit-column-gap 2em
+    -o-column-gap 2em
+    column-gap 2em
+    
+    &:before
+       background-image url('/img/separator.png')
+       background-repeat no-repeat
+       background-position top center
+       padding 20px
+       content ""
+       display block
+       position absolute
+       left 0
+       right 0
+       margin-top -50px
+    p
+      margin 0
+      text-align justify
+      line-height 20px
+      padding-bottom 10px
+      font-style italic
+      font-family Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif
+      b
+        font-style normal
+        font-size 300%
+      
+#about-event
+  background-image url('/img/AboutEvent.jpg')
+  h2
+    width 500px
+    margin-top 220px
+    padding-bottom 100px
+
+#about-hasgeek
+  background-image url('/img/AboutHasGeek.jpg')
+  h2
+    margin-top 140px
+    padding-bottom 180px
+    padding-left 250px
+    width 200px
+  
+
+
+
+// Footer
 
 footer
   #pptsalon
@@ -205,6 +278,8 @@ footer
       a
         width 140px
         background-position 0 -360px
+
+
 
 
 // IRC stuff

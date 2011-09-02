@@ -93,16 +93,8 @@ section.panel {width: {w};height: {h};}
   </a>
 </header>
 <div id="outer">
-  <section class="panel" id="first">
-    <article id="about-event">
-      About jsFoo
-    </article>
-  </section>
-  <section class="panel" id="second">
-    <article id="about-us">
-      About Us
-    </article>
-  </section>
+  <section class="panel" id="first"><%- partial("pages/about-event") %></section>
+  <section class="panel" id="second"><%- partial("pages/about-hasgeek") %></section>
   <section class="panel" id="third">
     <article id="proposals">
       Proposals
