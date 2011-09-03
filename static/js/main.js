@@ -11,7 +11,7 @@ $(function($){
     "sponsors": "p20",
     "credits": "p21",
     "register": "p22"
-  }, requested = location.pathname.substr(1);
+  }, requested = window.location.hash || location.pathname.substr(1);
   
   if(typeof map[requested] !== 'undefined'){
     body.attr("class", requested + " " + map[requested]);
@@ -34,19 +34,38 @@ $(function($){
   adjust();
   $(window).resize(adjust);
   
+  
+  
+  var historyAPISupported = !!(window.history && history.pushState);
+  var hashChangeSupported = !!("onhashchange" in window)
+
   $("header a").live("click",function(e){
     e.preventDefault();
     var url = this.href.substr(this.href.lastIndexOf("/")+1);
     if(typeof map[url] !== 'undefined' && url !== location.pathname.substr(1)){
       body.attr("class", url + " " + map[url]);
-      history.pushState(null, null, "/"+url);
+      if(historyAPISupported){
+        history.pushState(null, null, "/"+url);
+      }else if(hashChangeSupported){
+        window.location.hash = url;
+      }
     }
+    $(this).blur();
   });
 
-  $(window).bind("popstate", function(e){
-    var url = location.pathname.substr(1);
-    if(typeof map[url] !== 'undefined'){
-      body.attr("class", url + " " + map[url]);
-    }
-  });
+  if(historyAPISupported){
+    $(window).bind("popstate", function(e){
+      var url = location.pathname.substr(1);
+      if(typeof map[url] !== 'undefined'){
+        body.attr("class", url + " " + map[url]);
+      }
+    });
+  }else if(hashChangeSupported){
+    $(window).bind( 'hashchange', function(e){
+      var url = window.location.hash.substr(1);
+      if(typeof map[url] !== 'undefined'){
+        body.attr("class", url + " " + map[url]);
+      }
+    });
+  }
 });
