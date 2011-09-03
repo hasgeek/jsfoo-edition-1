@@ -22,8 +22,7 @@ header a.register:hover{background-image:url("/img/sprite.png");background-repea
 body.register a.register{top:-150px}
 #outer{z-index:8;position:relative;-webkit-transform:translate3d(0,0,0);-moz-transform:translate(0,0);-o-transform:translate(0,0);transform:translate(0,0);}
 #outer.animated{-webkit-transition:-webkit-transform .3s ease-in-out;-moz-transition:-moz-transform .3s ease-in-out;-o-transition:-o-transform .3s ease-in-out;transition:transform .3s ease-in-out;}
-#outer.animated section.panel{-webkit-transition:opacity .3s ease-in-out;-moz-transition:opacity .3s ease-in-out;-o-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}
-section.panel{position:absolute;z-index:4;margin:0;top:0;left:0;right:0;padding-top:140px;opacity:.1;overflow:hidden;min-height:600px;}
+section.panel{position:absolute;z-index:4;margin:0;top:0;left:0;right:0;padding-top:140px;overflow:hidden;min-height:600px;}
 section.panel article{width:900px;overflow:auto;margin:0 auto}
 #home{background-image:url("/img/temple.jpg");background-repeat:no-repeat;background-position:top center;min-height:760px;text-indent:-50000px;font-size:0}
 #about-event,#about-hasgeek,#venue,#proposals{margin:0 auto;background-repeat:no-repeat;background-position:top center;}
