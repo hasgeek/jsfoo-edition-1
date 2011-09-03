@@ -96,13 +96,17 @@ $(function($){
   
   // maps
   (function(){
-    var latlng = new google.maps.LatLng(12.9341, 77.6043);
+    var styles = [{ featureType: "all", elementType: "all", stylers: [{hue: '#eecc70'}, { saturation: -70 }, { gamma: 0.70 }]}];
+    var retroMapType = new google.maps.StyledMapType(styles, { name: 'Map' });
     var mapOptions = {
       zoom: 14,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      center: new google.maps.LatLng(12.9341, 77.6043),
+      mapTypeControlOptions: { mapTypeIds: [ 'Styled'] },
+      mapTypeId: 'Styled'
     };
     var map = new google.maps.Map(document.getElementById("venue-map"), mapOptions);
+    map.mapTypes.set('Styled', retroMapType);
+
     var marker = new google.maps.Marker({
       position: latlng,
       map: map,
