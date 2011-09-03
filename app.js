@@ -21,7 +21,7 @@ app.configure(function(){
   app.enable('view cache');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(require('stylus').middleware({
+  app.use(stylus.middleware({
     src: __dirname + '/src',
     dest: __dirname + '/static',
     compile: function (str, path, fn) {
