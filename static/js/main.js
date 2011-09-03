@@ -1,5 +1,21 @@
 $(function($){
-  var x=1, y=1, body = $(document.body), outer = $("#outer");
+  var x=1, y=1, outer = $("#outer");
+  var body = $(document.body), location = window.location, 
+      history = window.history, console = window.console || {"log":function(){}};
+  
+  $.fn.knm = function(callback, code) {
+		if(code === undefined) code = "38,38,40,40,37,39,37,39,66,65";
+		return this.each(function() {
+			var kkeys = [];
+			$(this).keydown(function(e){
+				kkeys.push( e.keyCode );
+				if ( kkeys.toString().indexOf( code ) >= 0 ){
+					$(this).unbind('keydown', arguments.callee);
+					callback(e);
+				}
+			}, true);
+		});
+	};
   
   var map = {
     "about-event": "p00",
@@ -11,7 +27,7 @@ $(function($){
     "sponsors": "p20",
     "credits": "p21",
     "register": "p22"
-  }, requested = window.location.hash || location.pathname.substr(1);
+  }, requested = location.hash || location.pathname.substr(1);
   
   if(typeof map[requested] !== 'undefined'){
     body.attr("class", requested + " " + map[requested]);
@@ -29,28 +45,30 @@ $(function($){
     var w = body.width(), h = body.height();
     if(w < 1000){ w = 1000; }
     if(h < 700){ h = 700; }
-    rendered.empty().text(template.html().replace(/{w}/g,w+"px").replace(/{h}/g,h+"px"));
+    rendered.empty().text(template.html().replace(/\{w\}/g,w+"px").replace(/\{h\}/g,h+"px"));
   }
   adjust();
   $(window).resize(adjust);
   
   
   
-  var historyAPISupported = !!(window.history && history.pushState);
-  var hashChangeSupported = !!("onhashchange" in window)
+  var historyAPISupported = !!(history && history.pushState);
+  var hashChangeSupported = !!("onhashchange" in window);
 
   $("header a").live("click",function(e){
-    e.preventDefault();
     var url = this.href.substr(this.href.lastIndexOf("/")+1);
     if(typeof map[url] !== 'undefined' && url !== location.pathname.substr(1)){
       body.attr("class", url + " " + map[url]);
       if(historyAPISupported){
         history.pushState(null, null, "/"+url);
       }else if(hashChangeSupported){
-        window.location.hash = url;
+        location.hash = url;
+      }else{
+        return;
       }
     }
     $(this).blur();
+    e.preventDefault();
   });
 
   if(historyAPISupported){
@@ -62,10 +80,41 @@ $(function($){
     });
   }else if(hashChangeSupported){
     $(window).bind( 'hashchange', function(e){
-      var url = window.location.hash.substr(1);
+      var url = location.hash.substr(1);
       if(typeof map[url] !== 'undefined'){
         body.attr("class", url + " " + map[url]);
       }
     });
   }
+  
+  // konami code
+  $(window).knm(function(){
+    if(console.log){
+      console.log("u've hit the magic keys");
+    }
+  });
+  
+  // maps
+  (function(){
+    var latlng = new google.maps.LatLng(12.9341, 77.6043);
+    var mapOptions = {
+      zoom: 14,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("venue-map"), mapOptions);
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title: "Dharmaram College"
+    });
+    var infowindow = new google.maps.InfoWindow({
+      content: '<h3>Dharmaram College</h3><p>Christ University Campus. <a target="_blank" href="http://goo.gl/maps/jYyv">See larger map</a>.</p>'
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map, marker);
+    });
+    infowindow.open(map, marker);
+  })();
+
 });
