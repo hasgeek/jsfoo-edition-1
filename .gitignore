@@ -1,3 +1,6 @@
 .DS_Store
 .monitor
 .nodester.appconfig
+design/
+node_modules/
+npm-debug.log
