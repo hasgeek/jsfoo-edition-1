@@ -21,26 +21,30 @@ header a.register strong{z-index:10;text-indent:-50000px;background-image:url("/
 header a.register:hover{background-image:url("/img/sprite.png");background-repeat:no-repeat;background-position:0 -160px;opacity:1;top:110px}
 body.register a.register{top:-150px}
 #outer{z-index:8;position:relative;-webkit-transform:translate3d(0,0,0);-moz-transform:translate(0,0);-o-transform:translate(0,0);transform:translate(0,0);}
-#outer.animated{-webkit-transition:-webkit-transform .3s ease-in-out;-moz-transition:-moz-transform .3s ease-in-out;-o-transition:-o-transform .3s ease-in-out;transition:transform .3s ease-in-out;}
+#outer.animated{-webkit-transition:-webkit-transform .5s ease-in-out;-moz-transition:-moz-transform .5s ease-in-out;-o-transition:-o-transform .5s ease-in-out;transition:transform .5s ease-in-out;}
 section.panel{position:absolute;z-index:4;margin:0;top:0;left:0;right:0;padding-top:140px;overflow:hidden;min-height:600px;}
 section.panel article{width:900px;overflow:auto;margin:0 auto}
 #home{background-image:url("/img/temple.jpg");background-repeat:no-repeat;background-position:top center;min-height:760px;text-indent:-50000px;font-size:0}
 #about-event,#about-hasgeek,#venue,#proposals{margin:0 auto;background-repeat:no-repeat;background-position:top center;}
-#about-event h2,#about-hasgeek h2,#venue h2,#proposals h2{margin:0 auto;text-align:center;text-transform:uppercase;font-family:"Open Sans Condensed",sans-serif}
-#about-event div,#about-hasgeek div,#venue div,#proposals div{width:700px;margin:0 auto;}
-#about-event div.two-column,#about-hasgeek div.two-column,#venue div.two-column,#proposals div.two-column{-moz-column-count:2;-webkit-column-count:2;-o-column-count:2;column-count:2;-moz-column-gap:2em;-webkit-column-gap:2em;-o-column-gap:2em;column-gap:2em}
-#about-event div.separator:before,#about-hasgeek div.separator:before,#venue div.separator:before,#proposals div.separator:before{background-image:url("/img/separator.png");background-repeat:no-repeat;background-position:top center;padding:20px;content:"";display:block;position:absolute;left:0;right:0;margin-top:-50px}
-#about-event div p,#about-hasgeek div p,#venue div p,#proposals div p{margin:0;text-align:justify;line-height:20px;padding-bottom:10px;font-style:italic;font-family:Cambria,"Hoefler Text",Utopia,"Liberation Serif","Nimbus Roman No9 L Regular",Times,"Times New Roman",serif;}
-#about-event div p b,#about-hasgeek div p b,#venue div p b,#proposals div p b{font-style:normal;font-size:300%}
+#about-event h2,#about-hasgeek h2,#venue h2,#proposals h2{margin:0 auto;text-align:center;text-transform:uppercase;font-family:"Open Sans Condensed",sans-serif;}
+#about-event h2:after,#about-hasgeek h2:after,#venue h2:after,#proposals h2:after{background-image:url("/img/separator.png");background-repeat:no-repeat;background-position:top center;padding:20px;content:"";display:block;position:absolute;left:0;right:0;margin-top:30px}
+#about-event > div,#about-hasgeek > div,#venue > div,#proposals > div{width:700px;margin:0 auto;}
+#about-event > div.two-column,#about-hasgeek > div.two-column,#venue > div.two-column,#proposals > div.two-column{-moz-column-count:2;-webkit-column-count:2;-o-column-count:2;column-count:2;-moz-column-gap:2em;-webkit-column-gap:2em;-o-column-gap:2em;column-gap:2em}
+#about-event > div p,#about-hasgeek > div p,#venue > div p,#proposals > div p{margin:0;text-align:justify;line-height:20px;padding-bottom:10px;font-style:italic;font-family:Cambria,"Hoefler Text",Utopia,"Liberation Serif","Nimbus Roman No9 L Regular",Times,"Times New Roman",serif;}
+#about-event > div p b,#about-hasgeek > div p b,#venue > div p b,#proposals > div p b{font-style:normal;font-size:300%}
 #about-event{background-image:url("/img/AboutEvent.jpg");}
 #about-event h2{width:500px;margin-top:220px;padding-bottom:100px}
 #about-hasgeek{background-image:url("/img/AboutHasGeek.jpg");}
-#about-hasgeek h2{margin-top:140px;padding-bottom:180px;padding-left:250px;width:200px}
+#about-hasgeek h2{margin-top:140px;padding-bottom:180px;padding-left:250px;width:200px;}
+#about-hasgeek h2:after{margin-top:120px}
 #venue{background-image:url("/img/Venue.jpg");}
-#venue h2{width:240px;margin-top:100px;padding-bottom:100px;padding-right:240px}
-#venue #venue-map{position:relative;width:600px;height:300px}
+#venue h2{width:240px;margin-top:100px;padding-bottom:100px;padding-right:240px;}
+#venue h2:after{margin-top:60px}
+#venue #venue-map{position:relative;width:760px;height:320px;border:1px solid #888;border-radius:10px;box-shadow:0 0 4px #888;}
+#venue #venue-map > div > .gmnoprint:last-of-type{display:none}
 #proposals{background-image:url("/img/Proposals.jpg");}
-#proposals h2{width:240px;margin-top:110px;padding-bottom:110px;padding-right:420px;font-size:20px}
+#proposals h2{width:240px;margin-top:110px;padding-bottom:140px;padding-right:420px;font-size:20px;}
+#proposals h2:after{margin-top:100px}
 footer #pptsalon{z-index:30;position:fixed;bottom:18px;right:0;}
 footer #pptsalon a{text-indent:-50000px;font-size:0;background-image:url("/img/sprite.png");background-repeat:no-repeat;background-position:0 -320px;width:36px;height:38px;display:block;-webkit-transition:width .2s ease-out;-moz-transition:width .2s ease-out;-o-transition:width .2s ease-out;transition:width .2s ease-out}
 footer #pptsalon:hover a{width:140px;background-position:0 -360px}

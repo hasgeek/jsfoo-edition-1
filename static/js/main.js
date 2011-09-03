@@ -35,9 +35,6 @@ $(function($){
     body.attr("class", "p"+y+x);
   }
   body.attr("style","display:block");
-  setTimeout(function(){
-    outer.addClass("animated");
-  },800);
   
   var template = $("#template");
   var rendered = $("#rendered");
@@ -57,8 +54,10 @@ $(function($){
 
   $("header a").live("click",function(e){
     var url = this.href.substr(this.href.lastIndexOf("/")+1);
-    if(typeof map[url] !== 'undefined' && url !== location.pathname.substr(1)){
-      body.attr("class", url + " " + map[url]);
+    if(url === location.pathname.substr(1)){
+      return e.preventDefault();
+    }
+    if(typeof map[url] !== 'undefined'){
       if(historyAPISupported){
         history.pushState(null, null, "/"+url);
       }else if(hashChangeSupported){
@@ -66,23 +65,36 @@ $(function($){
       }else{
         return;
       }
+      outer.addClass("animated");
+      body.attr("class", url + " " + map[url]);
+      setTimeout(function(){
+        outer.removeClass("animated");
+      },1500);
+      e.preventDefault();
     }
     $(this).blur();
-    e.preventDefault();
   });
 
   if(historyAPISupported){
     $(window).bind("popstate", function(e){
       var url = location.pathname.substr(1);
       if(typeof map[url] !== 'undefined'){
+        outer.addClass("animated");
         body.attr("class", url + " " + map[url]);
+        setTimeout(function(){
+          outer.removeClass("animated");
+        },1500);
       }
     });
   }else if(hashChangeSupported){
     $(window).bind( 'hashchange', function(e){
       var url = location.hash.substr(1);
       if(typeof map[url] !== 'undefined'){
+        outer.addClass("animated");
         body.attr("class", url + " " + map[url]);
+        setTimeout(function(){
+          outer.removeClass("animated");
+        },1500);
       }
     });
   }
@@ -97,10 +109,11 @@ $(function($){
   // maps
   (function(){
     var styles = [{ featureType: "all", elementType: "all", stylers: [{hue: '#eecc70'}, { saturation: -70 }, { gamma: 0.70 }]}];
-    var retroMapType = new google.maps.StyledMapType(styles, { name: 'Map' });
+    var retroMapType = new google.maps.StyledMapType(styles, {});
+    var dharmaram = new google.maps.LatLng(12.9341, 77.6043);
     var mapOptions = {
       zoom: 14,
-      center: new google.maps.LatLng(12.9341, 77.6043),
+      center: dharmaram,
       mapTypeControlOptions: { mapTypeIds: [ 'Styled'] },
       mapTypeId: 'Styled'
     };
@@ -108,7 +121,7 @@ $(function($){
     map.mapTypes.set('Styled', retroMapType);
 
     var marker = new google.maps.Marker({
-      position: latlng,
+      position: dharmaram,
       map: map,
       title: "Dharmaram College"
     });

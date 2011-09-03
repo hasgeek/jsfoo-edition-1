@@ -157,7 +157,7 @@ body.register a.register
   transform-translate-mixin 0,0
 
   &.animated
-    transition-transform-mixin 0.3s ease-in-out
+    transition-transform-mixin 0.5s ease-in-out
     section.panel
       //transition-mixin opacity 0.3s ease-in-out
 
@@ -210,8 +210,20 @@ section.panel
     text-align center
     text-transform uppercase
     font-family 'Open Sans Condensed', sans-serif
+  
+    &:after
+      background-image url('/img/separator.png')
+      background-repeat no-repeat
+      background-position top center
+      padding 20px
+      content ""
+      display block
+      position absolute
+      left 0
+      right 0
+      margin-top 30px
     
-  div  
+  & > div  
     width 700px
     margin 0 auto
 
@@ -224,18 +236,6 @@ section.panel
       -webkit-column-gap 2em
       -o-column-gap 2em
       column-gap 2em
-    
-    &.separator:before
-       background-image url('/img/separator.png')
-       background-repeat no-repeat
-       background-position top center
-       padding 20px
-       content ""
-       display block
-       position absolute
-       left 0
-       right 0
-       margin-top -50px
     p
       margin 0
       text-align justify
@@ -261,6 +261,8 @@ section.panel
     padding-bottom 180px
     padding-left 250px
     width 200px
+    &:after
+      margin-top 120px
 
 #venue
   background-image url('/img/Venue.jpg')
@@ -269,10 +271,19 @@ section.panel
     margin-top 100px
     padding-bottom 100px
     padding-right 240px
+    &:after
+      margin-top 60px
+
   #venue-map
     position relative
-    width 600px
-    height 300px
+    width 760px
+    height 320px
+    border 1px solid #888888
+    border-radius 10px
+    box-shadow 0 0 4px #888888
+    
+    & > div > .gmnoprint:last-of-type
+      display none
     
   
 #proposals
@@ -280,9 +291,11 @@ section.panel
   h2
     width 240px
     margin-top 110px
-    padding-bottom 110px
+    padding-bottom 140px
     padding-right 420px
     font-size 20px
+    &:after
+      margin-top 100px
 
 
 
