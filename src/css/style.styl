@@ -1,5 +1,22 @@
 @import 'nib/gradients'
 
+transition-mixin()
+  -webkit-transition arguments
+  -moz-transition arguments
+  -o-transition arguments
+  transition arguments
+transition-transform-mixin()
+  -webkit-transition -webkit-transform arguments
+  -moz-transition -moz-transform arguments
+  -o-transition -o-transform arguments
+  transition transform arguments
+transform-translate-mixin()
+  -webkit-transform translate3d(arguments,0)
+  -moz-transform translate(arguments)
+  -o-transform translate(arguments)
+  transform translate(arguments)
+
+
 html, body
   width 100%
   height 100%
@@ -13,7 +30,7 @@ body
   color #222
   min-width 900px
 
-a
+a, a:visited, a:active
   color #df5e0e
   text-decoration none
 
@@ -108,11 +125,7 @@ header
     padding 0 35px
     opacity 0.6
     z-index 10
-    
-    -webkit-transition opacity 0.3s ease-in-out, top 0.3s ease-out
-    -moz-transition opacity 0.3s ease-in-out, top 0.3s ease-out
-    -o-transition opacity 0.3s ease-in-out, top 0.3s ease-out
-    transition opacity 0.3s ease-in-out, top 0.3s ease-out
+    transition-mixin opacity 0.3s ease-in-out, top 0.3s ease-out
     
     
     strong
@@ -141,23 +154,12 @@ body.register a.register
 #outer
   z-index 8
   position relative
-
-  -webkit-transform translate3d(0,0,0)
-  -moz-transform translate(0,0)
-  -o-transform translate(0,0)
-  transform translate(0,0)
+  transform-translate-mixin 0,0
 
   &.animated
-    -webkit-transition -webkit-transform 0.6s ease-in-out
-    -moz-transition -moz-transform 0.6s ease-in-out
-    -o-transition -o-transform 0.6s ease-in-out
-    transition transform 0.6s ease-in-out
-
+    transition-transform-mixin 0.6s ease-in-out
     section.panel
-      -webkit-transition opacity 0.5s ease-in-out
-      -moz-transition opacity 0.5s ease-in-out
-      -o-transition opacity 0.5s ease-in-out
-      transition opacity 0.5s ease-in-out
+      transition-mixin opacity 0.5s ease-in-out
 
 section.panel
   position absolute
@@ -269,10 +271,7 @@ footer
       width 36px
       height 38px
       display block
-      -webkit-transition width 0.2s ease-out
-      -moz-transition width 0.2s ease-out
-      -o-transition width 0.2s ease-out
-      transition width 0.2s ease-out
+      transition-mixin width 0.2s ease-out
 
     &:hover
       a
