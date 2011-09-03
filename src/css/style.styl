@@ -191,7 +191,7 @@ section.panel
   text-indent -50000px
   font-size 0px
 
-#about-event,#about-hasgeek
+#about-event, #about-hasgeek, #venue, #proposals
   margin 0 auto
   background-repeat no-repeat
   background-position top center
@@ -201,19 +201,21 @@ section.panel
     text-transform uppercase
     font-family 'Open Sans Condensed', sans-serif
     
-  div
+  div  
     width 700px
     margin 0 auto
-    -moz-column-count 2
-    -webkit-column-count 2
-    -o-column-count 2
-    column-count 2
-    -moz-column-gap 2em
-    -webkit-column-gap 2em
-    -o-column-gap 2em
-    column-gap 2em
+
+    &.two-column
+      -moz-column-count 2
+      -webkit-column-count 2
+      -o-column-count 2
+      column-count 2
+      -moz-column-gap 2em
+      -webkit-column-gap 2em
+      -o-column-gap 2em
+      column-gap 2em
     
-    &:before
+    &.separator:before
        background-image url('/img/separator.png')
        background-repeat no-repeat
        background-position top center
@@ -249,7 +251,28 @@ section.panel
     padding-bottom 180px
     padding-left 250px
     width 200px
+
+#venue
+  background-image url('/img/Venue.jpg')
+  h2
+    width 240px
+    margin-top 100px
+    padding-bottom 100px
+    padding-right 240px
+  #venue-map
+    position relative
+    width 600px
+    height 300px
+    
   
+#proposals
+  background-image url('/img/Proposals.jpg')
+  h2
+    width 240px
+    margin-top 110px
+    padding-bottom 110px
+    padding-right 420px
+    font-size 20px
 
 
 
