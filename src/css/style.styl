@@ -5,16 +5,26 @@ transition-mixin()
   -moz-transition arguments
   -o-transition arguments
   transition arguments
+
 transition-transform-mixin()
   -webkit-transition -webkit-transform arguments
   -moz-transition -moz-transform arguments
   -o-transition -o-transform arguments
   transition transform arguments
+
+transition-position-mixin()
+  -webkit-transition top arguments, left arguments
+  -moz-transition top arguments, left arguments
+  -o-transition top arguments, left arguments
+  transition top arguments, left arguments
+
+/*
 transform-translate-mixin()
   -webkit-transform translate3d(arguments,0)
   -moz-transform translate(arguments)
   -o-transform translate(arguments)
   transform translate(arguments)
+*/
 
 
 html, body
@@ -154,10 +164,11 @@ body.register a.register
 #outer
   z-index 8
   position relative
-  transform-translate-mixin 0,0
+  //transform-translate-mixin 0,0
 
   &.animated
-    transition-transform-mixin 0.5s ease-in-out
+    //transition-transform-mixin 0.5s ease-in-out
+    transition-position-mixin 0.5s ease-in-out
     section.panel
       //transition-mixin opacity 0.3s ease-in-out
 
