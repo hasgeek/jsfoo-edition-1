@@ -55,13 +55,15 @@ section.panel article{width:900px;overflow:auto;margin:0 auto}
 #proposals{background-image:url("/img/Proposals.jpg");}
 #proposals h2{width:240px;margin-top:110px;padding-bottom:140px;padding-right:420px;font-size:20px;}
 #proposals h2:after{margin-top:100px}
+#sponsors h3{text-transform:uppercase;font-family:"Open Sans Condensed",sans-serif;font-size:22px;line-height:0;margin:10px 0 15px 55px}
 #sponsors ul{margin:0 auto;padding:0;display:block;}
 #sponsors ul li{margin:0 auto;padding:0;background-image:url("/img/scroll.png");background-repeat:no-repeat;display:inline-block}
-ul.title-sponsors{padding-bottom:40px;width:805px;}
+ul.title-sponsors{width:805px;}
 ul.title-sponsors li{background-positon:0 0;width:400px;height:250px}
 ul.title-sponsors:after{background-image:url("/img/separator.png");background-repeat:no-repeat;background-position:top center;padding:20px;content:"";display:block}
 ul.community-sponsors{width:760px;}
 ul.community-sponsors li{background-position:0 -265px;width:250px;height:170px}
+#videos{font-size:42px;color:#643;text-shadow:0 1px 1px #fff;font-family:"Alice",serif;width:900px;margin:50px auto 20px;text-align:center}
 #topic{height:20px;overflow:hidden}
 ol{width:150px;float:left;list-style-type:none;line-height:24px;margin:0;margin-right:10px;padding:10px;border:1px solid #edc;border-radius:3px;background-color:#fefef4;overflow:auto}
 #log{padding:10px;border:1px solid #fdd;border-radius:3px;overflow:auto;}

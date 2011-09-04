@@ -21,6 +21,8 @@ section.panel {width: {w};height: {h};}
 .nohw .p02 #outer { top: {h};left:-{w};}
 .nohw .p10 {background-position:  100px  0;}
 .nohw .p10 #outer { top: 0;  left: {w};}
+.nohw .p11 {background-position:  0  0;}
+.nohw .p11 #outer { top: 0;  left: 0;}
 .nohw .p12 {background-position: -100px  0;}
 .nohw .p12 #outer { top: 0;  left:-{w};}
 .nohw .p20 {background-position:  100px -100px;}
@@ -72,11 +74,7 @@ section.panel {width: {w};height: {h};}
   <section class="panel" id="third"><%- partial("pages/proposals") %></section>
   <section class="panel" id="fourth"><%- partial("pages/venue") %></section>
   <section class="panel" id="fifth"><%- partial("pages/home") %></section>
-  <section class="panel" id="sixth">
-    <article id="videos">
-      Videos
-    </article>
-  </section>
+  <section class="panel" id="sixth"><%- partial("pages/videos") %></section>
   <section class="panel" id="seventh"><%- partial("pages/sponsors") %></section>
   <section class="panel" id="eighth">
     <article id="credits">
@@ -91,6 +89,7 @@ section.panel {width: {w};height: {h};}
 </div>
 
 <footer>
+  
 </footer>
 
 <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>-->
