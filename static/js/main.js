@@ -90,7 +90,7 @@ $(function($){
       body.attr("class", url + " " + map[url]);
       setTimeout(function(){
         outer.removeClass("animated");
-      },1500);
+      },500);
       e.preventDefault();
     }
     $(this).blur();
@@ -104,7 +104,7 @@ $(function($){
         body.attr("class", url + " " + map[url]);
         setTimeout(function(){
           outer.removeClass("animated");
-        },1500);
+        },500);
       }
     });
   }else if(hashChangeSupported){
@@ -115,7 +115,7 @@ $(function($){
         body.attr("class", url + " " + map[url]);
         setTimeout(function(){
           outer.removeClass("animated");
-        },1500);
+        },500);
       }
     });
   }
