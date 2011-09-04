@@ -16,6 +16,9 @@ header nav a:hover{color:#ffa500;text-shadow:0 0 10px #fff;}
 header nav a:hover:after{color:#fff}
 header a.logo{display:inline-block;height:90px;width:380px;vertical-align:top;}
 header a.logo img{z-index:32;border:0 none;padding:0 25px}
+header #pptsalon{z-index:30;position:fixed;bottom:18px;right:0;}
+header #pptsalon a{text-indent:-50000px;font-size:0;background-image:url("/img/sprite.png");background-repeat:no-repeat;background-position:0 -320px;width:36px;height:38px;display:block;-webkit-transition:width .2s ease-out;-moz-transition:width .2s ease-out;-o-transition:width .2s ease-out;transition:width .2s ease-out}
+header #pptsalon:hover a{width:140px;background-position:0 -360px}
 header a.register{position:absolute;top:105px;right:0;padding:0 35px;opacity:.6;z-index:10;-webkit-transition:opacity .3s ease-in-out,top .3s ease-out;-moz-transition:opacity .3s ease-in-out,top .3s ease-out;-o-transition:opacity .3s ease-in-out,top .3s ease-out;transition:opacity .3s ease-in-out,top .3s ease-out;}
 header a.register strong{z-index:10;text-indent:-50000px;background-image:url("/img/sprite.png");background-repeat:no-repeat;display:block;height:150px;width:90px}
 header a.register:hover{background-image:url("/img/sprite.png");background-repeat:no-repeat;background-position:0 -160px;opacity:1;top:110px}
@@ -59,9 +62,6 @@ ul.title-sponsors li{background-positon:0 0;width:400px;height:250px}
 ul.title-sponsors:after{background-image:url("/img/separator.png");background-repeat:no-repeat;background-position:top center;padding:20px;content:"";display:block}
 ul.community-sponsors{width:760px;}
 ul.community-sponsors li{background-position:0 -265px;width:250px;height:170px}
-footer #pptsalon{z-index:30;position:fixed;bottom:18px;right:0;}
-footer #pptsalon a{text-indent:-50000px;font-size:0;background-image:url("/img/sprite.png");background-repeat:no-repeat;background-position:0 -320px;width:36px;height:38px;display:block;-webkit-transition:width .2s ease-out;-moz-transition:width .2s ease-out;-o-transition:width .2s ease-out;transition:width .2s ease-out}
-footer #pptsalon:hover a{width:140px;background-position:0 -360px}
 #topic{height:20px;overflow:hidden}
 ol{width:150px;float:left;list-style-type:none;line-height:24px;margin:0;margin-right:10px;padding:10px;border:1px solid #edc;border-radius:3px;background-color:#fefef4;overflow:auto}
 #log{padding:10px;border:1px solid #fdd;border-radius:3px;overflow:auto;}

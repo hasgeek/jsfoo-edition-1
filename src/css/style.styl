@@ -127,7 +127,29 @@ header
       z-index 32
       border 0 none
       padding: 0 25px
-      
+  
+  #pptsalon
+    z-index 30
+    position fixed
+    bottom 18px
+    right 0px
+
+    a 
+      text-indent -50000px
+      font-size 0px
+      background-image url('/img/sprite.png')
+      background-repeat no-repeat
+      background-position 0 -320px
+      width 36px
+      height 38px
+      display block
+      transition-mixin width 0.2s ease-out
+
+    &:hover
+      a
+        width 140px
+        background-position 0 -360px
+
   a.register
     position absolute
     top 105px
@@ -357,32 +379,6 @@ ul.community-sponsors
     background-position 0 -265px
     width 250px
     height 170px
-    
-
-// Footer
-
-footer
-  #pptsalon
-    z-index 30
-    position fixed
-    bottom 18px
-    right 0px
-
-    a 
-      text-indent -50000px
-      font-size 0px
-      background-image url('/img/sprite.png')
-      background-repeat no-repeat
-      background-position 0 -320px
-      width 36px
-      height 38px
-      display block
-      transition-mixin width 0.2s ease-out
-
-    &:hover
-      a
-        width 140px
-        background-position 0 -360px
 
 
 
