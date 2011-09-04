@@ -1,8 +1,21 @@
 $(function($){
-  var x=1, y=1, outer = $("#outer");
+  
   var body = $(document.body), location = window.location, 
       history = window.history, console = window.console || {"log":function(){}};
-  
+
+  if(history.replaceState && location.search.indexOf("utm_") > 0){
+    var orig = location.href;
+    var fixed = orig.replace(/\?([^#]*)/, function(_, search) {
+      search = search.split('&').map(function(v) {
+        return !/^utm_/.test(v) && v;
+      }).filter(Boolean).join('&');
+      return search ? '?' + search : '';
+    });
+    if ( fixed != orig ) {
+      history.replaceState({}, '', fixed);
+    }
+  }
+
   $.fn.knm = function(callback, code) {
 		if(code === undefined) code = "38,38,40,40,37,39,37,39,66,65";
 		return this.each(function() {
@@ -16,7 +29,15 @@ $(function($){
 			}, true);
 		});
 	};
+
+  // konami code
+  $(window).knm(function(){
+    if(console.log){
+      console.log("u've hit the magic keys");
+    }
+  });
   
+  var x=1, y=1, outer = $("#outer");
   var map = {
     "about-event": "p00",
     "about-hasgeek": "p01",
@@ -98,13 +119,6 @@ $(function($){
       }
     });
   }
-  
-  // konami code
-  $(window).knm(function(){
-    if(console.log){
-      console.log("u've hit the magic keys");
-    }
-  });
   
   // maps
   (function(){
