@@ -168,7 +168,7 @@ section.panel
   top 0
   left 0
   right 0
-  padding-top 130px
+  padding-top 140px
   overflow auto
   min-height 600px
   background-image url("/img/side.jpg")
@@ -285,13 +285,19 @@ section.panel
     &:after
       margin-top 60px
 
-  #venue-map
-    position relative
+  #venue-outer, #venue-map
     width 760px
     height 320px
-    border 1px solid #888888
     border-radius 10px
-    box-shadow 0 0 4px #888888
+
+  #venue-outer
+    padding 3px
+    background-color #eda
+    border 1px solid #888
+    box-shadow 0 0 10px #999
+
+  #venue-map
+    position relative
     
     & > div > .gmnoprint:last-of-type
       display none
@@ -311,22 +317,24 @@ section.panel
 #sponsors
   ul
     margin 0 auto
+    padding 0
+    display block
     li
+      margin 0 auto
+      padding 0
       background-image url('/img/scroll.png')
       background-repeat no-repeat
       display inline-block
       
-ul#title-sponsors
+ul.title-sponsors
+  padding-bottom 40px
+  width 805px
+
   li
-    margin 0 auto
     background-positon 0 0
     width 400px
     height 250px
-    
-    &:last-of-type
-      margin-left 30px
   
-  margin-bottom 40px
   &:after
     background-image url('/img/separator.png')
     background-repeat no-repeat
@@ -334,18 +342,13 @@ ul#title-sponsors
     padding 20px
     content ""
     display block
-    position absolute
-    left 0
-    right 0
 
-ul#community-sponsors
+ul.community-sponsors
+  width 760px
   li
     background-position 0 -265px
     width 250px
     height 170px
-    
-    &:last-of-type
-      margin-left 20px
     
 
 // Footer
