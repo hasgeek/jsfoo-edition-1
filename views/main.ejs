@@ -13,13 +13,21 @@ section.panel {width: {w};height: {h};}
 #eighth { left:0;    top:{h};}
 #ninth  { left:{w};  top:{h};}
 
+.nohw .p00 {background-position:  100px  100px;}
 .nohw .p00 #outer { top: {h};left: {w};}
+.nohw .p01 {background-position:  0      100px;}
 .nohw .p01 #outer { top: {h};left: 0;}
+.nohw .p02 {background-position: -100px  100px;}
 .nohw .p02 #outer { top: {h};left:-{w};}
+.nohw .p10 {background-position:  100px  0;}
 .nohw .p10 #outer { top: 0;  left: {w};}
+.nohw .p12 {background-position: -100px  0;}
 .nohw .p12 #outer { top: 0;  left:-{w};}
+.nohw .p20 {background-position:  100px -100px;}
 .nohw .p20 #outer { top:-{h};left: {w};}
+.nohw .p21 {background-position:  0     -100px;}
 .nohw .p21 #outer { top:-{h};left: 0;}
+.nohw .p22 {background-position: -100px -100px;}
 .nohw .p22 #outer { top:-{h};left:-{w};}
 
 /* enable webkit transforms for ipad & tablets */
