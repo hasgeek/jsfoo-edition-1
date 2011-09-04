@@ -72,6 +72,7 @@ $(function($){
   
   var historyAPISupported = !!(history && history.pushState);
   var hashChangeSupported = !!("onhashchange" in window);
+  var animTimer;
 
   $("header a").live("click",function(e){
     var url = this.href.substr(this.href.lastIndexOf("/")+1);
@@ -88,9 +89,10 @@ $(function($){
       }
       outer.addClass("animated");
       body.attr("class", url + " " + map[url]);
-      setTimeout(function(){
+      clearTimeout(animTimer);
+      animTimer = setTimeout(function(){
         outer.removeClass("animated");
-      },500);
+      },600);
       e.preventDefault();
     }
     $(this).blur();
@@ -102,9 +104,10 @@ $(function($){
       if(typeof map[url] !== 'undefined'){
         outer.addClass("animated");
         body.attr("class", url + " " + map[url]);
-        setTimeout(function(){
+        clearTimeout(animTimer);
+        animTimer = setTimeout(function(){
           outer.removeClass("animated");
-        },500);
+        },600);
       }
     });
   }else if(hashChangeSupported){
@@ -113,9 +116,10 @@ $(function($){
       if(typeof map[url] !== 'undefined'){
         outer.addClass("animated");
         body.attr("class", url + " " + map[url]);
-        setTimeout(function(){
+        clearTimeout(animTimer);
+        animTimer = setTimeout(function(){
           outer.removeClass("animated");
-        },500);
+        },600);
       }
     });
   }
