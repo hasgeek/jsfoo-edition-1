@@ -22,7 +22,12 @@ header a.register:hover{background-image:url("/img/sprite.png");background-repea
 body.register a.register{top:-150px}
 #outer{z-index:8;position:relative;-webkit-transform:translate3d(0,0,0);-moz-transform:translate(0,0);-o-transform:translate(0,0);transform:translate(0,0);}
 #outer.animated{-webkit-transition:-webkit-transform .5s ease-in-out;-moz-transition:-moz-transform .5s ease-in-out;-o-transition:-o-transform .5s ease-in-out;transition:transform .5s ease-in-out;}
-section.panel{position:absolute;z-index:4;margin:0;top:0;left:0;right:0;padding-top:140px;overflow:hidden;min-height:600px;}
+section.panel{position:absolute;z-index:4;margin:0;top:0;left:0;right:0;padding-top:130px;overflow:auto;min-height:600px;background-image:url("/img/side.jpg");background-position:left 0;background-repeat:no-repeat;}
+section.panel ::-webkit-scrollbar{width:6px;height:6px;z-index:999}
+section.panel ::-webkit-scrollbar-button:start:decrement,section.panel ::-webkit-scrollbar-button:end:increment{display:block}
+section.panel ::-webkit-scrollbar-thumb:vertical{height:20px;background-color:rgba(0,0,0,0.30);-webkit-border-radius:5px;-webkit-box-shadow:0 1px 1px rgba(255,255,255,0.90)}
+section.panel ::-webkit-scrollbar-track:enabled{background-color:transparent}
+section.panel ::-webkit-scrollbar-track-piece{background-color:transparent;border:none;margin:55px 0 0 0}
 section.panel article{width:900px;overflow:auto;margin:0 auto}
 #home{background-image:url("/img/temple.jpg");background-repeat:no-repeat;background-position:top center;min-height:760px;text-indent:-50000px;font-size:0}
 #about-event,#about-hasgeek,#venue,#proposals{margin:0 auto;background-repeat:no-repeat;background-position:top center;}
@@ -45,6 +50,14 @@ section.panel article{width:900px;overflow:auto;margin:0 auto}
 #proposals{background-image:url("/img/Proposals.jpg");}
 #proposals h2{width:240px;margin-top:110px;padding-bottom:140px;padding-right:420px;font-size:20px;}
 #proposals h2:after{margin-top:100px}
+#sponsors ul{margin:0 auto;}
+#sponsors ul li{background-image:url("/img/scroll.png");background-repeat:no-repeat;display:inline-block}
+ul#title-sponsors{margin-bottom:40px;}
+ul#title-sponsors li{margin:0 auto;background-positon:0 0;width:400px;height:250px;}
+ul#title-sponsors li:last-of-type{margin-left:30px}
+ul#title-sponsors:after{background-image:url("/img/separator.png");background-repeat:no-repeat;background-position:top center;padding:20px;content:"";display:block;position:absolute;left:0;right:0}
+ul#community-sponsors li{background-position:0 -265px;width:250px;height:170px;}
+ul#community-sponsors li:last-of-type{margin-left:20px}
 footer #pptsalon{z-index:30;position:fixed;bottom:18px;right:0;}
 footer #pptsalon a{text-indent:-50000px;font-size:0;background-image:url("/img/sprite.png");background-repeat:no-repeat;background-position:0 -320px;width:36px;height:38px;display:block;-webkit-transition:width .2s ease-out;-moz-transition:width .2s ease-out;-o-transition:width .2s ease-out;transition:width .2s ease-out}
 footer #pptsalon:hover a{width:140px;background-position:0 -360px}

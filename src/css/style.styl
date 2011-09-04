@@ -168,28 +168,39 @@ section.panel
   top 0
   left 0
   right 0
-  padding-top 140px
-  //opacity 0.1
-  overflow hidden
+  padding-top 130px
+  overflow auto
   min-height 600px
+  background-image url("/img/side.jpg")
+  background-position left 0px
+  background-repeat no-repeat
+  
+  ::-webkit-scrollbar
+    width: 6px
+    height: 6px
+    z-index: 999
+
+  ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+    display: block
+
+  ::-webkit-scrollbar-thumb:vertical
+    height: 20px
+    background-color: rgba(0,0,0,0.3)
+    -webkit-border-radius: 5px
+    -webkit-box-shadow: 0 1px 1px rgba(255,255,255,0.9)
+
+  ::-webkit-scrollbar-track:enabled
+    background-color: transparent
+
+  ::-webkit-scrollbar-track-piece
+    background-color: transparent
+    border: none
+    margin: 55px 0 0px 0
 
   article
     width 900px
     overflow auto
     margin 0 auto
-
-/*
-.p00 #first { opacity: 1.0;}
-.p01 #second { opacity: 1.0;}
-.p02 #third { opacity: 1.0;}
-.p10 #fourth { opacity: 1.0;}
-.p11 #fifth { opacity: 1.0;}
-.p12 #sixth { opacity: 1.0;}
-.p20 #seventh { opacity: 1.0;}
-.p21 #eighth { opacity: 1.0;}
-.p22 #ninth { opacity: 1.0;}
-*/
-
 
 // Pages
 
@@ -297,7 +308,45 @@ section.panel
     &:after
       margin-top 100px
 
+#sponsors
+  ul
+    margin 0 auto
+    li
+      background-image url('/img/scroll.png')
+      background-repeat no-repeat
+      display inline-block
+      
+ul#title-sponsors
+  li
+    margin 0 auto
+    background-positon 0 0
+    width 400px
+    height 250px
+    
+    &:last-of-type
+      margin-left 30px
+  
+  margin-bottom 40px
+  &:after
+    background-image url('/img/separator.png')
+    background-repeat no-repeat
+    background-position top center
+    padding 20px
+    content ""
+    display block
+    position absolute
+    left 0
+    right 0
 
+ul#community-sponsors
+  li
+    background-position 0 -265px
+    width 250px
+    height 170px
+    
+    &:last-of-type
+      margin-left 20px
+    
 
 // Footer
 

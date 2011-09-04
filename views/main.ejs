@@ -2,15 +2,15 @@
 <style type="text/css" id="rendered"></style>
 <style type="template" id="template">
 section.panel {width: {w};height: {h};}
-#first{   margin-left:-{w}; margin-top:-{h};}
-#second{  margin-left:0;    margin-top:-{h};}
-#third{   margin-left:{w};  margin-top:-{h};}
-#fourth{  margin-left:-{w}; margin-top:0;}
-#fifth{   margin-left:0;    margin-top:0;}
-#sixth{   margin-left:{w};  margin-top:0;}
-#seventh{ margin-left:-{w}; margin-top:{h};}
-#eighth{  margin-left:0;    margin-top:{h};}
-#ninth{   margin-left:{w};  margin-top:{h};}
+#first{   left:-{w}; top:-{h};}
+#second{  left:0;    top:-{h};}
+#third{   left:{w};  top:-{h};}
+#fourth{  left:-{w}; top:0;}
+#fifth{   left:0;    top:0;}
+#sixth{   left:{w};  top:0;}
+#seventh{ left:-{w}; top:{h};}
+#eighth{  left:0;    top:{h};}
+#ninth{   left:{w};  top:{h};}
 
 .p00 #outer {
   -webkit-transform: translate3d({w},{h},0);
@@ -94,11 +94,7 @@ section.panel {width: {w};height: {h};}
       Videos
     </article>
   </section>
-  <section class="panel" id="seventh">
-    <article id="sponsors">
-      Sponsors
-    </article>
-  </section>
+  <section class="panel" id="seventh"><%- partial("pages/sponsors") %></section>
   <section class="panel" id="eighth">
     <article id="credits">
       Credits
