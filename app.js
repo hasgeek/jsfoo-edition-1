@@ -113,18 +113,20 @@ setInterval(function(){
   if(messages.length === 0) return;
   last = messages[messages.length - 1];
   if(last.time <= lastTimeStamp) return;
-  connection.save({
-    "_id": docId,
-    "messages": messages
-  }, function(err, doc){
-    if(err){
-      console.error("Saving failed");
-      console.error(err);
-      return;
-    }
-    lastTimeStamp = last.time;
-    console.info("Saved the backlog at " + new Date(lastTimeStamp));
-  })
+  try{
+    connection.save({
+      "_id": docId,
+      "messages": messages
+    }, function(err, doc){
+      if(err){
+        console.error("Saving failed");
+        console.error(err);
+        return;
+      }
+      lastTimeStamp = last.time;
+      console.info("Saved the backlog at " + new Date(lastTimeStamp));
+    });
+  }catch(e){}
 },60*1000);
 
 // Init the IRC client & connect to #hasgeek
