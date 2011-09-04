@@ -55,7 +55,6 @@ $(function($){
   } else {
     body.attr("class", "p"+y+x);
   }
-  body.attr("style","display:block");
   
   var template = $("#template");
   var rendered = $("#rendered");
@@ -67,7 +66,8 @@ $(function($){
   }
   adjust();
   $(window).resize(adjust);
-  
+
+  body.attr("style","display:block");
   
   
   var historyAPISupported = !!(history && history.pushState);
