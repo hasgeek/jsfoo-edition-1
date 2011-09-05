@@ -87,7 +87,17 @@ messages  = [],
 
 // Bind Socket.IO server to the http server
 var io = io.listen(app);
-io.set('log level', debug?2:1);
+io.configure('production', function(){
+  io.set('log level', 1);
+  io.enable('browser client minification');
+  io.enable('browser client etag');
+  io.set('transports', ['websocket', 'xhr-polling', 'jsonp-polling', 'htmlfile', 'flashsocket']);
+});
+io.configure('development', function(){
+  io.set('log level', 2);
+  io.set('transports', ['websocket', 'xhr-polling']);
+});
+
 io.sockets.on('connection', function(client){
   // Send the Back-log
   io.sockets.emit('names', names);
@@ -109,7 +119,7 @@ connection.get(docId, function(err, doc){
 
 // And set a timer to take backups every 60 seconds
 var lastTimeStamp = 0, last;
-setInterval(function(){
+if(!debug) setInterval(function(){
   if(messages.length === 0) return;
   last = messages[messages.length - 1];
   if(last.time <= lastTimeStamp) return;
