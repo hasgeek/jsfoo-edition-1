@@ -3,19 +3,6 @@ $(function($){
   var body = $(document.body), location = window.location, 
       history = window.history, console = window.console || {"log":function(){}};
 
-  if(history.replaceState && location.search.indexOf("utm_") > 0){
-    var orig = location.href;
-    var fixed = orig.replace(/\?([^#]*)/, function(_, search) {
-      search = search.split('&').map(function(v) {
-        return !/^utm_/.test(v) && v;
-      }).filter(Boolean).join('&');
-      return search ? '?' + search : '';
-    });
-    if ( fixed != orig ) {
-      history.replaceState({}, '', fixed);
-    }
-  }
-
   $.fn.knm = function(callback, code) {
 		if(code === undefined) code = "38,38,40,40,37,39,37,39,66,65";
 		return this.each(function() {
@@ -125,7 +112,7 @@ $(function($){
   }
   
   // maps
-  (function(){
+  setTimeout(function fetchMap(){
     var styles = [{ featureType: "all", elementType: "all", stylers: [{hue: '#eecc70'}, { saturation: -70 }, { gamma: 0.70 }]}];
     var retroMapType = new google.maps.StyledMapType(styles, {});
     var dharmaram = new google.maps.LatLng(12.9341, 77.6043);
@@ -150,6 +137,21 @@ $(function($){
       infowindow.open(map, marker);
     });
     infowindow.open(map, marker);
-  })();
+  },1000);
 
+  
+  setTimeout(function kickUtm(){
+    if(history.replaceState && location.search.indexOf("utm_") > 0){
+      var orig = location.href;
+      var fixed = orig.replace(/\?([^#]*)/, function(_, search) {
+        search = search.split('&').map(function(v) {
+          return !/^utm_/.test(v) && v;
+        }).filter(Boolean).join('&');
+        return search ? '?' + search : '';
+      });
+      if ( fixed != orig ) {
+        history.replaceState({}, '', fixed);
+      }
+    }
+  },1000);
 });
