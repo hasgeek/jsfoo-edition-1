@@ -4,18 +4,18 @@ $(function($){
       history = window.history, console = window.console || {"log":function(){}};
 
   $.fn.knm = function(callback, code) {
-		if(code === undefined) code = "38,38,40,40,37,39,37,39,66,65";
-		return this.each(function() {
-			var kkeys = [];
-			$(this).keydown(function(e){
-				kkeys.push( e.keyCode );
-				if ( kkeys.toString().indexOf( code ) >= 0 ){
-					$(this).unbind('keydown', arguments.callee);
-					callback(e);
-				}
-			}, true);
-		});
-	};
+    if(code === undefined) code = "38,38,40,40,37,39,37,39,66,65";
+    return this.each(function() {
+      var kkeys = [];
+      $(this).keydown(function(e){
+        kkeys.push( e.keyCode );
+        if ( kkeys.toString().indexOf( code ) >= 0 ){
+          $(this).unbind('keydown', arguments.callee);
+          callback(e);
+        }
+      }, true);
+    });
+  };
 
   // konami code
   $(window).knm(function(){
@@ -61,6 +61,23 @@ $(function($){
   var hashChangeSupported = !!("onhashchange" in window);
   var animTimer;
 
+  function updateURL(url, e){
+   if(typeof map[url] !== 'undefined'){
+      outer.addClass("animated");
+      body.attr("class", url + " " + map[url]);
+      clearTimeout(animTimer);
+      animTimer = setTimeout(function(){
+        outer.removeClass("animated");
+      },600);
+      if(_gaq instanceof Array){
+        _gaq.push(['_trackPageview', url]);
+      }
+      if(e){
+        e.preventDefault();
+      }
+    }
+  }
+
   $("header a").live("click",function(e){
     var url = this.href.substr(this.href.lastIndexOf("/")+1);
     if(url === location.pathname.substr(1)){
@@ -74,40 +91,20 @@ $(function($){
       }else{
         return;
       }
-      outer.addClass("animated");
-      body.attr("class", url + " " + map[url]);
-      clearTimeout(animTimer);
-      animTimer = setTimeout(function(){
-        outer.removeClass("animated");
-      },600);
-      e.preventDefault();
     }
+    updateURL(url, e);
     $(this).blur();
   });
 
   if(historyAPISupported){
     $(window).bind("popstate", function(e){
       var url = location.pathname.substr(1);
-      if(typeof map[url] !== 'undefined'){
-        outer.addClass("animated");
-        body.attr("class", url + " " + map[url]);
-        clearTimeout(animTimer);
-        animTimer = setTimeout(function(){
-          outer.removeClass("animated");
-        },600);
-      }
+      updateURL(url);
     });
   }else if(hashChangeSupported){
     $(window).bind( 'hashchange', function(e){
       var url = location.hash.substr(1);
-      if(typeof map[url] !== 'undefined'){
-        outer.addClass("animated");
-        body.attr("class", url + " " + map[url]);
-        clearTimeout(animTimer);
-        animTimer = setTimeout(function(){
-          outer.removeClass("animated");
-        },600);
-      }
+      updateURL(url);
     });
   }
   
