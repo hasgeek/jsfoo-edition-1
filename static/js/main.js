@@ -55,7 +55,7 @@ $(function($){
   var template = $("#template");
   var rendered = $("#rendered");
   function adjust(){
-    var w = $(window).width()-5, h = $(window).height()-65;
+    var w = $(window).width()-5, h = $(window).height()-25;
     if(w < 800){ w = 800; }
     if(h < 300){ h = 300; }
     var adData = {
