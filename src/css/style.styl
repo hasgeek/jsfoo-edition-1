@@ -229,7 +229,7 @@ section.panel
   text-indent -50000px
   font-size 0px
 
-#about-event, #about-hasgeek, #venue, #proposals
+#about-event, #about-hasgeek, #venue, #schedule
   margin 0 auto
   background-repeat no-repeat
   background-position top center
@@ -344,7 +344,7 @@ section.panel
       display none
     
   
-#proposals
+#schedule
   background-image url('/img/Proposals.jpg')
   h2
     width 240px
@@ -354,6 +354,54 @@ section.panel
     font-size 20px
     &:after
       margin-top 100px
+    
+  div
+    border 1px solid #fb8
+    border-radius 10px
+    background rgba(255, 255, 255, 0.4)
+  table
+    width 100%
+    thead
+        th
+          padding-top 0.75em
+          border-bottom 1px solid #fb8
+    tbody
+      tr td
+        height 3em
+        font-size 12px
+        border-bottom 1px solid #fb8
+      tr td a
+        color inherit
+      tr:nth-of-type(even)
+        background rgba(255, 255, 255, 0.1)
+      tr.break td
+        height 1em
+        color #999
+    th
+      text-align left
+    th, td
+      padding 0.5em 1em
+      vertical-align middle
+      border-left 1px solid #fb8
+      &:first-child, &:first-child
+        border-left none
+      &.col
+        width 28%
+    .session
+      display block
+    .speaker
+      display block
+      font-style italic
+    .speaker:before
+      content "— "
+    .break
+      text-align center
+      font-style italic
+    .time
+      text-align center
+      font-weight bold
+      font-style normal
+
 
 #sponsors
   h3
