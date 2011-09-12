@@ -1,48 +1,29 @@
 <style type="text/css">body{display:none;}</style>
 <style type="text/css" id="rendered"></style>
 <style type="template" id="template">
-section.panel {width: {w};height: {h};}
+body {height: {1h};}
+#outer { height: {H};}
+section.panel {width: {1w}; height: {H};}
 
-#first  { left:-{w}; top:-{h};}
-#second { left:0;    top:-{h};}
-#third  { left:{w};  top:-{h};}
-#fourth { left:-{w}; top:0;}
-#fifth  { left:0;    top:0;}
-#sixth  { left:{w};  top:0;}
-#seventh{ left:-{w}; top:{h};}
-#eighth { left:0;    top:{h};}
-#ninth  { left:{w};  top:{h};}
+#first  { left:-{4w};}
+#second { left:-{3w};}
+#third  { left:-{2w};}
+#fourth { left:-{1w};}
+#fifth  { left: 0;}
+#sixth  { left: {1w};}
+#seventh{ left: {2w};}
+#eighth { left: {3w};}
+#ninth  { left: {4w};}
 
-.nohw .p00 {background-position:  100px  100px;}
-.nohw .p00 #outer { top: {h};left: {w};}
-.nohw .p01 {background-position:  0      100px;}
-.nohw .p01 #outer { top: {h};left: 0;}
-.nohw .p02 {background-position: -100px  100px;}
-.nohw .p02 #outer { top: {h};left:-{w};}
-.nohw .p10 {background-position:  100px  0;}
-.nohw .p10 #outer { top: 0;  left: {w};}
-.nohw .p11 {background-position:  0  0;}
-.nohw .p11 #outer { top: 0;  left: 0;}
-.nohw .p12 {background-position: -100px  0;}
-.nohw .p12 #outer { top: 0;  left:-{w};}
-.nohw .p20 {background-position:  100px -100px;}
-.nohw .p20 #outer { top:-{h};left: {w};}
-.nohw .p21 {background-position:  0     -100px;}
-.nohw .p21 #outer { top:-{h};left: 0;}
-.nohw .p22 {background-position: -100px -100px;}
-.nohw .p22 #outer { top:-{h};left:-{w};}
-
-/* enable webkit transforms for ipad & tablets */
-.hwenabled body {-webkit-transform: translate3d(0,0,0);}
-.hwenabled .p00 #outer { -webkit-transform: translate3d({w},{h},0); }
-.hwenabled .p01 #outer { -webkit-transform: translate3d(0,{h},0); }
-.hwenabled .p02 #outer { -webkit-transform: translate3d(-{w},{h},0); }
-.hwenabled .p10 #outer { -webkit-transform: translate3d({w},0,0); }
-.hwenabled .p12 #outer { -webkit-transform: translate3d(-{w},0,0); }
-.hwenabled .p20 #outer { -webkit-transform: translate3d({w},-{h},0); }
-.hwenabled .p21 #outer { -webkit-transform: translate3d(0,-{h},0); }
-.hwenabled .p22 #outer { -webkit-transform: translate3d(-{w},-{h},0); }
-
+.first   #outer {margin-left: {4w};}
+.second  #outer {margin-left: {3w};}
+.third   #outer {margin-left: {2w};}
+.fourth  #outer {margin-left: {1w};}
+.fifth   #outer {margin-left: 0;}
+.sixth   #outer {margin-left:-{1w};}
+.seventh #outer {margin-left:-{2w};}
+.eigth   #outer {margin-left:-{3w};}
+.ninth   #outer {margin-left:-{4w};}
 </style>
 
 
@@ -50,7 +31,7 @@ section.panel {width: {w};height: {h};}
   <nav>
     <a href="/about-event">About Event</a>
     <a href="/about-hasgeek">About HasGeek</a>
-    <a href="/proposals">Proposals</a>
+    <a href="/schedule">Schedule</a>
   </nav>
   <a href="/home" class="logo">
     <img src="/img/logo.png" />
@@ -71,9 +52,9 @@ section.panel {width: {w};height: {h};}
 <div id="outer">
   <section class="panel" id="first"><%- partial("pages/about-event") %></section>
   <section class="panel" id="second"><%- partial("pages/about-hasgeek") %></section>
-  <section class="panel" id="third"><%- partial("pages/proposals") %></section>
-  <section class="panel" id="fourth"><%- partial("pages/venue") %></section>
-  <section class="panel" id="fifth"><%- partial("pages/home") %></section>
+  <section class="panel" id="third"><%- partial("pages/schedule") %></section>
+  <section class="panel" id="fourth"><%- partial("pages/home") %></section>
+  <section class="panel" id="fifth"><%- partial("pages/venue") %></section>
   <section class="panel" id="sixth"><%- partial("pages/videos") %></section>
   <section class="panel" id="seventh"><%- partial("pages/sponsors") %></section>
   <section class="panel" id="eighth">

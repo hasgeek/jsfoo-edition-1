@@ -1,7 +1,16 @@
+// main code
 $(function($){
   
   var body = $(document.body), location = window.location, 
-      history = window.history, console = window.console || {"log":function(){}};
+      history = window.history, console = window.console || {"log":function(){}},
+      historyAPISupported = !!(history && history.pushState),
+      hashChangeSupported = !!("onhashchange" in window);
+
+  if(!historyAPISupported && !hashChangeSupported){
+    // we dont like this browser
+    $("html,body").hide();
+    return;
+  }
 
   $.fn.knm = function(callback, code) {
     if(code === undefined) code = "38,38,40,40,37,39,37,39,66,65";
@@ -24,32 +33,37 @@ $(function($){
     }
   });
   
-  var x=1, y=1, outer = $("#outer");
+  var outer = $("#outer");
   var map = {
-    "about-event": "p00",
-    "about-hasgeek": "p01",
-    "proposals": "p02",
-    "venue": "p10",
-    "home": "p11",
-    "videos": "p12",
-    "sponsors": "p20",
-    "credits": "p21",
-    "register": "p22"
-  }, requested = location.hash || location.pathname.substr(1);
+    "about-event": "first",
+    "about-hasgeek": "second",
+    "schedule": "third",
+    "home": "fourth",
+    "venue": "fifth",
+    "videos": "sixth",
+    "sponsors": "seventh",
+    "credits": "eigth",
+    "register": "ninth"
+  }, requested = location.hash.substr(1) || location.pathname.substr(1) || "home";
   
   if(typeof map[requested] !== 'undefined'){
     body.attr("class", requested + " " + map[requested]);
   } else {
-    body.attr("class", "p"+y+x);
+    body.attr("class", "home fourth");
   }
   
   var template = $("#template");
   var rendered = $("#rendered");
   function adjust(){
-    var w = body.width(), h = body.height();
-    if(w < 1000){ w = 1000; }
-    if(h < 700){ h = 700; }
-    rendered.empty().text(template.html().replace(/\{w\}/g,w+"px").replace(/\{h\}/g,h+"px"));
+    var w = $(window).width()-5, h = $(window).height()-5;
+    if(w < 800){ w = 800; }
+    if(h < 300){ h = 300; }
+    var adData = {
+      "1w": w, "2w": 2*w, "3w": 3*w, "4w": 4*w, "1h": h, "H": h-110
+    };
+    rendered.empty().text(template.html().replace(/\{[1234]?(w|h|H)\}/g, function(f){
+      return adData[f.replace(/[\{\}]/g,"")] + "px";
+    }));
   }
   adjust();
   $(window).resize(adjust);
@@ -57,18 +71,11 @@ $(function($){
   body.attr("style","display:block");
   
   
-  var historyAPISupported = !!(history && history.pushState);
-  var hashChangeSupported = !!("onhashchange" in window);
   var animTimer;
 
   function updateURL(url, e){
    if(typeof map[url] !== 'undefined'){
-      outer.addClass("animated");
       body.attr("class", url + " " + map[url]);
-      clearTimeout(animTimer);
-      animTimer = setTimeout(function(){
-        outer.removeClass("animated");
-      },600);
       if(_gaq instanceof Array){
         _gaq.push(['_trackPageview', url]);
       }
@@ -80,7 +87,8 @@ $(function($){
 
   $("header a").live("click",function(e){
     var url = this.href.substr(this.href.lastIndexOf("/")+1);
-    if(url === location.pathname.substr(1)){
+    if((historyAPISupported && url === location.pathname.substr(1)) || 
+       (hashChangeSupported && url === location.hash.substr(1))){
       return e.preventDefault();
     }
     if(typeof map[url] !== 'undefined'){
@@ -135,7 +143,6 @@ $(function($){
     });
     infowindow.open(map, marker);
   },1000);
-
   
   setTimeout(function kickUtm(){
     if(history.replaceState && location.search.indexOf("utm_") > 0){
@@ -151,4 +158,5 @@ $(function($){
       }
     }
   },1000);
+
 });

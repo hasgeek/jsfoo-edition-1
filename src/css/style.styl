@@ -13,19 +13,10 @@ transition-transform-mixin()
   transition transform arguments
 
 transition-position-mixin()
-  -webkit-transition top arguments, left arguments
-  -moz-transition top arguments, left arguments
-  -o-transition top arguments, left arguments
-  transition top arguments, left arguments
-
-/*
-transform-translate-mixin()
-  -webkit-transform translate3d(arguments,0)
-  -moz-transform translate(arguments)
-  -o-transform translate(arguments)
-  transform translate(arguments)
-*/
-
+  -webkit-transition left arguments
+  -moz-transition left arguments
+  -o-transition left arguments
+  transition left arguments
 
 html, body
   width 100%
@@ -83,7 +74,7 @@ header
   text-align center
   vertical-align middle
   border-bottom 1px solid #100
-  box-shadow 5px 0 5px rgba(20,10,0,0.7)
+  box-shadow 5px 0 10px rgba(10,20,0,0.8)
   
   nav
     vertical-align top
@@ -112,8 +103,7 @@ header
       &:after
         text-shadow 0px none
       &:hover
-        color orange
-        text-shadow 0 0 10px #fff
+        color #fa2
         &:after
           color #fff
         
@@ -153,7 +143,7 @@ header
   a.register
     position absolute
     top 105px
-    right 0px
+    right 20px
     padding 0 35px
     opacity 0.6
     z-index 10
@@ -179,6 +169,21 @@ header
 body.register a.register
   top -150px
 
+body.about-event a[href="/about-event"],
+body.about-hasgeek a[href="/about-hasgeek"],
+body.schedule a[href="/schedule"],
+body.home a[href="/home"],
+body.venue a[href="/venue"],
+body.videos a[href="/videos"],
+body.sponsors a[href="/sponsors"],
+body.credits a[href="/credits"],
+body.register a[href="/register"]
+  cursor default
+  color #F84
+  pointer-events none
+  &:hover
+    text-decoration none
+    text-shadow none
 
 
 
@@ -186,51 +191,36 @@ body.register a.register
 
 #outer
   z-index 8
-  position relative
-  //transform-translate-mixin 0,0
-
-  &.animated
-    //transition-transform-mixin 0.5s ease-in-out
-    transition-position-mixin 0.5s ease-in-out
-    section.panel
-      //transition-mixin opacity 0.3s ease-in-out
+  position fixed
+  top 110px
+  transition-mixin margin-left 0.5s ease-in-out
 
 section.panel
   position absolute
+  top 2px
   z-index 4
-  padding-top 140px
   overflow auto
-  min-height 600px
-  background-image url("/img/side.jpg")
   background-position left 0px
   background-repeat no-repeat
+  margin-right 5px
   
-  ::-webkit-scrollbar
-    width: 6px
-    height: 6px
-    z-index: 999
-
-  ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
-    display: block
-
-  ::-webkit-scrollbar-thumb:vertical
-    height: 20px
-    background-color: rgba(0,0,0,0.3)
-    -webkit-border-radius: 5px
-    -webkit-box-shadow: 0 1px 1px rgba(255,255,255,0.9)
-
-  ::-webkit-scrollbar-track:enabled
-    background-color: transparent
-
-  ::-webkit-scrollbar-track-piece
-    background-color: transparent
-    border: none
-    margin: 55px 0 0px 0
+  &::-webkit-scrollbar
+    width 7px
+    height 7px
+  &::-webkit-scrollbar-thumb
+    margin 10px 0
+    background rgba(200,160,100,0.8)
+    border 1px solid rgba(0,0,0,0.1)
+    
+  .disable
+    display none
 
   article
     width 900px
     overflow auto
     margin 0 auto
+    margin-top 30px
+    padding-bottom 60px
 
 // Pages
 
@@ -290,10 +280,34 @@ section.panel
       
 #about-event
   background-image url('/img/AboutEvent.jpg')
+  font-size 16px
   h2
     width 500px
     margin-top 220px
-    padding-bottom 100px
+    padding-bottom 70px
+    
+  dl.dictionary  
+    font-family georgia
+    border 1px solid #888
+    padding 10px 20px 10px 30px
+    border-radius 5px
+    background-color rgba(255, 255, 255, 0.2)
+    width 600px
+    margin 0 auto
+    margin-bottom 20px
+    dt
+      font-size 16px
+      color #444
+      b
+        font-size 22px
+        color #111
+        font-weight normal
+    dd
+      font-size 14px
+      margin 5px 0 10px 0
+      i
+        display block
+        margin-left 5px
 
 #about-hasgeek
   background-image url('/img/AboutHasGeek.jpg')
