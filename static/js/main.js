@@ -1,3 +1,5 @@
+// TODO: handle konami code & show message on ancient browsers
+
 // main code
 $(function($){
   
@@ -66,16 +68,20 @@ $(function($){
     }));
   }
   adjust();
+  var sizeTimer;
   $(window).resize(adjust);
-
   body.attr("style","display:block");
   
   
   var animTimer;
-
   function updateURL(url, e){
-   if(typeof map[url] !== 'undefined'){
+    outer.addClass("animated");
+    if(typeof map[url] !== 'undefined'){
       body.attr("class", url + " " + map[url]);
+      clearTimeout(animTimer);
+      animTimer = setTimeout(function(){
+        outer.removeClass("animated");
+      },500);
       if(_gaq instanceof Array){
         _gaq.push(['_trackPageview', url]);
       }

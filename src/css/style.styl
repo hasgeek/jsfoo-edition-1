@@ -190,7 +190,8 @@ body.register a[href="/register"]
   z-index 8
   position fixed
   top 110px
-  transition-mixin margin-left 0.5s ease-in-out
+  &.animated
+    transition-mixin left 0.5s ease-in-out
 
 section.panel
   position absolute
@@ -357,8 +358,9 @@ section.panel
     
   div
     border 1px solid #fb8
-    border-radius 10px
+    border-radius 6px
     background rgba(255, 255, 255, 0.4)
+    box-shadow 0 2px 12px #752
   table
     width 100%
     thead
@@ -370,8 +372,11 @@ section.panel
         height 3em
         font-size 12px
         border-bottom 1px solid #fb8
-      tr td a
-        color inherit
+        a
+          color inherit
+
+      tr:last-of-type td
+          border-bottom 0 none
       tr:nth-of-type(even)
         background rgba(255, 255, 255, 0.1)
       tr.break td
