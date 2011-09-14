@@ -45,8 +45,9 @@ var server  = "irc.freenode.net",
 
 // Routes
 app.get('/', function(req, resp){
-  resp.render('index', {
-    'title': 'jsFoo 2011'
+  var path = 'home';
+  resp.render('main', {
+	'title': 'jsFoo 2011 Bangalore'
   });
 });
 app.get('/irc', function(req, resp){

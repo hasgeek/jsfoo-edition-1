@@ -31,7 +31,7 @@ $(function($){
   // konami code
   $(window).knm(function(){
     if(console.log){
-      console.log("u've hit the magic keys");
+      console.log("You've hit the magic keys");
     }
   });
   
