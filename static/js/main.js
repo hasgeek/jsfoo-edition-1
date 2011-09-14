@@ -139,10 +139,10 @@ $(function($){
     var marker = new google.maps.Marker({
       position: dharmaram,
       map: map,
-      title: "Dharmaram College"
+      title: "Dharmaram Vidya Kshetram"
     });
     var infowindow = new google.maps.InfoWindow({
-      content: '<h3>Dharmaram College</h3><p>Christ University Campus. <a target="_blank" href="http://goo.gl/maps/jYyv">See larger map</a>.</p>'
+      content: '<h3>Dharmaram Vidya Kshetram</h3><p>Christ University Campus. <a target="_blank" href="http://goo.gl/maps/jYyv">See larger map</a>.</p>'
     });
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map, marker);

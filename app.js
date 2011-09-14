@@ -59,7 +59,7 @@ app.get('/irc', function(req, resp){
 app.get(/^\/(about\-(event|hasgeek)|schedule|venue|home|videos|sponsors|credits|register)\/?$/, function(req, resp){
   var path = req.url.substr(1).match(/[a-zA-Z\-]+/)[0];
   var opts = {
-    title: 'jsFoo 2011 India'
+    title: 'jsFoo 2011 Bangalore'
   };
   resp.render('main', opts);
 });
