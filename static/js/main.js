@@ -55,7 +55,6 @@ $(function($){
   }
   
   var template = $("#template");
-  var rendered = $("#rendered");
   function adjust(){
     var w = $(window).width()-5, h = $(window).height()-25;
     if(w < 800){ w = 800; }
@@ -63,9 +62,10 @@ $(function($){
     var adData = {
       "1w": w, "2w": 2*w, "3w": 3*w, "4w": 4*w, "1h": h, "H": h-110
     };
-    rendered.empty().text(template.html().replace(/\{[1234]?(w|h|H)\}/g, function(f){
+    var output = template.html().replace(/\{[1234]?(w|h|H)\}/g, function(f){
       return adData[f.replace(/[\{\}]/g,"")] + "px";
-    }));
+    });
+    $("#rendered").replaceWith($('<style type="text/css" id="rendered">'+output+'</style>'));
   }
   adjust();
   var sizeTimer;
