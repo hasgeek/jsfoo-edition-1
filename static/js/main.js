@@ -94,8 +94,11 @@ $(function($){
 
   $("header a").live("click",function(e){
     var url = this.href.substr(this.href.lastIndexOf("/")+1);
-    if((historyAPISupported && url === location.pathname.substr(1)) || 
-       (hashChangeSupported && url === location.hash.substr(1))){
+    if(historyAPISupported){
+      if(url === location.pathname.substr(1)){
+        return e.preventDefault();
+      }
+    }else if((hashChangeSupported && url === location.hash.substr(1))) {
       return e.preventDefault();
     }
     if(typeof map[url || "home"] !== 'undefined'){
