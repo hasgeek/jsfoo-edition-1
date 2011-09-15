@@ -112,12 +112,12 @@ $(function($){
 
   if(historyAPISupported){
     $(window).bind("popstate", function(e){
-      var url = location.pathname.substr(1);
+      var url = location.pathname.substr(1) || "home";
       updateURL(url);
     });
   }else if(hashChangeSupported){
     $(window).bind( 'hashchange', function(e){
-      var url = location.hash.substr(1);
+      var url = location.hash.substr(1) || "home";
       updateURL(url);
     });
   }
