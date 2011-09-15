@@ -75,8 +75,9 @@ $(function($){
   
   var animTimer;
   function updateURL(url, e){
-    outer.addClass("animated");
+    url = url || "home";
     if(typeof map[url] !== 'undefined'){
+      outer.addClass("animated");
       body.attr("class", url + " " + map[url]);
       clearTimeout(animTimer);
       animTimer = setTimeout(function(){
@@ -97,11 +98,11 @@ $(function($){
        (hashChangeSupported && url === location.hash.substr(1))){
       return e.preventDefault();
     }
-    if(typeof map[url] !== 'undefined'){
+    if(typeof map[url || "home"] !== 'undefined'){
       if(historyAPISupported){
         history.pushState(null, null, "/"+url);
       }else if(hashChangeSupported){
-        location.hash = url;
+        location.hash = url || "home";
       }else{
         return;
       }
@@ -117,7 +118,7 @@ $(function($){
     });
   }else if(hashChangeSupported){
     $(window).bind( 'hashchange', function(e){
-      var url = location.hash.substr(1) || "home";
+      var url = location.hash.substr(1);
       updateURL(url);
     });
   }

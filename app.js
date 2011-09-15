@@ -44,12 +44,6 @@ var server  = "irc.freenode.net",
    channel  = debug?"#jsfootest":"#hasgeek";
 
 // Routes
-app.get('/', function(req, resp){
-  var path = 'home';
-  resp.render('main', {
-	'title': 'jsFoo 2011 Bangalore'
-  });
-});
 app.get('/irc', function(req, resp){
   resp.render('irc', {
     'title': 'jsFoo 2011',
@@ -57,8 +51,8 @@ app.get('/irc', function(req, resp){
     'server': server
   });
 });
-app.get(/^\/(about\-(event|hasgeek)|schedule|venue|home|videos|sponsors|credits|register)\/?$/, function(req, resp){
-  var path = req.url.substr(1).match(/[a-zA-Z\-]+/)[0];
+app.get(/^\/(about\-(event|hasgeek)|schedule|venue|videos|sponsors|credits|register)?\/?$/, function(req, resp){
+  //var path = req.url.substr(1).match(/[a-zA-Z\-]+/) || "home";
   var opts = {
     title: 'jsFoo 2011 Bangalore'
   };
