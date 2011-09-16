@@ -40,12 +40,13 @@ $(function($){
     "about-event": "first",
     "about-hasgeek": "second",
     "schedule": "third",
-    "home": "fourth",
-    "venue": "fifth",
-    "videos": "sixth",
-    "sponsors": "seventh",
-    "credits": "eigth",
-    "register": "ninth"
+    "venue": "fourth",
+    "home": "fifth",
+    "hack-night": "sixth",
+    "videos": "seventh",
+    "sponsors": "eigth",
+    "credits": "ninth",
+    "register": "tenth"
   }, requested = location.hash.substr(1) || location.pathname.substr(1) || "home";
   
   if(typeof map[requested] !== 'undefined'){
@@ -60,9 +61,9 @@ $(function($){
     if(w < 800){ w = 800; }
     if(h < 300){ h = 300; }
     var adData = {
-      "1w": w, "2w": 2*w, "3w": 3*w, "4w": 4*w, "1h": h, "H": h-110
+      "1w": w, "2w": 2*w, "3w": 3*w, "4w": 4*w, "5w": 5*w, "1h": h, "H": h-110
     };
-    var output = template.html().replace(/\{[1234]?(w|h|H)\}/g, function(f){
+    var output = template.html().replace(/\{[1-5]?(w|h|H)\}/g, function(f){
       return adData[f.replace(/[\{\}]/g,"")] + "px";
     });
     $("#rendered").replaceWith($('<style type="text/css" id="rendered">'+output+'</style>'));

@@ -14,6 +14,7 @@ section.panel {width: {1w}; height: {H};}
 #seventh{ left: {2w};}
 #eighth { left: {3w};}
 #ninth  { left: {4w};}
+#tenth  { left: {5w};}
 
 .first   #outer {left: {4w};}
 .second  #outer {left: {3w};}
@@ -24,6 +25,7 @@ section.panel {width: {1w}; height: {H};}
 .seventh #outer {left:-{2w};}
 .eigth   #outer {left:-{3w};}
 .ninth   #outer {left:-{4w};}
+.tenth   #outer {left:-{5w};}
 </style>
 
 
@@ -32,12 +34,13 @@ section.panel {width: {1w}; height: {H};}
     <a href="/about-event">About Event</a>
     <a href="/about-hasgeek">About HasGeek</a>
     <a href="/schedule">Schedule</a>
+    <a href="/venue">Venue</a>
   </nav>
   <a href="/" class="logo">
     <img src="/img/logo.png" />
   </a>
   <nav>
-    <a href="/venue">Venue</a>
+    <a href="/hack-night">Hack Night</a>
     <a href="/videos">Videos</a>
     <a href="/sponsors">Sponsors</a>
     <a href="/credits">Credits</a>
@@ -53,12 +56,13 @@ section.panel {width: {1w}; height: {H};}
   <section class="panel" id="first"><%- partial("pages/about-event") %></section>
   <section class="panel" id="second"><%- partial("pages/about-hasgeek") %></section>
   <section class="panel" id="third"><%- partial("pages/schedule") %></section>
-  <section class="panel" id="fourth"><%- partial("pages/home") %></section>
-  <section class="panel" id="fifth"><%- partial("pages/venue") %></section>
-  <section class="panel" id="sixth"><%- partial("pages/videos") %></section>
-  <section class="panel" id="seventh"><%- partial("pages/sponsors") %></section>
-  <section class="panel" id="eighth"><%- partial("pages/credits")%></section>
-  <section class="panel" id="ninth"><%- partial("pages/register")%></section>
+  <section class="panel" id="fourth"><%- partial("pages/venue") %></section>
+  <section class="panel" id="fifth"><%- partial("pages/home") %></section>
+  <section class="panel" id="sixth"><%- partial("pages/hack-night") %></section>
+  <section class="panel" id="seventh"><%- partial("pages/videos") %></section>
+  <section class="panel" id="eighth"><%- partial("pages/sponsors") %></section>
+  <section class="panel" id="ninth"><%- partial("pages/credits")%></section>
+  <section class="panel" id="tenth"><%- partial("pages/register")%></section>
 </div>
 
 <footer>
