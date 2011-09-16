@@ -29,8 +29,8 @@ app.configure(function(){
     }
   }));
   app.use(app.router);
-  app.use(express.static(__dirname + '/static'));
-  app.use(gzip.staticGzip(__dirname + '/public', { maxAge: 86400*1000 }));
+  //app.use(express.static(__dirname + '/static'));
+  app.use(gzip.staticGzip(__dirname + '/static', { maxAge: 86400*365 }));
 });
 app.configure('development', function(){
   debug = true;

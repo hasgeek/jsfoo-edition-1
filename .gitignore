@@ -5,4 +5,6 @@ design/
 node_modules/
 npm-debug.log
 static/css/*.css
+static/css/*.css.*.gz
+static/js/*.js.*.gz
 !.gitignore
