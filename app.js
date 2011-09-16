@@ -134,6 +134,14 @@ if(!debug) setInterval(function(){
   }catch(e){}
 },60*1000);
 
+// And on SIGHUP flush the backlog
+process.on('SIGHUP', function () {
+  messages = [];
+  lastTimeStamp = (new Date()).getTime();
+  console.log("SIGHUP recieved.. flushing IRC message backlog");
+});
+
+
 // Init the IRC client & connect to #hasgeek
 var ircClient = new irc.Client(server, nick, {
   'channels'  : [channel],
