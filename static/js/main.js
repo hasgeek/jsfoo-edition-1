@@ -42,7 +42,7 @@ $(function($){
     "schedule": "third",
     "venue": "fourth",
     "home": "fifth",
-    "hack-night": "sixth",
+    "hacknight": "sixth",
     "videos": "seventh",
     "sponsors": "eigth",
     "credits": "ninth",

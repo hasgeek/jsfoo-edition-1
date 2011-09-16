@@ -35,8 +35,14 @@ body
 a, a:visited, a:active
   color #df5e0e
   text-decoration none
-
-
+a:hover
+  text-decoration underline
+header a:hover
+  text-decoration none
+div.separator
+  width 700px
+  margin-left auto
+  margin-right auto
 
 
 // Coming soon page
@@ -67,7 +73,7 @@ header
   right 0
   height 110px
   min-width 900px
-  background-color #261800
+  background-color #000 //#261800
   text-align center
   vertical-align middle
   border-bottom 1px solid #100
@@ -174,7 +180,8 @@ body.venue a[href="/venue"],
 body.videos a[href="/videos"],
 body.sponsors a[href="/sponsors"],
 body.credits a[href="/credits"],
-body.register a[href="/register"]
+body.register a[href="/register"],
+body.hacknight a[href="/hacknight"]
   cursor default
   color #F84
   pointer-events none
@@ -230,7 +237,7 @@ section.panel
   text-indent -50000px
   font-size 0px
 
-#videos, #credits, #register, #sponsors, #hack-night
+#videos, #credits, #register, #sponsors, #hacknight
   margin 50px auto 20px
   text-align center
   background-repeat no-repeat
@@ -245,6 +252,13 @@ section.panel
     background-repeat no-repeat
     background-position bottom center
     padding-bottom 40px
+  p
+    margin 0
+    text-align justify
+    line-height 20px
+    padding-bottom 10px
+    //font-style italic
+    font-family Georgia, Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif
   iframe
     overflow-y scroll
 
@@ -289,10 +303,7 @@ section.panel
       line-height 20px
       padding-bottom 10px
       //font-style italic
-      font-family Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif
-      b
-        font-style normal
-        font-size 300%
+      font-family Georgia, Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif
       
 #about-event
   background-image url('/img/AboutEvent.jpg')
@@ -308,7 +319,7 @@ section.panel
     padding 10px 20px 10px 30px
     border-radius 5px
     background-color rgba(255, 255, 255, 0.2)
-    width 600px
+    //width 600px
     margin 0 auto
     margin-bottom 20px
     dt
@@ -363,8 +374,8 @@ section.panel
     
     & > div > .gmnoprint:last-of-type
       display none
-    
-  
+
+
 #schedule
   background-image url('/img/Proposals.jpg')
   h2
@@ -375,59 +386,60 @@ section.panel
     font-size 20px
     &:after
       margin-top 100px
+
+  div p.caption
+    text-align center
     
-  div
+  div#schedule-table
     border 1px solid #fb8
     border-radius 6px
     background rgba(255, 240, 200, 0.4)
     box-shadow 0 2px 12px #752
-  table
-    width 100%
-    thead
-        th
-          padding-top 0.75em
+    table
+      width 100%
+      thead
+          th
+            padding-top 0.75em
+            border-bottom 1px solid #fb8
+      tbody
+        tr td
+          height 3em
+          font-size 12px
           border-bottom 1px solid #fb8
-    tbody
-      tr td
-        height 3em
-        font-size 12px
-        border-bottom 1px solid #fb8
-        a
-          color inherit
+          a
+            color inherit
 
-      tr:last-of-type td
-          border-bottom 0 none
-      tr:nth-of-type(even)
-        background rgba(255, 255, 255, 0.2)
-      tr.break td
-        height 1em
-        color #999
-    th
-      text-align left
-    th, td
-      padding 0.5em 1em
-      vertical-align middle
-      border-left 1px solid #fb8
-      &:first-child, &:first-child
-        border-left none
-      &.col
-        width 28%
-    .session
-      display block
-    .speaker
-      display block
-      font-style italic
-    .speaker:before
-      content "— "
-    .break
-      text-align center
-      font-style italic
-    .time
-      text-align center
-      font-weight bold
-      font-style normal
-
-
+        tr:last-of-type td
+            border-bottom 0 none
+        tr:nth-of-type(even)
+          background rgba(255, 255, 255, 0.2)
+        tr.break td
+          height 1em
+          color #CD5B00
+      th
+        text-align left
+      th, td
+        padding 0.5em 1em
+        vertical-align middle
+        border-left 1px solid #fb8
+        &:first-child, &:first-child
+          border-left none
+        &.col
+          width 28%
+      .session
+        display block
+      .speaker
+        display block
+        font-style italic
+      .speaker:before
+        content "— "
+      .break
+        text-align center
+        font-style italic
+      .time
+        text-align center
+        font-weight bold
+        font-style normal
 
 #sponsors
   ul
@@ -440,29 +452,35 @@ section.panel
       background-image url('/img/scroll.png')
       background-repeat no-repeat
       display inline-block
+  h3
+    text-align center
+    text-transform uppercase
+    font-family 'Open Sans Condensed', sans-serif
+    position absolute
+    left 0
+    right 0
+  
       
-ul.title-sponsors
+ul.lead-sponsors
   width 805px
 
   li
     background-positon 0 0
     width 400px
     height 250px
-  
-  &:after
-    background-image url('/img/separator.png')
-    background-repeat no-repeat
-    background-position top center
-    padding 20px
-    content ""
-    display block
+    position relative
+    h3
+      top 30px
 
-ul.community-sponsors
+ul.sub-sponsors
   width 760px
   li
     background-position 0 -265px
     width 250px
     height 170px
+    position relative
+    h3
+      top 15px
 
 
 // Footer

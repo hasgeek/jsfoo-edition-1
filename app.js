@@ -51,7 +51,7 @@ app.get('/irc', function(req, resp){
     'server': server
   });
 });
-app.get(/^\/(about\-(event|hasgeek)|schedule|venue|hack-night|videos|sponsors|credits|register)?\/?$/, function(req, resp){
+app.get(/^\/(about\-(event|hasgeek)|schedule|venue|hacknight|videos|sponsors|credits|register)?\/?$/, function(req, resp){
   //var path = req.url.substr(1).match(/[a-zA-Z\-]+/) || "home";
   var opts = {
     title: 'jsFoo 2011 Bangalore'
