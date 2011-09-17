@@ -28,7 +28,7 @@ html, body
 
 body
   font 14px "Lucida Grande", Helvetica, Arial, sans-serif
-  color #222
+  color #444
   min-width 900px
   transition-mixin background-position 0.5s ease-in-out
 
@@ -225,7 +225,14 @@ section.panel
     overflow auto
     margin 0 auto
     margin-top 10px
-    padding-bottom 40px
+    padding-bottom 60px
+    div.info
+      margin-top 30px
+      padding 20px
+      background-color rgba(0, 0, 0, 0.1)
+      border-radius 4px
+      border 1px solid rgba(0, 0, 0, 0.2)
+
 
 // Pages
 
@@ -277,7 +284,7 @@ section.panel
       background-repeat no-repeat
       background-position top center
       padding 20px
-      content ""
+      content " "
       display block
       position absolute
       left 0
@@ -286,7 +293,8 @@ section.panel
     
   & > div  
     width 700px
-    margin 0 auto
+    margin-left auto
+    margin-right auto
 
     &.two-column
       -moz-column-count 2
@@ -376,16 +384,17 @@ section.panel
       display none
 
 
+
 #schedule
   background-image url('/img/Proposals.jpg')
   h2
     width 240px
     margin-top 110px
-    padding-bottom 140px
+    padding-bottom 160px
     padding-right 420px
     font-size 20px
     &:after
-      margin-top 100px
+      margin-top 120px
 
   div p.caption
     text-align center
@@ -406,8 +415,11 @@ section.panel
           height 3em
           font-size 12px
           border-bottom 1px solid #fb8
+          vertical-align top
+          text-align left
           a
             color inherit
+            color #CD5B00
 
         tr:last-of-type td
             border-bottom 0 none
@@ -415,12 +427,10 @@ section.panel
           background rgba(255, 255, 255, 0.2)
         tr.break td
           height 1em
-          color #CD5B00
       th
         text-align left
       th, td
-        padding 0.5em 1em
-        vertical-align middle
+        padding 1em
         border-left 1px solid #fb8
         &:first-child, &:first-child
           border-left none
