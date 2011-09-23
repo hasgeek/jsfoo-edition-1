@@ -171,3 +171,24 @@ $(function($){
   },1000);
 
 });
+
+$(function(){
+	$("#sponsor-microsoft").click(function(){
+		$("#sponsors-line-1").toggleClass('ragged-bottom');
+		$("#sponsor-microsoft-writeup").toggleClass('hidden');
+		$("#sponsors-line-2").toggleClass('ragged-top');
+		return false;
+	});
+	$("#sponsor-fusioncharts").click(function(){
+		$("#sponsors-line-2").toggleClass('ragged-bottom');
+		$("#sponsor-fusioncharts-writeup").toggleClass('hidden');
+		$("#sponsors-line-3").toggleClass('ragged-top');
+		return false;
+	});
+	$("#sponsor-novojuris").click(function(){
+		$("#sponsors-line-2").toggleClass('ragged-bottom');
+		$("#sponsor-novojuris-writeup").toggleClass('hidden');
+		$("#sponsors-line-3").toggleClass('ragged-top');
+		return false;
+	});
+});

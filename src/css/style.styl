@@ -453,26 +453,30 @@ section.panel
 
 #sponsors
   ul
-    margin 0 auto
+    margin-left auto
+    margin-right auto
     padding 0
     display block
     li
       margin 0 auto
       padding 0
-      background-image url('/img/scroll.png')
+      //background-image url('/img/scroll.png')
       background-repeat no-repeat
       display inline-block
   h3
     text-align center
     text-transform uppercase
     font-family 'Open Sans Condensed', sans-serif
-    position absolute
-    left 0
-    right 0
-  
-      
+    //position absolute
+    //left 0
+    //right 0
+  h4
+    text-align center
+    text-transform uppercase
+    font-family 'Open Sans Condensed', sans-serif
+    margin-bottom 0.5em
+
 ul.lead-sponsors
-  width 805px
 
   li
     background-positon 0 0
@@ -480,18 +484,85 @@ ul.lead-sponsors
     height 250px
     position relative
     h3
-      top 30px
+      top 0
 
 ul.sub-sponsors
-  width 760px
+
   li
     background-position 0 -265px
     width 250px
     height 170px
     position relative
     h3
-      top 15px
+      top 0
 
+ul.lead-sponsors, ul.sub-sponsors
+  margin-top 0
+  margin-bottom 0
+  position relative
+  width 836px
+  background-color #fff
+  background-image url(/img/sponsors_bg.png)
+  background-repeat repeat-y
+  li
+    .sponsor-logo
+      position absolute
+      top 0
+      left 0
+      bottom 0
+      right 0
+      background-repeat no-repeat
+      background-position 50% 50%
+      text-indent -99999px
+      a, a:hover, a:active, a:visited
+        display block
+        position absolute
+        top 0
+        left 0
+        right 0
+        bottom 0
+        margin 0
+        padding 0
+        text-decoration none
+        background-repeat no-repeat
+        background-position 50% 50%
+        text-indent -99999px
+
+.sponsor-writeup
+  width 800px
+  margin-left auto
+  margin-right auto
+  h3, h4
+    text-align left
+
+ul.ragged-top
+  margin-top 39px
+
+ul.ragged-top:before
+  display block
+  content ""
+  position absolute
+  top -29px
+  left 0
+  right 0
+  height 29px
+  background url(/img/sponsors_top.png) 0 0 no-repeat
+
+ul.ragged-bottom
+  margin-bottom 34px
+
+ul.ragged-bottom:after
+  display block
+  content ""
+  position absolute
+  bottom -24px
+  left 0
+  right 0
+  height 24px
+  background url(/img/sponsors_bottom.png) 0 0 no-repeat
+
+.hidden
+  display none
 
 // Footer
 footer
