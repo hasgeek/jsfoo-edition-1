@@ -37,7 +37,7 @@ $(function($){
   
   var outer = $("#outer");
   var overlay = $("<div id='overlay' />");
-  var modalWindow = $("<div id='modal'><div id='inner'/></div>");
+  var modalWindow = $("<div id='modal'><div id='inner' class='georgia' /></div>");
   var modelInner = modalWindow.find("div").first();
   var map = {
     "about-event": "first",
