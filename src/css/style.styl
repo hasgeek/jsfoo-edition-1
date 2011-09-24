@@ -1,5 +1,12 @@
 @import 'nib/gradients'
 
+transform-mixin()
+  -moz-transform arguments
+  -webkit-transform arguments
+  -o-transform arguments
+  -ms-transform arguments
+  transform arguments
+
 transition-mixin()
   -webkit-transition arguments
   -moz-transition arguments
@@ -17,6 +24,19 @@ transition-position-mixin()
   -moz-transition left arguments
   -o-transition left arguments
   transition left arguments
+
+column-count()
+  -moz-column-count arguments
+  -webkit-column-count arguments
+  -o-column-count arguments
+  column-count arguments
+
+column-gap()
+  -moz-column-gap arguments
+  -webkit-column-gap arguments
+  -o-column-gap arguments
+  column-gap arguments
+
 
 html, body
   width 100%
@@ -63,6 +83,84 @@ div.separator
     font-size 12px
     color #444
 
+// Overlay
+#overlay, #modal
+  position fixed
+  display none
+  top 0
+  left 0
+  right 0
+
+#overlay  
+  z-index 99
+  margin 0
+  padding 0
+  overflow hidden
+  background rgba(0,0,0,0.7)
+  background -webkit-radial-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8) 55%, rgba(0, 0, 0, 1.0))
+  transition-mixin opacity 0.4s linear
+  opacity 0.4
+  &.faded
+    opacity 1.0
+
+#modal
+  z-index 102
+  margin 60px auto 0 auto
+  min-height 100px
+  max-width 800px
+
+  -webkit-perspective: 400px;
+  -webkit-perspective-origin: 50% 25%;
+
+  #inner 
+    border 1px solid #666
+    background-color #fff
+    border-radius 6px
+    padding 10px 20px
+    box-shadow 0 5px 20px rgba(173, 131, 31, 0.6)
+    overflow auto
+    transition-mixin all 0.3s ease-in-out
+    -webkit-transform-style preserve-3d
+    -webkit-transform translate3d(0, -50%, 0) rotateX(90deg) translate3d(0, -50%, 0) scale(0.5)
+    opacity 0.4
+  &.faded
+    #inner
+      opacity 1.0
+      -webkit-transform none
+  h3
+    font-size 24px
+    text-shadow 0 1px 2px #888
+    font-weight normal
+    border-bottom 1px dotted #DDD
+    padding-bottom 4px
+    margin 10px 0
+  h4
+    font-size 14px
+    color #555
+    font-style italic
+    font-weight normal
+    text-shadow 0 1px 2px #ddd
+    margin-top 0
+  div
+    margin-bottom 20px
+  p
+    width 30%
+    float left
+    color #555
+    margin-right 35px
+    &:last-of-type
+      margin-right 0
+      float right
+      &:after
+        clear both
+    a.out,b
+      display block
+    b
+      margin-bottom 10px
+      font-size 1.1em
+      color #420
+    a.out
+      margin-top 10px
 
 // Navigation
 header
@@ -451,7 +549,11 @@ section.panel
         font-weight bold
         font-style normal
 
+
+
 #sponsors
+  div.separator
+    margin-bottom 40px
   ul
     margin-left auto
     margin-right auto
@@ -476,64 +578,69 @@ section.panel
     font-family 'Open Sans Condensed', sans-serif
     margin-bottom 0.5em
 
-ul.lead-sponsors
+  ul.lead-sponsors
+    li
+      background-positon 0 0
+      width 400px
+      height 250px
+      position relative
+      h3
+        top 0
 
-  li
-    background-positon 0 0
-    width 400px
-    height 250px
+  ul.sub-sponsors
+    li
+      background-position 0 -265px
+      width 250px
+      height 170px
+      position relative
+      h3
+        top 0
+
+  ul.lead-sponsors, ul.sub-sponsors
+    margin-top 0
+    margin-bottom 0
     position relative
-    h3
-      top 0
-
-ul.sub-sponsors
-
-  li
-    background-position 0 -265px
-    width 250px
-    height 170px
-    position relative
-    h3
-      top 0
-
-ul.lead-sponsors, ul.sub-sponsors
-  margin-top 0
-  margin-bottom 0
-  position relative
-  width 836px
-  background-color #fff
-  background-image url(/img/sponsors_bg.png)
-  background-repeat repeat-y
-  li
-    .sponsor-logo
-      position absolute
-      top 0
-      left 0
-      bottom 0
-      right 0
-      background-repeat no-repeat
-      background-position 50% 50%
-      text-indent -99999px
-      a, a:hover, a:active, a:visited
-        display block
+    width 836px
+    background-color #fff
+    background-image url(/img/sponsors_bg.png)
+    background-repeat repeat-y
+    li
+      .sponsor-logo
         position absolute
         top 0
         left 0
-        right 0
         bottom 0
-        margin 0
-        padding 0
-        text-decoration none
+        right 0
         background-repeat no-repeat
         background-position 50% 50%
         text-indent -99999px
+        a, a:hover, a:active, a:visited
+          display block
+          position absolute
+          top 0
+          left 0
+          right 0
+          bottom 0
+          margin 0
+          padding 0
+          text-decoration none
+          background-repeat no-repeat
+          background-position 50% 50%
+          text-indent -99999px
 
-.sponsor-writeup
-  width 800px
-  margin-left auto
-  margin-right auto
-  h3, h4
-    text-align left
+  .sponsor-writeup
+    width 800px
+    margin-left auto
+    margin-right auto
+    h3, h4
+      text-align left
+  
+  #sponsor-microsoft
+    background-image url(/img/logos/microsoft.png)
+  #sponsor-fusioncharts
+    background-image url(/img/logos/fusioncharts.jpg)
+  #sponsor-novojuris
+    background-image url(/img/logos/novojuris.png)
 
 ul.ragged-top
   margin-top 39px

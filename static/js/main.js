@@ -36,6 +36,9 @@ $(function($){
   });
   
   var outer = $("#outer");
+  var overlay = $("<div id='overlay' />");
+  var modalWindow = $("<div id='modal'><div id='inner'/></div>");
+  var modelInner = modalWindow.find("div").first();
   var map = {
     "about-event": "first",
     "about-hasgeek": "second",
@@ -67,11 +70,13 @@ $(function($){
       return adData[f.replace(/[\{\}]/g,"")] + "px";
     });
     $("#rendered").replaceWith($('<style type="text/css" id="rendered">'+output+'</style>'));
+    
+    overlay.height($(window).height());
   }
   adjust();
   var sizeTimer;
   $(window).resize(adjust);
-  body.attr("style","display:block");
+  body.attr("style","display:block").append(overlay).append(modalWindow);
   
   
   var animTimer;
@@ -169,9 +174,53 @@ $(function($){
       }
     }
   },1000);
+  
+  // Modal window
+  var showingModal = false;
+  function modal(content){
+    overlay.show();
+    modelInner.html(content||"");
+    modalWindow.show();
+    setTimeout(function(){
+      modalWindow.addClass("faded");
+    }, 50);
+    setTimeout(function(){
+      overlay.addClass("faded");
+    }, 200);
+    showingModal = true;
+  }
+
+  function hideModal(){
+    overlay.removeClass("faded");
+    modalWindow.removeClass("faded");
+    setTimeout(function(){
+      modalWindow.hide();
+      overlay.hide();
+      modelInner.html("");
+    }, 400);
+    showingModal = false;
+  }
+  
+  $(".sponsor-logo a").click(function(e){
+    e.preventDefault();
+    var id = $(this).attr("id");
+    if(id.length > 0){
+      modal($("#" + id + "-writeup").html());
+    }
+    return false;
+  });
+
+  $(this).keydown(function(e){
+    if(showingModal && e.which === 27){
+      hideModal();
+    }
+  });
+
+  overlay.click(hideModal);
 
 });
 
+/*
 $(function(){
 	$("#sponsor-microsoft").click(function(){
 		$("#sponsors-line-1").toggleClass('ragged-bottom');
@@ -192,3 +241,4 @@ $(function(){
 		return false;
 	});
 });
+*/
