@@ -43,6 +43,10 @@ app.configure('production', function(){
 var server  = "irc.freenode.net",
    channel  = debug?"#jsfootest":"#hasgeek";
 
+function capitalize(str){
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 // Routes
 app.get('/irc', function(req, resp){
   resp.render('irc', {
@@ -51,22 +55,24 @@ app.get('/irc', function(req, resp){
     'server': server
   });
 });
-app.get(/^\/(about\-(event|hasgeek)|schedule|venue|hacknight|videos|sponsors|credits|register)?\/?$/, function(req, resp){
-  //var path = req.url.substr(1).match(/[a-zA-Z\-]+/) || "home";
+var routeRegEx = /^\/201[12]\-(bangalore|pune|chennai)\/(about\-(event|hasgeek)|schedule|venue|hacknight|videos|sponsors|credits|register)?\/?$/;
+app.get(routeRegEx, function(req, resp){
+  var url = req.url;
+  var params = url.match(/(2011|2012)\-(bangalore|pune|chennai)/);
   var opts = {
-    title: 'jsFoo 2011 Bangalore'
+    title: ['jsFoo', params[1], capitalize(params[2])].join(' ')
   };
-  resp.render('main', opts);
+  resp.render('main-' + params[0], opts);
 });
 
 // Catch all route
 app.use(function(eq, resp){
-  resp.redirect("/");
+  resp.redirect("/2011-pune/");
 });
 
 // prevent server from starting as module - can be used with something like multinode
 if (!module.parent) {
-  app.listen(process.env['app_port'] || 11728);
+  app.listen(process.env.app_port || 11728);
   console.info("Started on port %d", app.address().port);
 }
 

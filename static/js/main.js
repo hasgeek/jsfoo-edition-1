@@ -27,6 +27,17 @@ $(function($){
       }, true);
     });
   };
+  
+  function parseUrl(){
+    if(historyAPISupported){
+      requested = location.pathname.substr(1).split("/");
+      base = requested[0];
+      requested = requested[1] || "home";
+    } else {
+      requested = location.hash.substr(1) || "home";
+    }
+    return requested;
+  }
 
   // konami code
   $(window).knm(function(){
@@ -50,8 +61,9 @@ $(function($){
     "sponsors": "eigth",
     "credits": "ninth",
     "register": "tenth"
-  }, requested = location.hash.substr(1) || location.pathname.substr(1) || "home";
-  
+  };
+  var requested, base = "";  
+  parseUrl();
   if(typeof map[requested] !== 'undefined'){
     body.attr("class", requested + " " + map[requested]);
   } else {
@@ -109,7 +121,7 @@ $(function($){
     }
     if(typeof map[url || "home"] !== 'undefined'){
       if(historyAPISupported){
-        history.pushState(null, null, "/"+url);
+        history.pushState(null, null, "/"+base+"/"+url);
       }else if(hashChangeSupported){
         location.hash = url || "home";
       }else{
@@ -122,18 +134,20 @@ $(function($){
 
   if(historyAPISupported){
     $(window).bind("popstate", function(e){
-      var url = location.pathname.substr(1) || "home";
-      updateURL(url);
+      updateURL(parseUrl());
     });
   }else if(hashChangeSupported){
     $(window).bind( 'hashchange', function(e){
-      var url = location.hash.substr(1);
-      updateURL(url);
+      updateURL(parseUrl());
     });
   }
   
   // maps
   setTimeout(function fetchMap(){
+    var mapDiv = document.getElementById("venue-map");
+    if(!mapDiv) {
+      return;
+    }
     var styles = [{ featureType: "all", elementType: "all", stylers: [{hue: '#eecc70'}, { saturation: -70 }, { gamma: 0.70 }]}];
     var retroMapType = new google.maps.StyledMapType(styles, {});
     var dharmaram = new google.maps.LatLng(12.9341, 77.6043);
@@ -143,7 +157,7 @@ $(function($){
       mapTypeControlOptions: { mapTypeIds: [ 'Styled'] },
       mapTypeId: 'Styled'
     };
-    var map = new google.maps.Map(document.getElementById("venue-map"), mapOptions);
+    var map = new google.maps.Map(mapDiv, mapOptions);
     map.mapTypes.set('Styled', retroMapType);
 
     var marker = new google.maps.Marker({
@@ -158,7 +172,7 @@ $(function($){
       infowindow.open(map, marker);
     });
     infowindow.open(map, marker);
-  },1000);
+  },2000);
   
   setTimeout(function kickUtm(){
     if(history.replaceState && location.search.indexOf("utm_") > 0){
