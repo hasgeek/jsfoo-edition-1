@@ -25,6 +25,11 @@ transition-position-mixin()
   -o-transition left arguments
   transition left arguments
 
+animation-mixin()
+  -webkit-animation arguments
+  -moz-animation    arguments
+  -ms-animation     arguments
+
 column-count()
   -moz-column-count arguments
   -webkit-column-count arguments
@@ -36,6 +41,14 @@ column-gap()
   -webkit-column-gap arguments
   -o-column-gap arguments
   column-gap arguments
+
+@keyframes swing 
+  0%
+    -webkit-transform translate(0,2px)
+  50%
+    -webkit-transform translate(0,-2px)
+  100%
+    -webkit-transform translate(0,2px)
 
 
 html, body
@@ -257,6 +270,8 @@ header
     z-index 10
     transition-mixin opacity 0.3s ease-in-out, top 0.3s ease-out
     
+    -webkit-transform-origin: center top;
+    animation-mixin swing 3s infinite;
     
     strong
       z-index 10
@@ -273,6 +288,8 @@ header
       background-position 0 -160px
       opacity 1.0
       top 110px
+      cursor pointer
+      animation-mixin none
 
 body.register a.register
   top -150px
