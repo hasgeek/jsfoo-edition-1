@@ -148,12 +148,35 @@ $(function($){
     if(!mapDiv) {
       return;
     }
+
+    var venues = {
+      "2011-bangalore": {
+        "lat": 12.9341,
+        "long": 77.6043,
+        "url": "http://goo.gl/maps/jYyv",
+        "title": "Dharmaram Vidya Kshetram",
+        "description": "Christ University Campus."
+      },
+      "2012-pune": {
+        "lat": 18.532472,
+        "long": 73.83453,
+        "url": "http://g.co/maps/zbznz",
+        "title": "Symbiosis Institute Of Computer Studies and Research",
+        "description": "Atur Centre, Gokhale Cross Road, Model Colony, Shivaji Nagar."
+      }
+    };
+
+    var venue = venues[mapDiv.getAttribute("rel")];
+    if(!venue) {
+      return;
+    }
+
     var styles = [{ featureType: "all", elementType: "all", stylers: [{hue: '#eecc70'}, { saturation: -70 }, { gamma: 0.70 }]}];
     var retroMapType = new google.maps.StyledMapType(styles, {});
-    var dharmaram = new google.maps.LatLng(12.9341, 77.6043);
+    var center = new google.maps.LatLng(venue.lat, venue.long);
     var mapOptions = {
       zoom: 14,
-      center: dharmaram,
+      center: center,
       mapTypeControlOptions: { mapTypeIds: [ 'Styled'] },
       mapTypeId: 'Styled'
     };
@@ -161,12 +184,12 @@ $(function($){
     map.mapTypes.set('Styled', retroMapType);
 
     var marker = new google.maps.Marker({
-      position: dharmaram,
+      position: center,
       map: map,
-      title: "Dharmaram Vidya Kshetram"
+      title: venue.title
     });
     var infowindow = new google.maps.InfoWindow({
-      content: '<h3>Dharmaram Vidya Kshetram</h3><p>Christ University Campus. <a target="_blank" href="http://goo.gl/maps/jYyv">See larger map</a>.</p>'
+      content: '<h3>' + venue.title + '</h3><p>' + venue.description + ' <a target="_blank" href="' + venue.url + '">See larger map</a>.</p>'
     });
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map, marker);
