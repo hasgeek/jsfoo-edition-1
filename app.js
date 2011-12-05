@@ -63,7 +63,7 @@ app.get(routeRegEx, function(req, resp){
   var year = params[1];
   var city = params[2];
   var opts = {
-    title: ['jsFoo', capitalize(city), year].join(' '),
+    title: ['JSFoo', capitalize(city), year].join(' '),
     path: [city, year].join('/'),
     eventData: eventData[params[0]]
   };

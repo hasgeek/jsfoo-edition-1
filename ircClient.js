@@ -6,11 +6,11 @@ var server = "irc.freenode.net",
 exports.init = function(app, _debug) {
   debug = _debug;
   channel = debug ? "#jsfootest" : "#hasgeek";
-  nick = debug ? "blahblahblah" : "jsFooBot";
+  nick = debug ? "blahblahblah" : "JSFooBot";
 
   app.get('/irc', function(req, resp){
     resp.render('irc', {
-      'title': 'jsFoo 2011',
+      'title': 'JSFoo 2011',
       'channel': channel,
       'server': server
     });

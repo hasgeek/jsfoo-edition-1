@@ -1,1 +1,1 @@
-jsFoo -- it's like kung fu with javascript and objects!
+JSFoo -- it's like kung fu with javascript and objects!
