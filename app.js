@@ -47,6 +47,15 @@ function capitalize(str){
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+var eventData = {
+  "2011-bangalore": {
+    doAttendId: 4417
+  },
+  "2012-pune": {
+    doAttendId: 19398
+  }
+};
+
 // Routes
 app.get(routeRegEx, function(req, resp){
   var url = req.url;
@@ -55,7 +64,8 @@ app.get(routeRegEx, function(req, resp){
   var city = params[2];
   var opts = {
     title: ['jsFoo', capitalize(city), year].join(' '),
-    path: [city, year].join('/')
+    path: [city, year].join('/'),
+    eventData: eventData[params[0]]
   };
   resp.render('main', opts);
 });
