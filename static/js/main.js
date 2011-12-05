@@ -76,7 +76,7 @@ $(function($){
     if(w < 800){ w = 800; }
     if(h < 300){ h = 300; }
     var adData = {
-      "1w": w, "2w": 2*w, "3w": 3*w, "4w": 4*w, "5w": 5*w, "1h": h, "H": h-110
+      "1w": w, "2w": 2*w, "3w": 3*w, "4w": 4*w, "5w": 5*w, "1h": h, "H": h-100
     };
     var output = template.html().replace(/\{[1-5]?(w|h|H)\}/g, function(f){
       return adData[f.replace(/[\{\}]/g,"")] + "px";

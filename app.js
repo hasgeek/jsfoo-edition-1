@@ -49,10 +49,14 @@ function capitalize(str){
 
 var eventData = {
   "2011-bangalore": {
-    doAttendId: 4417
+    doAttendId: 4417,
+    time: "October 1, 2011",
+    city: "Bangalore"
   },
   "2012-pune": {
-    doAttendId: 19398
+    doAttendId: 19398,
+    time: "January 11, 2012",
+    city: "Pune"
   }
 };
 
