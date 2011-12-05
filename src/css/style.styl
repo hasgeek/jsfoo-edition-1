@@ -188,21 +188,20 @@ header
   top 0
   left 0
   right 0
-  height 110px
+  height 100px
   min-width 900px
   background-color #261800
   text-align center
   vertical-align middle
   border-bottom 1px solid #100
-  box-shadow 5px 0 10px rgba(10,20,0,0.8)
+  box-shadow 0 0 25px 5px rgba(10,20,10,0.40)
   
   nav
     vertical-align top
-    margin-top 80px
+    margin-top 70px
     display inline-block
 
     a
-      margin-top 40px
       color #fff
       text-transform uppercase
       text-decoration none
@@ -237,7 +236,7 @@ header
     img
       z-index 32
       border 0 none
-      padding 20px 25px 0
+      padding 10px 25px 0
   
   #pptsalon
     z-index 30
@@ -263,7 +262,7 @@ header
 
   a.register
     position absolute
-    top 105px
+    top 95px
     right 20px
     padding 0 35px
     opacity 0.6
@@ -318,7 +317,7 @@ body.hacknight a[href="/hacknight"]
 #outer
   z-index 8
   position fixed
-  top 110px
+  top 100px
   &.animated
     transition-mixin left 0.5s ease-in-out
 
@@ -354,6 +353,13 @@ section.panel
       background-color rgba(0, 0, 0, 0.1)
       border-radius 4px
       border 1px solid rgba(0, 0, 0, 0.2)
+      font-size 15px
+    h2
+      margin 0 auto
+      text-align center
+      text-transform uppercase
+      font-family 'Open Sans Condensed', sans-serif
+      font-weight normal
 
 
 // Pages
@@ -373,10 +379,6 @@ section.panel
   background-position top center
   overflow visible
   h2
-    margin 0 auto
-    text-align center
-    text-transform uppercase
-    font-family 'Open Sans Condensed', sans-serif
     background-image url('/img/separator.png')
     background-repeat no-repeat
     background-position bottom center
@@ -387,7 +389,7 @@ section.panel
     line-height 20px
     padding-bottom 10px
     //font-style italic
-    font-family Georgia, Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif
+    font-family Georgia, Cambria, "Times New Roman", serif
   iframe
     overflow-y scroll
 
@@ -395,28 +397,23 @@ section.panel
   margin 0 auto
   background-repeat no-repeat
   background-position top center
-  h2
-    margin 0 auto
-    text-align center
-    text-transform uppercase
-    font-family 'Open Sans Condensed', sans-serif
-  
-    &:after
-      background-image url('/img/separator.png')
-      background-repeat no-repeat
-      background-position top center
-      padding 20px
-      content " "
-      display block
-      position absolute
-      left 0
-      right 0
-      margin-top 30px
+  h2:after
+    background-image url('/img/separator.png')
+    background-repeat no-repeat
+    background-position top center
+    padding 20px
+    content " "
+    display block
+    position absolute
+    left 0
+    right 0
+    margin-top 30px
     
   & > div  
     width 700px
     margin-left auto
     margin-right auto
+    box-sizing border-box
 
     &.two-column
       -moz-column-count 2
@@ -430,10 +427,10 @@ section.panel
     p
       margin 0
       text-align justify
-      line-height 20px
+      line-height 1.4em
       padding-bottom 10px
       //font-style italic
-      font-family Georgia, Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif
+      font-family Georgia, Cambria, "Times New Roman", serif
       
 #about-event
   background-image url('/img/AboutEvent.jpg')
@@ -593,6 +590,9 @@ section.panel
     text-align center
     text-transform uppercase
     font-family 'Open Sans Condensed', sans-serif
+    font-weight normal
+    font-size 18px
+    color #666
     //position absolute
     //left 0
     //right 0
@@ -729,7 +729,7 @@ footer
     right 0
     height 5px
     content ' '
-    box-shadow 0 -35px 40px #000,0 -25px 25px #420
+    box-shadow 0 -25px 25px 4px rgba(10,20,10,0.40)
 
 
 
