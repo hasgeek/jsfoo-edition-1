@@ -6,6 +6,7 @@ var express = require('express'),
      stylus = require("stylus"),
       debug = false,
         app = module.exports = express.createServer();
+ routeRegEx = /^\/201[12]\-(bangalore|pune|chennai)\/(about\-(event|hasgeek)|schedule|venue|hacknight|videos|sponsors|credits|register)?\/?$/;
 
 // Configuration
 app.configure(function(){
@@ -20,17 +21,26 @@ app.configure(function(){
     }
   }));
   app.use(app.router);
+
+  // Use gzippo to compress all textual content
+  var gzippo = require('gzippo');
+  app.use(gzippo.staticGzip(__dirname + '/static', {
+    maxAge: 86400*365
+  }));
+/*
+  app.use(gzippo.staticGzip(__dirname, {
+    contentTypeMatch: /html/
+  }));
+*/
 });
 
 app.configure('development', function(){
   debug = true;
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  app.use(express.static(__dirname + '/static'));
 });
 app.configure('production', function(){
   app.use(express.errorHandler());
   app.enable('view cache');
-  app.use(require('connect-gzip').staticGzip(__dirname + '/static', { maxAge: 86400*365 }));
 });
 
 function capitalize(str){
@@ -38,7 +48,6 @@ function capitalize(str){
 }
 
 // Routes
-var routeRegEx = /^\/201[12]\-(bangalore|pune|chennai)\/(about\-(event|hasgeek)|schedule|venue|hacknight|videos|sponsors|credits|register)?\/?$/;
 app.get(routeRegEx, function(req, resp){
   var url = req.url;
   var params = url.match(/(2011|2012)\-(bangalore|pune|chennai)/);
