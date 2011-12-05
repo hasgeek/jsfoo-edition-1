@@ -155,14 +155,16 @@ $(function($){
         "long": 77.6043,
         "url": "http://goo.gl/maps/jYyv",
         "title": "Dharmaram Vidya Kshetram",
-        "description": "Christ University Campus."
+        "description": "Christ University Campus.",
+        "zoom": 14
       },
       "2012-pune": {
-        "lat": 18.532472,
-        "long": 73.83453,
+        "lat": 18.5334,
+        "long": 73.8336,
         "url": "http://g.co/maps/zbznz",
         "title": "Symbiosis Institute Of Computer Studies and Research",
-        "description": "Atur Centre, Gokhale Cross Road, Model Colony, Shivaji Nagar."
+        "description": "Atur Centre, Gokhale Cross Road, Model Colony, Shivaji Nagar.",
+        "zoom": 16
       }
     };
 
@@ -175,7 +177,7 @@ $(function($){
     var retroMapType = new google.maps.StyledMapType(styles, {});
     var center = new google.maps.LatLng(venue.lat, venue.long);
     var mapOptions = {
-      zoom: 14,
+      zoom: venue.zoom,
       center: center,
       mapTypeControlOptions: { mapTypeIds: [ 'Styled'] },
       mapTypeId: 'Styled'
