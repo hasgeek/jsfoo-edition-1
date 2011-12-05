@@ -5,7 +5,7 @@
 var express = require('express'),
      stylus = require("stylus"),
       debug = false,
-        app = module.exports = express.createServer();
+        app = module.exports = express.createServer(),
  routeRegEx = /^\/201[12]\-(bangalore|pune|chennai)\/(about\-(event|hasgeek)|schedule|venue|hacknight|videos|sponsors|credits|register)?\/?$/;
 
 // Configuration
@@ -62,7 +62,7 @@ app.get(routeRegEx, function(req, resp){
 
 // Catch all route
 app.use(function(eq, resp){
-  resp.redirect("/2011-pune/");
+  resp.redirect("/2012-pune/");
 });
 
 // prevent server from starting as module - can be used with something like multinode/cluster
