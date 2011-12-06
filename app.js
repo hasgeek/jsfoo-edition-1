@@ -55,7 +55,7 @@ var eventData = {
   },
   "2012-pune": {
     doAttendId: 19398,
-    time: "January 11, 2012",
+    time: "January 21, 2012",
     city: "Pune"
   }
 };
