@@ -8,3 +8,5 @@ static/css/*.css
 static/css/*.css.*.gz
 static/js/*.js.*.gz
 !.gitignore
+.nide
+.npmignore
