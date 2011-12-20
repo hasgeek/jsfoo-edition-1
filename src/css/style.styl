@@ -286,7 +286,7 @@ header
       background-repeat no-repeat
       background-position 0 -160px
       opacity 1.0
-      top 110px
+      top 100px
       cursor pointer
       animation-mixin none
 
@@ -455,28 +455,42 @@ section.panel
     margin-top 220px
     padding-bottom 70px
     
-  dl.dictionary  
-    font-family georgia
+  .dictionary
     border 1px solid #888
-    padding 10px 20px 10px 30px
+    padding 15px
     border-radius 5px
     background-color rgba(255, 255, 255, 0.2)
     //width 600px
     margin 0 auto
     margin-bottom 20px
+    height 300px
+    overflow hidden
+
+    .column
+      width 205px
+      padding 0 10px 0 15px
+      float left
+      &:first-of-type
+        padding-left 0
+      &:last-of-type
+        padding-right 0
     dt
-      font-size 16px
-      color #444
+      font-size 14px
+      color #666
+      font-style italic
       b
-        font-size 22px
+        font-size 24px
         color #111
         font-weight normal
+        font-style normal
     dd
-      font-size 14px
+      font-size 13px
       margin 5px 0 10px 0
       i
         display block
         margin-left 5px
+      p
+        text-align left
 
 #about-hasgeek
   background-image url('/img/AboutHasGeek.jpg')
