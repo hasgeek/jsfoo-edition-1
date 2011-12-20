@@ -21,12 +21,6 @@ app.configure(function(){
     }
   }));
   app.use(app.router);
-
-  // Use gzippo to compress all text content
-  var gzippo = require('gzippo');
-  app.use(gzippo.staticGzip(__dirname + '/static', {
-    maxAge: 86400*365
-  }));
 });
 
 app.configure('development', function(){
@@ -36,6 +30,11 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler());
   app.enable('view cache');
+
+  // Use gzippo to compress all text content
+  app.use(require("gzippo").staticGzip(__dirname + '/static', {
+    maxAge: 86400*365
+  }));
 });
 
 function capitalize(str){
