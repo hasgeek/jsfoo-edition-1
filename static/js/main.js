@@ -16,20 +16,6 @@
     return;
   }
 
-  // map the url stuff the section on the grid
-  var map = {
-    "about-event": "first",
-    "about-hasgeek": "second",
-    "schedule": "third",
-    "venue": "fourth",
-    "home": "fifth",
-    "hacknight": "sixth",
-    "videos": "seventh",
-    "sponsors": "eigth",
-    "credits": "ninth",
-    "register": "tenth"
-  };
-
 
   // TODO: handle konami code
   $.fn.knm = function(callback, code) {
@@ -67,9 +53,21 @@
     return requested;
   }
 
+  // map the url stuff the section on the grid
+  var urlMap = {
+    "about-event": "first",
+    "about-hasgeek": "second",
+    "schedule": "third",
+    "venue": "fourth",
+    "home": "fifth",
+    "hacknight": "sixth",
+    "videos": "seventh",
+    "sponsors": "eigth",
+    "credits": "ninth",
+    "register": "tenth"
+  }, outer, template;
 
-  // Init DOM stuff, including the resize handler
-  var outer, template;
+  // window resize handler
   function adjust(){
     var w = win.width()-5, h = win.height()-25;
     if(w < 800){ w = 800; }
@@ -85,13 +83,14 @@
     $("#rendered").replaceWith($('<style type="text/css" id="rendered">'+output+'</style>'));
   }
 
+  // Init DOM stuff
   function initDOM() {
     outer = $("#outer");
     template = $("#template");
 
     parseUrl();
-    if(typeof map[requested] !== 'undefined'){
-      body.attr("class", requested + " " + map[requested]);
+    if(typeof urlMap[requested] !== 'undefined'){
+      body.attr("class", requested + " " + urlMap[requested]);
     } else {
       body.attr("class", "home fourth");
     }
@@ -100,13 +99,12 @@
     win.resize(adjust);
   }
 
-
   // Handle the URL changes via the History API
   function updateURL(url, e) {
     url = url || "home";
-    if(typeof map[url] !== 'undefined'){
+    if(typeof urlMap[url] !== 'undefined'){
       outer.addClass("animated");
-      body.attr("class", url + " " + map[url]);
+      body.attr("class", url + " " + urlMap[url]);
       clearTimeout(animTimer);
       animTimer = setTimeout(function(){
         outer.removeClass("animated");
@@ -123,6 +121,23 @@
   function handleURLChange() {
     updateURL(parseUrl());
   }
+
+
+
+  // Parse the URL for city & year
+  var params = location.pathname.match(/(bangalore|pune|chennai)\-(201[12])/);
+  var year = params[2];
+  var city = params[1];
+
+  // Fetch the proposals for the event
+  $.ajax({
+    url: "http://funnel.hasgeek.com/jsfoo-"+city+"/json",
+    dataType: "jsonp",
+    success: function(){
+      console.log("build the table now", arguments[0]);
+    }
+  });
+
 
 
   // Fetch the Map for the venue
@@ -213,7 +228,7 @@
       }else if((hashChangeSupported && url === location.hash.substr(1))) {
         return e.preventDefault();
       }
-      if(typeof map[url || "home"] !== 'undefined'){
+      if(typeof urlMap[url || "home"] !== 'undefined'){
         if(historyAPISupported){
           history.pushState(null, null, "/"+base+"/"+url);
         }else if(hashChangeSupported){
