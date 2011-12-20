@@ -1,6 +1,6 @@
 {
     "name": "jsfoo"
-    "description": "Site for JSFoo India 2011. Done in Express + EJS + Stylus",
+  , "description": "Site for JSFoo India 2011. Done in Express + EJS + Stylus"
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
