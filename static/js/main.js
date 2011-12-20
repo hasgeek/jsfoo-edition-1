@@ -1,19 +1,37 @@
-// TODO: handle konami code & show message on ancient browsers
-
-// main code
-$(function($){
+(function($, window, document, google, _gaq, undefined){
   
-  var body = $(document.body), location = window.location, 
+  "use strict";
+
+  var body = $(document.body), win = $(window), location = window.location, 
+      clearTimeout = window.clearTimeout, setTimeout = window.setTimeout,
       history = window.history, console = window.console || {"log":function(){}},
       historyAPISupported = !!(history && history.pushState),
       hashChangeSupported = !!("onhashchange" in window);
 
+  // Show an empty page to an old browser user, coz we dislike them for not upgrading
+  // TODO: act mature & show a message to them
   if(!historyAPISupported && !hashChangeSupported){
     // we dont like this browser
     $("html,body").hide();
     return;
   }
 
+  // map the url stuff the section on the grid
+  var map = {
+    "about-event": "first",
+    "about-hasgeek": "second",
+    "schedule": "third",
+    "venue": "fourth",
+    "home": "fifth",
+    "hacknight": "sixth",
+    "videos": "seventh",
+    "sponsors": "eigth",
+    "credits": "ninth",
+    "register": "tenth"
+  };
+
+
+  // TODO: handle konami code
   $.fn.knm = function(callback, code) {
     if(code === undefined) code = "38,38,40,40,37,39,37,39,66,65";
     return this.each(function() {
@@ -27,8 +45,18 @@ $(function($){
       }, true);
     });
   };
-  
-  function parseUrl(){
+
+  win.knm(function(){
+    if(console.log){
+      console.log("You've hit the magic keys");
+    }
+  });
+
+
+
+  // Extract the page info from the location.pathname
+  var requested, base = "", animTimer;
+  function parseUrl() {
     if(historyAPISupported){
       requested = location.pathname.substr(1).split("/");
       base = requested[0];
@@ -39,40 +67,11 @@ $(function($){
     return requested;
   }
 
-  // konami code
-  $(window).knm(function(){
-    if(console.log){
-      console.log("You've hit the magic keys");
-    }
-  });
-  
-  var outer = $("#outer");
-  var overlay = $("<div id='overlay' />");
-  var modalWindow = $("<div id='modal'><div id='inner' class='georgia' /></div>");
-  var modelInner = modalWindow.find("div").first();
-  var map = {
-    "about-event": "first",
-    "about-hasgeek": "second",
-    "schedule": "third",
-    "venue": "fourth",
-    "home": "fifth",
-    "hacknight": "sixth",
-    "videos": "seventh",
-    "sponsors": "eigth",
-    "credits": "ninth",
-    "register": "tenth"
-  };
-  var requested, base = "";  
-  parseUrl();
-  if(typeof map[requested] !== 'undefined'){
-    body.attr("class", requested + " " + map[requested]);
-  } else {
-    body.attr("class", "home fourth");
-  }
-  
-  var template = $("#template");
+
+  // Init DOM stuff, including the resize handler
+  var outer, template;
   function adjust(){
-    var w = $(window).width()-5, h = $(window).height()-25;
+    var w = win.width()-5, h = win.height()-25;
     if(w < 800){ w = 800; }
     if(h < 300){ h = 300; }
     var adData = {
@@ -81,18 +80,29 @@ $(function($){
     var output = template.html().replace(/\{[1-5]?(w|h|H)\}/g, function(f){
       return adData[f.replace(/[\{\}]/g,"")] + "px";
     });
+
+    // this querySelector result should not be cached since it gets replaced
     $("#rendered").replaceWith($('<style type="text/css" id="rendered">'+output+'</style>'));
-    
-    overlay.height($(window).height());
   }
-  adjust();
-  var sizeTimer;
-  $(window).resize(adjust);
-  body.attr("style","display:block").append(overlay).append(modalWindow);
-  
-  
-  var animTimer;
-  function updateURL(url, e){
+
+  function initDOM() {
+    outer = $("#outer");
+    template = $("#template");
+
+    parseUrl();
+    if(typeof map[requested] !== 'undefined'){
+      body.attr("class", requested + " " + map[requested]);
+    } else {
+      body.attr("class", "home fourth");
+    }
+
+    adjust();
+    win.resize(adjust);
+  }
+
+
+  // Handle the URL changes via the History API
+  function updateURL(url, e) {
     url = url || "home";
     if(typeof map[url] !== 'undefined'){
       outer.addClass("animated");
@@ -110,40 +120,13 @@ $(function($){
     }
   }
 
-  $("header a").live("click",function(e){
-    var url = this.href.substr(this.href.lastIndexOf("/")+1);
-    if(historyAPISupported){
-      if(url === location.pathname.substr(1)){
-        return e.preventDefault();
-      }
-    }else if((hashChangeSupported && url === location.hash.substr(1))) {
-      return e.preventDefault();
-    }
-    if(typeof map[url || "home"] !== 'undefined'){
-      if(historyAPISupported){
-        history.pushState(null, null, "/"+base+"/"+url);
-      }else if(hashChangeSupported){
-        location.hash = url || "home";
-      }else{
-        return;
-      }
-    }
-    updateURL(url, e);
-    $(this).blur();
-  });
-
-  if(historyAPISupported){
-    $(window).bind("popstate", function(e){
-      updateURL(parseUrl());
-    });
-  }else if(hashChangeSupported){
-    $(window).bind( 'hashchange', function(e){
-      updateURL(parseUrl());
-    });
+  function handleURLChange() {
+    updateURL(parseUrl());
   }
-  
-  // maps
-  setTimeout(function fetchMap(){
+
+
+  // Fetch the Map for the venue
+  function fetchMap(){
     var mapDiv = document.getElementById("venue-map");
     if(!mapDiv) {
       return;
@@ -197,9 +180,12 @@ $(function($){
       infowindow.open(map, marker);
     });
     infowindow.open(map, marker);
-  },2000);
-  
-  setTimeout(function kickUtm(){
+  }
+
+
+
+  // Remove tracking params from the URL for browsers that support history API, for a cleaner URL
+  function kickUtm(){
     if(history.replaceState && location.search.indexOf("utm_") > 0){
       var orig = location.href;
       var fixed = orig.replace(/\?([^#]*)/, function(_, search) {
@@ -212,72 +198,129 @@ $(function($){
         history.replaceState({}, '', fixed);
       }
     }
-  },1000);
-  
-  // Modal window
-  var showingModal = false;
-  function modal(content){
-    overlay.show();
-    modelInner.html(content||"");
-    modalWindow.show();
-    setTimeout(function(){
-      modalWindow.addClass("faded");
-    }, 50);
-    setTimeout(function(){
-      overlay.addClass("faded");
-    }, 200);
-    showingModal = true;
   }
 
-  function hideModal(){
-    overlay.removeClass("faded");
-    modalWindow.removeClass("faded");
-    setTimeout(function(){
-      modalWindow.hide();
-      overlay.hide();
-      modelInner.html("");
-    }, 400);
-    showingModal = false;
+
+
+  // Init the top menus & bind the events for history API
+  function initMenus() {
+    $("header a").live("click", function handleMenus(e) {
+      var url = this.href.substr(this.href.lastIndexOf("/")+1);
+      if(historyAPISupported){
+        if(url === location.pathname.substr(1)){
+          return e.preventDefault();
+        }
+      }else if((hashChangeSupported && url === location.hash.substr(1))) {
+        return e.preventDefault();
+      }
+      if(typeof map[url || "home"] !== 'undefined'){
+        if(historyAPISupported){
+          history.pushState(null, null, "/"+base+"/"+url);
+        }else if(hashChangeSupported){
+          location.hash = url || "home";
+        }else{
+          return;
+        }
+      }
+      updateURL(url, e);
+      $(this).blur();
+    });
+
+    if(historyAPISupported){
+      win.bind("popstate", handleURLChange);
+    }else if(hashChangeSupported){
+      win.bind('hashchange', handleURLChange);
+    }
   }
-  
-  $(".sponsor-logo a").click(function(e){
-    e.preventDefault();
-    var id = $(this).attr("id");
-    if(id.length > 0){
-      modal($("#" + id + "-writeup").html());
-    }
-    return false;
+
+
+
+  // Init modal windows, used for sponsor popups
+  var showModal, hideModal;
+  function initModal() {
+    var overlay = $("<div id='overlay' />");
+    var modalWindow = $("<div id='modal'><div id='inner' class='georgia' /></div>");
+    var modelInner = modalWindow.find("div").first();
+    var showingModal = false;
+
+    showModal = function showModal(content){
+      overlay.show();
+      modelInner.html(content||"");
+      modalWindow.show();
+      setTimeout(function(){
+        modalWindow.addClass("faded");
+      }, 50);
+      setTimeout(function(){
+        overlay.addClass("faded");
+      }, 200);
+      showingModal = true;
+    };
+
+    hideModal = function hideModal(){
+      overlay.removeClass("faded");
+      modalWindow.removeClass("faded");
+      setTimeout(function(){
+        modalWindow.hide();
+        overlay.hide();
+        modelInner.html("");
+      }, 400);
+      showingModal = false;
+    };
+
+    // hide the modal window on Esc key
+    win.keydown(function(e){
+      if(showingModal && e.which === 27){
+        hideModal();
+      }
+    });
+    
+    overlay.click(hideModal);
+
+    win.resize(function(){
+      overlay.height(win.height());
+    });
+
+    body.append(overlay).append(modalWindow);
+  }
+
+
+
+  // Bind sponsor links to the popups
+  function initSponsorsPopup() {
+    $(".sponsor-logo a").click(function(e){
+      e.preventDefault();
+      var id = $(this).attr("id");
+      if(id.length > 0){
+        showModal($("#" + id + "-writeup").html());
+      }
+      return false;
+    });
+  }
+
+
+
+
+
+  // main code
+  $(function init() {
+    initDOM();
+
+    // menus
+    initMenus();
+
+    // modal window
+    initModal();
+
+    // sponsor popups
+    initSponsorsPopup();
+
+    body.attr("style", "display:block");
+
+    // maps
+    setTimeout(fetchMap, 2000);
+
+    // clean urls
+    setTimeout(kickUtm, 1000);
   });
 
-  $(this).keydown(function(e){
-    if(showingModal && e.which === 27){
-      hideModal();
-    }
-  });
-
-  overlay.click(hideModal);
-
-});
-
-/*
-$(function(){
-	$("#sponsor-microsoft").click(function(){
-		$("#sponsors-line-1").toggleClass('ragged-bottom');
-		$("#sponsor-microsoft-writeup").toggleClass('hidden');
-		$("#sponsors-line-2").toggleClass('ragged-top');
-		return false;
-	});
-	$("#sponsor-fusioncharts").click(function(){
-		$("#sponsors-line-2").toggleClass('ragged-bottom');
-		$("#sponsor-fusioncharts-writeup").toggleClass('hidden');
-		$("#sponsors-line-3").toggleClass('ragged-top');
-		return false;
-	});
-	$("#sponsor-novojuris").click(function(){
-		$("#sponsors-line-2").toggleClass('ragged-bottom');
-		$("#sponsor-novojuris-writeup").toggleClass('hidden');
-		$("#sponsors-line-3").toggleClass('ragged-top');
-		return false;
-	});
-});
-*/
+})(jQuery, window, document, google, _gaq);
