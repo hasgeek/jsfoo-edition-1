@@ -66,9 +66,11 @@ app.get(routeRegEx, function(req, resp){
   var params = url.match(/(bangalore|pune|chennai)\-(201[12])/);
   var year = params[2];
   var city = params[1];
+  var opts = [city, year];
   resp.render('main', {
     title: ['JSFoo', capitalize(city), year].join(' '),
-    path: [city, year].join('/'),
+    prefix: opts.join('-'),
+    path: opts.join('/'),
     eventData: eventData[params[0]]
   });
 });
