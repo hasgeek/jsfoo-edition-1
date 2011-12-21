@@ -27,7 +27,7 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
-  app.use(express.errorHandler());
+  app.use(express.errorHandler({ dumpExceptions: false, showStack: false }));
   app.enable('view cache');
 
   // Use gzippo to compress all text content
@@ -77,6 +77,10 @@ app.all(/\/[45]0[0-9]\/?/, function(req, resp){
     layout: false
   });
   resp.end();
+});
+
+app.error(function(err, req, resp, next) {
+  resp.redirect("/403");
 });
 
 app.get(routeRegEx, function(req, resp){
