@@ -40,7 +40,6 @@
   });
 
 
-
   // Extract the page info from the location.pathname
   var requested, base = "", animTimer;
   function parseUrl() {
@@ -221,7 +220,8 @@
   // Init the top menus & bind the events for history API
   function initMenus() {
     $("header a").live("click", function handleMenus(e) {
-      var url = this.href.substr(this.href.lastIndexOf("/")+1);
+      var url = e.target.href;
+      url = url.substr(url.lastIndexOf("/")+1);
       if(historyAPISupported){
         if(url === location.pathname.substr(1)){
           return e.preventDefault();
@@ -239,7 +239,7 @@
         }
       }
       updateURL(url, e);
-      $(this).blur();
+      $(e.target).blur();
     });
 
     if(historyAPISupported){
@@ -305,7 +305,7 @@
   function initSponsorsPopup() {
     $(".sponsor-logo a").click(function(e){
       e.preventDefault();
-      var id = $(this).attr("id");
+      var id = $(e.target).attr("id");
       if(id.length > 0){
         showModal($("#" + id + "-writeup").html());
       }
