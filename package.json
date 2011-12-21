@@ -1,16 +1,12 @@
 {
     "name": "jsfoo"
-    "description": "Site for JSFoo India 2011. Done in Express + EJS + Stylus",
+  , "description": "Site for JSFoo India 2011. Done in Express + EJS + Stylus"
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
       "express": ">= 2.1.0"
     , "stylus": ">= 0.0.1"
     , "ejs": ">= 0.0.1"
-    , "socket.io": ">= 0.7"
-    , "irc": ">= 0.2.0"
-    , "couch-client": ">= 0.0.4"
-    , "nib": ">= 0.2.0"
-    , "connect-gzip": ">= 0.1.0"
+    , "gzippo": ">= 0.1.0"
   }
 }
