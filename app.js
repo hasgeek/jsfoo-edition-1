@@ -20,7 +20,6 @@ app.configure(function(){
       //.use(require("nib")());
     }
   }));
-  app.use(app.router);
 });
 
 app.configure('development', function(){
@@ -36,6 +35,14 @@ app.configure('production', function(){
   app.use(require("gzippo").staticGzip(__dirname + '/static', {
     maxAge: 86400*365
   }));
+});
+
+// Add a logger after the static handler, but before the router
+app.configure(function(){
+  app.use(express.logger({
+    format: ":date - :remote-addr - :method - :url - :user-agent"
+  }));
+  app.use(app.router);
 });
 
 function capitalize(str){
