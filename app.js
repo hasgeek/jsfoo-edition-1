@@ -5,7 +5,7 @@
 var express = require('express'),
      stylus = require("stylus"),
         app = module.exports = express.createServer(),
- routeRegEx = /^\/(bangalore|pune|chennai)\-201[12]\/(about\-(event|hasgeek)|schedule|venue|hacknight|videos|sponsors|credits|register)?\/?$/;
+ routeRegEx = /^\/(bangalore|pune|chennai)201[12]\/(about\-(event|hasgeek)|schedule|venue|hacknight|videos|sponsors|credits|register)?\/?$/;
 
 // Configuration
 app.configure(function(){
@@ -17,7 +17,6 @@ app.configure(function(){
     dest: __dirname + '/static',
     compile: function (str, path, fn) {
       return stylus(str).set('filename', path).set('compress', true);
-      //.use(require("nib")());
     }
   }));
 });
@@ -50,17 +49,17 @@ function capitalize(str){
 }
 
 var eventData = {
-  "bangalore-2011": {
+  "bangalore2011": {
     doAttendId: 4417,
     time: "October 1, 2011",
     city: "Bangalore"
   },
-  "pune-2012": {
+  "pune2012": {
     doAttendId: 19398,
     time: "January 21, 2012",
     city: "Pune"
   },
-  "chennai-2012": {
+  "chennai2012": {
     doAttendId: 0,
     time: "February 18, 2012",
     city: "Chennai"
@@ -82,7 +81,7 @@ app.all(/\/[45]0[0-9]\/?/, function(req, resp){
 
 app.get(routeRegEx, function(req, resp){
   var url = req.url;
-  var params = url.match(/(bangalore|pune|chennai)\-(201[12])/);
+  var params = url.match(/(bangalore|pune|chennai)(201[12])/);
   var year = params[2];
   var city = params[1];
   var opts = [city, year];
@@ -90,7 +89,7 @@ app.get(routeRegEx, function(req, resp){
   if(typeof data !== 'undefined') {
     resp.render('main', {
       title: ['JSFoo', capitalize(city), year].join(' '),
-      prefix: opts.join('-'),
+      prefix: opts.join(''),
       path: opts.join('/'),
       eventData: data
     });
@@ -101,7 +100,7 @@ app.get(routeRegEx, function(req, resp){
 
 // Catch all route
 app.use(function(eq, resp){
-  resp.redirect("/pune-2012/");
+  resp.redirect("/pune2012/");
 });
 
 // prevent server from starting as module - can be used with something like multinode/cluster

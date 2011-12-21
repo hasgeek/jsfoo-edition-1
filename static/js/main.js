@@ -125,7 +125,7 @@
 
 
   // Parse the URL for city & year
-  var params = location.pathname.match(/(bangalore|pune|chennai)\-(201[12])/);
+  var params = location.pathname.match(/(bangalore|pune|chennai)(201[12])/);
   var year = params[2];
   var city = params[1];
 
@@ -148,7 +148,7 @@
     }
 
     var venues = {
-      "2011-bangalore": {
+      "bangalore2011": {
         "lat": 12.9341,
         "long": 77.6043,
         "url": "http://goo.gl/maps/jYyv",
@@ -156,7 +156,7 @@
         "description": "Christ University Campus.",
         "zoom": 14
       },
-      "2012-pune": {
+      "pune2012": {
         "lat": 18.5334,
         "long": 73.8336,
         "url": "http://g.co/maps/zbznz",
@@ -166,7 +166,7 @@
       }
     };
 
-    var venue = venues[mapDiv.getAttribute("rel")];
+    var venue = venues[city + year];
     if(!venue) {
       return;
     }
