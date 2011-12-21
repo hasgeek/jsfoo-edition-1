@@ -67,22 +67,6 @@
     "register": "tenth"
   }, outer, template;
 
-  // window resize handler
-  function adjust(){
-    var w = win.width()-5, h = win.height()-25;
-    if(w < 800){ w = 800; }
-    if(h < 300){ h = 300; }
-    var adData = {
-      "1w": w, "2w": 2*w, "3w": 3*w, "4w": 4*w, "5w": 5*w, "1h": h, "H": h-100
-    };
-    var output = template.html().replace(/\{[1-5]?(w|h|H)\}/g, function(f){
-      return adData[f.replace(/[\{\}]/g,"")] + "px";
-    });
-
-    // this querySelector result should not be cached since it gets replaced
-    $("#rendered").replaceWith($('<style type="text/css" id="rendered">'+output+'</style>'));
-  }
-
   // Init DOM stuff
   function initDOM() {
     outer = $("#outer");
@@ -93,6 +77,22 @@
       body.attr("class", requested + " " + urlMap[requested]);
     } else {
       body.attr("class", "home fourth");
+    }
+
+    // window resize handler
+    function adjust(){
+      var w = win.width()-5, h = win.height()-25;
+      if(w < 800){ w = 800; }
+      if(h < 300){ h = 300; }
+      var adData = {
+        "1w": w, "2w": 2*w, "3w": 3*w, "4w": 4*w, "5w": 5*w, "1h": h, "H": h-100
+      };
+      var output = template.html().replace(/\{[1-5]?(w|h|H)\}/g, function(f){
+        return adData[f.replace(/[\{\}]/g,"")] + "px";
+      });
+
+      // this querySelector result should not be cached since it gets replaced
+      $("#rendered").replaceWith($('<style type="text/css" id="rendered">'+output+'</style>'));
     }
 
     adjust();
