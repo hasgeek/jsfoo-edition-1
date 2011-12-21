@@ -18,21 +18,22 @@
 
 
   // TODO: handle konami code
-  $.fn.knm = function(callback, code) {
-    if(code === undefined) code = "38,38,40,40,37,39,37,39,66,65";
-    return this.each(function() {
-      var kkeys = [];
-      $(this).keydown(function(e){
-        kkeys.push( e.keyCode );
-        if ( kkeys.toString().indexOf( code ) >= 0 ){
-          $(this).unbind('keydown', arguments.callee);
-          callback(e);
-        }
-      }, true);
-    });
-  };
+  function initKonami(callback) {
+    var code = "38,38,40,40,37,39,37,39,66,65";
+    var kkeys = [];
 
-  win.knm(function(){
+    function handleKonamiKeys(e) {
+      kkeys.push(e.keyCode);
+      if (kkeys.toString().indexOf(code) >= 0){
+        win.unbind('keydown', handleKonamiKeys);
+        callback(e);
+      }
+    }
+
+    win.keydown(handleKonamiKeys);
+  }
+
+  initKonami(function(){
     if(console.log){
       console.log("You've hit the magic keys");
     }
