@@ -292,9 +292,12 @@
     
     overlay.click(hideModal);
 
-    win.resize(function(){
+    function adjust() {
       overlay.height(win.height());
-    });
+    }
+
+    adjust();
+    win.resize(adjust);
 
     body.append(overlay).append(modalWindow);
   }
