@@ -160,7 +160,7 @@
         "lat": 18.5334,
         "long": 73.8336,
         "url": "http://g.co/maps/zbznz",
-        "title": "Symbiosis Institute Of Computer Studies and Research",
+        "title": "Symbiosis Institute of Computer Studies and Research",
         "description": "Atur Centre, Gokhale Cross Road, Model Colony, Shivaji Nagar.",
         "zoom": 16
       }
