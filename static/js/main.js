@@ -220,7 +220,8 @@
   // Init the top menus & bind the events for history API
   function initMenus() {
     $("header a").live("click", function handleMenus(e) {
-      var url = e.target.href;
+      var node = $(e.currentTarget);
+      var url = node[0].href;
       url = url.substr(url.lastIndexOf("/")+1);
       if(historyAPISupported){
         if(url === location.pathname.substr(1)){
@@ -239,7 +240,7 @@
         }
       }
       updateURL(url, e);
-      $(e.target).blur();
+      node.blur();
     });
 
     if(historyAPISupported){
@@ -308,7 +309,7 @@
   function initSponsorsPopup() {
     $(".sponsor-logo a").click(function(e){
       e.preventDefault();
-      var id = $(e.target).attr("id");
+      var id = $(e.currentTarget).attr("id");
       if(id.length > 0){
         showModal($("#" + id + "-writeup").html());
       }
