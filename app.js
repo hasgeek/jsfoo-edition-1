@@ -5,7 +5,7 @@
 var express = require('express'),
      stylus = require("stylus"),
         app = module.exports = express.createServer(),
- routeRegEx = /^\/(bangalore|pune|chennai)201[12]\/(about\-(event|hasgeek)|schedule|venue|hacknight|videos|sponsors|credits|register)?\/?$/;
+ routeRegEx = /^\/(bangalore|pune|chennai)201[12](\/(about\-(event|hasgeek)|schedule|venue|hacknight|videos|sponsors|credits|register))?\/?$/;
 
 // Configuration
 app.configure(function(){
