@@ -68,18 +68,35 @@ var eventData = {
 };
 
 // Routes
+
+app.all(/\/[45]0[0-9]\/?/, function(req, resp){
+  var errorCode = parseInt(req.url.replace(/[^0-9]/, ""), 10);
+  // TODO: find out how to send headers without breaking the resp.render
+  // resp.writeHead(errorCode);
+  resp.render("error", {
+    title: errorCode,
+    layout: false
+  });
+  resp.end();
+});
+
 app.get(routeRegEx, function(req, resp){
   var url = req.url;
   var params = url.match(/(bangalore|pune|chennai)\-(201[12])/);
   var year = params[2];
   var city = params[1];
   var opts = [city, year];
-  resp.render('main', {
-    title: ['JSFoo', capitalize(city), year].join(' '),
-    prefix: opts.join('-'),
-    path: opts.join('/'),
-    eventData: eventData[params[0]]
-  });
+  var data = eventData[params[0]];
+  if(typeof data !== 'undefined') {
+    resp.render('main', {
+      title: ['JSFoo', capitalize(city), year].join(' '),
+      prefix: opts.join('-'),
+      path: opts.join('/'),
+      eventData: data
+    });
+  } else {
+    resp.redirect("/403");
+  }
 });
 
 // Catch all route
