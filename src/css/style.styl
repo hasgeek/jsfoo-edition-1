@@ -547,58 +547,73 @@ section.panel
   div p.caption
     text-align center
     
-  div#schedule-table
+  #schedule-table, #proposal-table
     border 1px solid #fb8
     border-radius 6px
     background rgba(255, 240, 200, 0.4)
     box-shadow 0 2px 12px #752
-    table
-      width 100%
-      thead
-          th
-            padding-top 0.75em
-            border-bottom 1px solid #fb8
-      tbody
-        tr td
-          height 3em
-          font-size 12px
+
+  table
+    width 100%
+    thead
+        th
+          padding-top 0.75em
           border-bottom 1px solid #fb8
-          vertical-align top
-          text-align left
-          a
-            color inherit
-            color #CD5B00
-
-        tr:last-of-type td
-            border-bottom 0 none
-        tr:nth-of-type(even)
-          background rgba(255, 255, 255, 0.2)
-        tr.break td
-          height 1em
-      th
+    tbody
+      tr td
+        height 3em
+        font-size 12px
+        border-bottom 1px solid #fb8
+        vertical-align top
         text-align left
-      th, td
-        padding 1em
-        border-left 1px solid #fb8
-        &:first-child, &:first-child
-          border-left none
-        &.col
-          width 28%
-      .session
-        display block
-      .speaker
-        display block
-        font-style italic
-      .speaker:before
-        content "— "
-      .break
-        text-align center
-        font-style italic
-      .time
-        text-align center
-        font-weight bold
-        font-style normal
+        a
+          color inherit
+          color #CD5B00
 
+      tr:last-of-type td
+          border-bottom 0 none
+      tr:nth-of-type(even)
+        background rgba(255, 255, 255, 0.2)
+      tr.break td
+        height 1em
+    th
+      text-align left
+    th, td
+      padding 1em
+      border-left 1px solid #fb8
+      &:first-child, &:first-child
+        border-left none
+      &.col
+        width 28%
+    .session
+      display block
+    .speaker
+      display block
+      font-style italic
+    .speaker:before
+      content "— "
+    .break
+      text-align center
+      font-style italic
+    .time
+      text-align center
+      font-weight bold
+      font-style normal
+
+  #proposal-table
+    td
+      height auto
+    tr.title td::before
+      content '\2022'
+      color #e60
+      font-size 1.5em
+      padding-right 6px
+      text-shadow 0 0 6px rgba(100,100,100,0.4)
+      line-height 1.2em
+    tr.detail td
+      border-bottom 0 none
+    tr.title td
+      border-top 1px solid #c84
 
 
 #sponsors

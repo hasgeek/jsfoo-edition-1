@@ -129,14 +129,57 @@
   var year = params[2];
   var city = params[1];
 
+  // Use a renderer for creating the schedule/proposal table
+  function render(template, data){
+    return template.replace(/\{[\w\.\(\)]+\}/g, function(match){
+      var token = match.replace(/[\{\}]/g,"");
+      try{
+        return (new Function("data", "return data."+token+"||''"))(data);
+      }catch(e){
+        return "";
+      }
+    });
+  }
+
   // Fetch the proposals for the event
-  $.ajax({
-    url: "http://funnel.hasgeek.com/jsfoo-"+city+"/json",
-    dataType: "jsonp",
-    success: function(){
-      console.log("build the table now", arguments[0]);
+  function initProposalTable() {
+    var scheduleBox = $("#proposal-table");
+
+    // Skip if a schedule/proposal table already exists
+    if($("table", scheduleBox).length > 0 || $("#schedule-table").length > 0) {
+      return;
     }
-  });
+
+    var scheduleTable = $("<table></table>");
+    $(scheduleBox).empty();
+    scheduleBox.append(scheduleTable).removeClass("info").addClass("separator");
+
+    var trTemplate = '<tr class="title"><td colspan="7"><a href="{link}" target="_blank">{title}</a></td></tr>' +
+        '<tr class="detail"><td>{proposer}</td><td>{speaker}</td><td>{section}</td><td>{type}</td><td>{level}</td><td>{votes}</td><td style="white-space: nowrap">{submitted}</td></tr>';
+
+    function fetchSuccess(response) {
+      var proposals = response.proposals;
+      var markup = "", proposal, submitted;
+      if(proposals instanceof Array) {
+        scheduleTable.append("<tr><th>Proposer</th><th>Speaker</th><th>Section</th><th>Type</th><th>Level</th><th>+1</th><th>Submitted</th></tr>");
+        for(var i=0, l=proposals.length; i < l; i++) {
+          proposal = proposals[i];
+          proposal.i = i+1;
+          submitted = (new Date(proposal.submitted));
+          proposal.submitted = submitted.toDateString();
+          scheduleTable.append(render(trTemplate, proposals[i]));
+        }
+      } else {
+        // TODO: add the funnel list link instead
+      }
+    }
+
+    $.ajax({
+      url: "http://funnel.hasgeek.com/jsfoo-"+city+"/json",
+      dataType: "jsonp",
+      success: fetchSuccess
+    });
+  }
 
 
 
@@ -335,6 +378,9 @@
     initSponsorsPopup();
 
     body.attr("style", "display:block");
+
+    // Proposal table/ Schedule table
+    setTimeout(initProposalTable, 1000);
 
     // maps
     setTimeout(fetchMap, 2000);
