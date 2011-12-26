@@ -154,7 +154,7 @@
     $(scheduleBox).empty();
     scheduleBox.append(scheduleTable).removeClass("info").addClass("separator");
 
-    var trTemplate = '<tr class="title"><td colspan="7"><a href="{link}" target="_blank">{title}</a></td></tr>' +
+    var trTemplate = '<tr class="title"><td colspan="7"><a href="{url}" target="_blank">{title}</a></td></tr>' +
         '<tr class="detail"><td>{proposer}</td><td>{speaker}</td><td>{section}</td><td>{type}</td><td>{level}</td><td>{votes}</td><td style="white-space: nowrap">{submitted}</td></tr>';
 
     function fetchSuccess(response) {
