@@ -2,7 +2,7 @@
   
   "use strict";
 
-  var body = $(document.body), win = $(window), location = window.location, 
+  var body = $(document.body), win = $(window), location = window.location,
       clearTimeout = window.clearTimeout, setTimeout = window.setTimeout,
       history = window.history, console = window.console || {"log":function(){}},
       historyAPISupported = !!(history && history.pushState),
@@ -150,16 +150,20 @@
       return;
     }
 
-    var scheduleTable = $("<table></table>");
-    $(scheduleBox).empty();
-    scheduleBox.append(scheduleTable).removeClass("info").addClass("separator");
-
     var trTemplate = '<tr class="title"><td colspan="7"><a href="{url}" target="_blank">{title}</a></td></tr>' +
         '<tr class="detail"><td>{proposer}</td><td>{speaker}</td><td>{section}</td><td>{type}</td><td>{level}</td><td>{votes}</td><td style="white-space: nowrap">{submitted}</td></tr>';
+
+    function fetchFailure() {
+      scheduleBox.html("Looks like there were some issues loading the proposals, try opening the funnel <a target='_blank' href='http://funnel.hasgeek.com/jsfoo-"+city+"'>here</a>");
+    }
 
     function fetchSuccess(response) {
       var proposals = response.proposals;
       var markup = "", proposal, submitted;
+      var scheduleTable = $("<table></table>");
+      $(scheduleBox).empty();
+      scheduleBox.append(scheduleTable).removeClass("info").addClass("separator");
+  
       if(proposals instanceof Array) {
         scheduleTable.append("<tr><th>Proposer</th><th>Speaker</th><th>Section</th><th>Type</th><th>Level</th><th>+1</th><th>Submitted</th></tr>");
         for(var i=0, l=proposals.length; i < l; i++) {
@@ -171,14 +175,18 @@
         }
       } else {
         // TODO: add the funnel list link instead
+        fetchFailure();
       }
     }
 
     $.ajax({
       url: "http://funnel.hasgeek.com/jsfoo-"+city+"/json",
       dataType: "jsonp",
-      success: fetchSuccess
+      success: fetchSuccess,
+      error: fetchFailure
     });
+  
+    scheduleBox.html("Loading the proposals");
   }
 
 
