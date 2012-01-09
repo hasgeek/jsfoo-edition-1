@@ -214,6 +214,14 @@
         "title": "Symbiosis Institute of Computer Studies and Research",
         "description": "Atur Centre, Gokhale Cross Road, Model Colony, Shivaji Nagar.",
         "zoom": 16
+      },
+      "chennai2012": {
+        "lat": 13.0015,
+        "long": 80.24242,
+        "url": "http://g.co/maps/3ntxc",
+        "title": "IIT Madras Research Park",
+        "description": "Kanagam Rd, Tharamani, Chennai, Tamil Nadu",
+        "zoom": 16
       }
     };
 

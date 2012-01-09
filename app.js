@@ -60,7 +60,7 @@ var eventData = {
     city: "Pune"
   },
   "chennai2012": {
-    doAttendId: 0,
+    doAttendId: 19808,
     time: "February 18, 2012",
     city: "Chennai"
   }
