@@ -2,7 +2,7 @@
   <nav>
     <a href="/<%= prefix %>/about-event">About Event</a>
     <a href="/<%= prefix %>/about-hasgeek">About HasGeek</a>
-    <a href="/<%= prefix %>/schedule">Schedule</a>
+    <a href="/<%= prefix %>/schedule"><% if(eventData.scheduleFinalized){ %>Schedule<% }else{ %>Proposals<% } %></a>
     <a href="/<%= prefix %>/venue">Venue</a>
   </nav>
   <a href="/<%= prefix %>/" class="logo">

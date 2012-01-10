@@ -52,7 +52,8 @@ var eventData = {
   "bangalore2011": {
     doAttendId: 4417,
     time: "October 1, 2011",
-    city: "Bangalore"
+    city: "Bangalore",
+    scheduleFinalized: true
   },
   "pune2012": {
     doAttendId: 19398,
