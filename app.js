@@ -58,7 +58,8 @@ var eventData = {
   "pune2012": {
     doAttendId: 19398,
     time: "January 21, 2012",
-    city: "Pune"
+    city: "Pune",
+    scheduleFinalized: true
   },
   "chennai2012": {
     doAttendId: 19808,
