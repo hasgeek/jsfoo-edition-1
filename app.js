@@ -106,7 +106,7 @@ app.get(routeRegEx, function(req, resp){
 
 // Catch all route
 app.use(function(eq, resp){
-  resp.redirect("/pune2012/");
+  resp.redirect("/chennai2012/");
 });
 
 // prevent server from starting as module - can be used with something like multinode/cluster
