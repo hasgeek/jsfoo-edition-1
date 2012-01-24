@@ -81,9 +81,10 @@
 
     // window resize handler
     function adjust(){
-      var w = win.width()-5, h = win.height()-25;
+      var w = win.width()-5, h = win.outerHeight()-25;
       if(w < 800){ w = 800; }
       if(h < 300){ h = 300; }
+      if(w < 1040){ h += 24; }
       var adData = {
         "1w": w, "2w": 2*w, "3w": 3*w, "4w": 4*w, "5w": 5*w, "1h": h, "H": h-100
       };
@@ -97,6 +98,25 @@
 
     adjust();
     win.resize(adjust);
+  }
+
+  function is_touch_device() {
+    try {
+      document.createEvent("TouchEvent");
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function initIScroll() {
+    if(!is_touch_device()) {
+      return;
+    }
+
+    $("section").each(function(i, section){
+      new window.iScroll(section, { hScrollbar: true, vScrollbar: true });
+    });
   }
 
   // Handle the URL changes via the History API
@@ -383,6 +403,7 @@
   // main code
   $(function init() {
     initDOM();
+    initIScroll();
 
     // menus
     initMenus();

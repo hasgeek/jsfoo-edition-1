@@ -1,19 +1,27 @@
 <header>
-  <nav>
-    <a href="/<%= prefix %>/about-event">About Event</a>
-    <a href="/<%= prefix %>/about-hasgeek">About HasGeek</a>
-    <a href="/<%= prefix %>/schedule"><% if(eventData.scheduleFinalized){ %>Schedule<% }else{ %>Proposals<% } %></a>
-    <a href="/<%= prefix %>/venue">Venue</a>
-  </nav>
+  <div>
+    <nav>
+      <a href="/<%= prefix %>/about-event">About Event</a>
+      <a href="/<%= prefix %>/about-hasgeek">About HasGeek</a>
+    </nav>
+    <nav>
+      <a href="/<%= prefix %>/schedule"><% if(eventData.scheduleFinalized){ %>Schedule<% }else{ %>Proposals<% } %></a>
+      <a href="/<%= prefix %>/venue">Venue</a>
+    </nav>
+  </div>
   <a href="/<%= prefix %>/" class="logo">
     <img src="/img/logo.png" />
   </a>
-  <nav>
-    <a href="/<%= prefix %>/hacknight">Hack Night</a>
-    <a href="/<%= prefix %>/videos">Videos</a>
-    <a href="/<%= prefix %>/sponsors">Sponsors</a>
-    <a href="/<%= prefix %>/credits">Credits</a>
-  </nav>  
+  <div>
+    <nav>
+      <a href="/<%= prefix %>/hacknight">Hack Night</a>
+      <a href="/<%= prefix %>/videos">Videos</a>
+    </nav>
+    <nav>
+      <a href="/<%= prefix %>/sponsors">Sponsors</a>
+      <a href="/<%= prefix %>/credits">Credits</a>
+    </nav>  
+  </div>
   <a href="/<%= prefix %>/register" class="register">
     <strong>Register</strong>
   </a>

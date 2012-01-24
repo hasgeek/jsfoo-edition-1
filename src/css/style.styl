@@ -195,38 +195,37 @@ header
   vertical-align middle
   border-bottom 1px solid #100
   box-shadow 0 0 25px 5px rgba(10,20,10,0.40)
-  
-  nav
-    vertical-align top
+
+  div
+    display inline-block
     margin-top 70px
+
+  nav  
+    font-family 'Open Sans Condensed', sans-serif
+    font-size 16px
+    vertical-align top
     display inline-block
 
     a
       color #fff
       text-transform uppercase
       text-decoration none
-      font-family 'Open Sans Condensed', sans-serif
-      font-size 16px
       padding 0 8px 0 0
       text-shadow 0 0 2px #777
-
-      &:visited, &:active
-        color #fff
-      &:first-of-type
-        //text-shadow  2px 0 0 #000
-      &:last-of-type
-        //text-shadow -2px 0 0 #000
-      &:not(:last-of-type):after
-        content: '|'
+      &:after
+        content '|'
         padding-left 8px
         opacity 0.2
-      &:after
-        //text-shadow 0px none
+      &:visited, &:active
+        color #fff
       &:hover
         color #fa2
         &:after
           color #fff
-        
+  
+  nav:last-of-type a:last-of-type:after
+    content ''
+
   a.logo
     display inline-block
     height 90px
@@ -270,7 +269,7 @@ header
     transition-mixin opacity 0.3s ease-in-out, top 0.3s ease-out
     
     -webkit-transform-origin center top
-    animation-mixin swing 3s infinite
+    //animation-mixin swing 3s infinite
     
     strong
       z-index 10
@@ -288,7 +287,7 @@ header
       opacity 1.0
       top 100px
       cursor pointer
-      animation-mixin none
+      //animation-mixin none
 
 body.register a.register
   top -150px
@@ -827,3 +826,36 @@ ol:hover::-webkit-scrollbar-thumb, div:hover::-webkit-scrollbar-thumb
 ol::-webkit-scrollbar-thumb:active, div::-webkit-scrollbar-thumb:active
   border 1px solid rgba(140, 140, 140, 1)
   background-color rgba(155, 155, 155, 1)
+
+
+// Mobile version
+@media screen and (max-width: 1040px)
+  header
+    div
+      margin 0
+      nav
+        display block
+        font-size 18px
+        &:first-of-type
+          margin 5px auto 0 auto
+        a
+          display inline-block
+          width 110px
+          padding 5px
+          margin 5px
+          border 1px solid transparent
+          border-radius 6px
+        a:hover
+          border-color rgba(200, 100, 40, 0.2)
+          background-color rgba(255, 200, 100, 0.08)
+          text-shadow 1px 1px 2px #000000
+        a::after
+          content ''
+
+    a.logo
+      width 320px
+      img
+        padding 10px 0 0
+  
+  footer
+    display none
