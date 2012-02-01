@@ -236,8 +236,8 @@
         "zoom": 16
       },
       "chennai2012": {
-        "lat": 13.0015,
-        "long": 80.24242,
+        "lat": 12.990717,
+        "long": 80.242338,
         "url": "http://g.co/maps/3ntxc",
         "title": "IIT Madras Research Park",
         "description": "Kanagam Rd, Tharamani, Chennai, Tamil Nadu",
