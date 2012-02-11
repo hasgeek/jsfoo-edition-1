@@ -64,7 +64,8 @@ var eventData = {
   "chennai2012": {
     doAttendId: 19808,
     time: "February 18, 2012",
-    city: "Chennai"
+    city: "Chennai",
+    scheduleFinalized: true
   }
 };
 
