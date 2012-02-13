@@ -100,6 +100,7 @@
     win.resize(adjust);
   }
 
+/*
   function is_touch_device() {
     try {
       document.createEvent("TouchEvent");
@@ -118,6 +119,7 @@
       new window.iScroll(section, { hScrollbar: true, vScrollbar: true });
     });
   }
+*/
 
   // Handle the URL changes via the History API
   function updateURL(url, e) {
@@ -403,7 +405,7 @@
   // main code
   $(function init() {
     initDOM();
-    initIScroll();
+    //initIScroll();
 
     // menus
     initMenus();
