@@ -1,3 +1,5 @@
+var google = google || {};
+
 (function($, window, document, google, _gaq, undefined){
   
   "use strict";
