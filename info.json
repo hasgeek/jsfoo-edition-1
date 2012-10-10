@@ -1,0 +1,16 @@
+{
+    "application": "eventframe",
+    "identifier": "jsfoo2011",
+    "name": "JSFoo 2011",
+    "author": "HasGeek",
+    "description": "JSFoo 2011 series website template",
+    "license": "All rights reserved",
+    "doctype": "html5",
+    "options": {
+        "assets_css": [
+            "css/normalize.css",
+            "css/style.css"
+        ],
+        "assets_js": []
+    }
+}

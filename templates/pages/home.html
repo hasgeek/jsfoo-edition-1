@@ -1,0 +1,9 @@
+<article id="home">
+  <h2>Mastering Javascript</h2>
+  <h3>
+    {%- with index = getnode(folder.name, '') %}
+    <time>{{ index.properties.get('time') }}</time>
+    <span>{{ index.properties.get('city') }}</span>
+    {%- endwith %}
+  </h3>
+</article>

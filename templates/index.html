@@ -1,0 +1,17 @@
+{% extends theme("layout.html") -%}
+{% block body %}
+
+<div id="outer">
+  <section class="panel" id="first">{% include theme("pages/about-event.html") %}</section>
+  <section class="panel" id="second">{% include theme("pages/about-hasgeek.html") %}</section>
+  <section class="panel" id="third">{% include theme("pages/" + folder.name + "/schedule.html") %}</section>
+  <section class="panel" id="fourth">{% include theme("pages/" + folder.name + "/venue.html") %}</section>
+  <section class="panel" id="fifth">{% include theme("pages/home.html") %}</section>
+  <section class="panel" id="sixth">{% include theme("pages/" + folder.name + "/hacknight.html") %}</section>
+  <section class="panel" id="seventh">{% include theme("pages/" + folder.name + "/videos.html") %}</section>
+  <section class="panel" id="eighth">{% include theme("pages/" + folder.name + "/sponsors.html") %}</section>
+  <section class="panel" id="ninth">{% include theme("pages/" + folder.name + "/credits.html") %}</section>
+  <section class="panel" id="tenth">{% include theme("pages/register.html") %}</section>
+</div>
+
+{% endblock %}
