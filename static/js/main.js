@@ -178,7 +178,7 @@ var google = google || {};
         '<tr class="detail"><td>{proposer}</td><td>{speaker}</td><td>{section}</td><td>{type}</td><td>{level}</td><td>{votes}</td><td style="white-space: nowrap">{submitted}</td></tr>';
 
     function fetchFailure() {
-      scheduleBox.html("Looks like there were some issues loading the proposals, try opening the funnel <a target='_blank' href='http://funnel.hasgeek.com/jsfoo-"+city+"'>here</a>");
+      scheduleBox.html("Looks like there were some issues loading the proposals, try opening the funnel <a target='_blank' href='https://funnel.hasgeek.com/jsfoo-"+city+"'>here</a>");
     }
 
     function fetchSuccess(response) {
@@ -204,7 +204,7 @@ var google = google || {};
     }
 
     $.ajax({
-      url: "http://funnel.hasgeek.com/jsfoo-"+city+"/json",
+      url: "//funnel.hasgeek.com/jsfoo-"+city+"/json",
       dataType: "jsonp",
       success: fetchSuccess,
       error: fetchFailure
